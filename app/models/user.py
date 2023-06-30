@@ -1,7 +1,9 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from .follow import Follow
+from .question import Question
+from .answer import Answer
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -15,7 +17,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
-    user_follow = db.relationship('Follow', back_populates='follow_user')
+    user_follow = db.relationship('Follow', back_populates='follow_user', foreign_keys=[Follow.following_user_id])
     user_question = db.relationship('Question', back_populates='question_user')
     user_answer = db.relationship('Answer', back_populates='answer_user')
 

@@ -18,7 +18,7 @@ class Tag(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     tag_name = db.Column(db.String(100))
-    tag_question = db.relationship('Question', back_populates='question_tag')
+    tag_question = db.relationship('Question', back_populates='question_tag', primaryjoin='Tag.id == Question.tag_id')
 
 # from sqlalchemy.schema import Column, ForeignKey, Table
 # from sqlalchemy.types import Integer, String

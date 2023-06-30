@@ -13,7 +13,7 @@ class Follow(db.Model):
         db.Integer, db.ForeignKey('users.id'), primary_key=True)
     followed_user_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    follow_user = db.relationship('User', back_populates='user_follow')
+    follow_user = db.relationship('User', back_populates='user_follow', foreign_keys=[following_user_id])
 
 # class User(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
