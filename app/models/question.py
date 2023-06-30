@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
 class Question(db.Model):
     __tablename__ = 'questions'
 
@@ -13,3 +14,7 @@ class Question(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
+    question_user = db.relationship('User', back_populates='user_question')
+    question_answer = db.relationship(
+        'Answer', back_populates='answer_question')
+    question_tag = db.relationship('Tag', back_populates='tag_question')
