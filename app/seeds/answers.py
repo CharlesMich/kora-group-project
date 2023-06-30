@@ -1,16 +1,16 @@
-from app.models import db, Answers, environment, SCHEMA
+from app.models import db, Answer, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_answers():
-    answer1 = Answers(
+    answer1 = Answer(
         body='Fill up a plastic cup with water and place it in your freezer, and there you got yourself ice', user_id=2, question_id=1
     )
-    answer2 = Answers(
+    answer2 = Answer(
         body='Put two cups of water in a pot, let the water boild and place the eggs in the boiling water for 7 minutes', user_id=3, question_id=2
     )
-    answer3 = Answers(
+    answer3 = Answer(
         body='Playing the game is not what kills you but being seated for a log time can create clogs in some places in your body', user_id=3, question_id=2
     )
 

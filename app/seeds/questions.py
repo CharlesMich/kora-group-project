@@ -3,15 +3,15 @@ from sqlalchemy.sql import text
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_quetions():
+def seed_questions():
     question1 = Question(
-        question='How can I make ice?', owner_id='1'
+        question='How can I make ice?', owner_id=1
     )
     question2 = Question(
-        question='How do I boil an egg?', owner_id='2'
+        question='How do I boil an egg?', owner_id=2
     )
     question3 = Question(
-        question='Can I die for playing to much videogames?', owner_id='3'
+        question='Can I die for playing to much videogames?', owner_id=3
     )
 
     db.session.add(question1)
@@ -26,11 +26,11 @@ def seed_quetions():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_quetions():
+def undo_questions():
     if environment == "production":
         db.session.execute(
-            f"TRUNCATE table {SCHEMA}.quetions RESTART IDENTITY CASCADE;")
+            f"TRUNCATE table {SCHEMA}.questions RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM quetions"))
+        db.session.execute(text("DELETE FROM questions"))
 
     db.session.commit()
