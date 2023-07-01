@@ -20,6 +20,12 @@ class Tag(db.Model):
     tag_name = db.Column(db.String(100))
     tag_question = db.relationship('Question', back_populates='question_tag', primaryjoin='Tag.id == Question.tag_id')
 
+    def to_dict(self):
+            return {
+                'id': self.id,
+                'tag_name': self.tag_name,
+            }
+
 # from sqlalchemy.schema import Column, ForeignKey, Table
 # from sqlalchemy.types import Integer, String
 

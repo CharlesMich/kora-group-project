@@ -47,13 +47,20 @@ def answerUpdate(id):
         print('answer',answer)
         data = request.get_json()
         print('data',data)
-        new_answer_text = data.get('answer')
+        new_answer_text = data.get('body')
         # print('question', question)
         answer.body = new_answer_text
         print('answer.body', new_answer_text )
         db.session.commit()
         return answer.to_dict()
-
-
     return "nothing found"
+
+@answer_route.route('/delete-answers/<int:id>', methods = ["GET", "POST"])
+
+def deleteAnswer(id):
+    answer = Answer.query.filter(Answer.id == id).first()
+    db.session.delete(answer)
+    # question.delete()
+    db.session.commit()
+    return {"message": "Successfully Deleted"}
 
