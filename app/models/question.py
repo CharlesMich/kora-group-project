@@ -23,3 +23,13 @@ class Question(db.Model):
     question_answer = db.relationship(
         'Answer', back_populates='answer_question')
     question_tag = db.relationship('Tag', back_populates='tag_question')
+
+    def to_dict(self):
+            return {
+                'id': self.id,
+                'question': self.question,
+                'owner_id': self.owner_id,
+                'tag_id': self.tag_id,
+                'created_at': self.created_at,
+                'updated_at': self.updated_at
+            }
