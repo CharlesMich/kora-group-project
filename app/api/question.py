@@ -43,23 +43,26 @@ def newquestion():
 def updateQuestion(id):
     # form['csrf_token'].data = request.cookies['csrf_token']
     print(id)
-    question = Question.query.filter(Question.id == id)
+    question = Question.query.filter(Question.id == id).first()
     if request.method == "POST":
 
         print('question',question)
         data = request.get_json()
         print('data',data)
         new_question_text = data.get('question')
+        print('question', question)
         question.question = new_question_text
         print('quesion.question', question.question, new_question_text )
         db.session.commit()
-        return "test"
+        return question.to_dict()
+
+
     return "nothing found"
 
 @question_route.route('/delete-question/<int:id>', methods = ["GET", "POST"])
 def deleteQuestion(id):
 
-    question = Question.query.filter(Question.id == id)
+    question = Question.query.filter(Question.id == id).first()
     db.session.delete(question)
     # question.delete()
     db.session.commit()

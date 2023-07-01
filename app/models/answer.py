@@ -22,3 +22,13 @@ class Answer(db.Model):
     answer_user = db.relationship('User', back_populates='user_answer')
     answer_question = db.relationship(
         'Question', back_populates='question_answer')
+    
+    def to_dict(self):
+            return {
+                'id': self.id,
+                'body': self.body,
+                'user_id': self.user_id,
+                'question_id': self.question_id,
+                'created_at': self.created_at,
+                'updated_at': self.updated_at
+            }
