@@ -9,11 +9,13 @@ class Follow(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    following_user_id = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
-    followed_user_id = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
+    #columns
+    following_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
+    followed_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
+
+    #relationships
     follow_user = db.relationship('User', back_populates='user_follow', foreign_keys=[following_user_id])
+
 
     def to_dict(self):
         return {
