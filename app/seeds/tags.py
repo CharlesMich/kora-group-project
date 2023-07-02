@@ -8,10 +8,10 @@ def seed_tags():
         tag_name='Cooking'
     )
     tags2 = Tag(
-        tag_name='Cooking'
+        tag_name='Sports'
     )
     tags3 = Tag(
-        tag_name='VideoGames'
+        tag_name='Video Games'
     )
 
     db.session.add(tags1)
