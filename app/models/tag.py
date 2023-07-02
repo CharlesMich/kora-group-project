@@ -6,8 +6,11 @@ from flask_login import UserMixin
 tags_questions = Table(
     "tags_questions",
     db.metadata,
-    Column("tag_id", ForeignKey("tags.id"), primary_key=True),
-    Column("questions_id", ForeignKey("questions.id"), primary_key=True))
+    Column("tag_id", ForeignKey(add_prefix_for_prod("tags.id")), primary_key=True),
+    Column("questions_id", ForeignKey(add_prefix_for_prod("questions.id")), primary_key=True))
+
+if environment == "production":
+    tags_questions.schema = SCHEMA
 
 
 class Tag(db.Model):
@@ -25,14 +28,3 @@ class Tag(db.Model):
                 'id': self.id,
                 'tag_name': self.tag_name,
             }
-
-# from sqlalchemy.schema import Column, ForeignKey, Table
-# from sqlalchemy.types import Integer, String
-
-# Base = declarative_base()
-
-# pony_handlers = Table(
-#     "pony_handlers",
-#     Base.metadata,
-#     Column("pony_id", ForeignKey("ponies.id"), primary_key=True),
-#     Column("handler_id", ForeignKey("handlers.id"), primary_key=True))
