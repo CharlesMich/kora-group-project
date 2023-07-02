@@ -7,17 +7,20 @@ answer_route = Blueprint('answer', __name__)
 
 @answer_route.route('/', methods = ["GET"])
 def answerIndex():
+    """
+    gets all answers
+    """
     answers = Answer.query.all()
     return [answer.to_dict() for answer in answers]
 
 
-@answer_route.route('/<int:id>', methods = ["GET", "POST"])    
+@answer_route.route('/<int:id>', methods = ["GET", "POST"])
 def newanswer(id):
     """
     adds new answer
     """
     if request.method == "POST":
-    
+
         # userId = current_user.id
         # print('userid', userId)
         form = AnswerForm()
@@ -36,9 +39,12 @@ def newanswer(id):
             return newAnswer.to_dict()
     else:
         return form.errors
-    
-@answer_route.route('/update-answers/<int:id>', methods = ["Get", "POST"])   
+
+@answer_route.route('/update-answers/<int:id>', methods = ["Get", "POST"])
 def answerUpdate(id):
+    """
+
+    """
     # form['csrf_token'].data = request.cookies['csrf_token']
     # print(id)
     answer = Answer.query.filter(Answer.id == id).first()
@@ -63,4 +69,3 @@ def deleteAnswer(id):
     # question.delete()
     db.session.commit()
     return {"message": "Successfully Deleted"}
-
