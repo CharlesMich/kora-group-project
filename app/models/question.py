@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .tag import Tag
+from .tag import Tag, tags_questions
 import datetime
 
 
@@ -11,18 +11,19 @@ class Question(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
+    #columns
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(1000), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     tag_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tags.id')))
-    created_at = db.Column(
-        db.Date, default=datetime.date.today, nullable=False)
-    updated_at = db.Column(
-        db.Date, default=datetime.date.today, nullable=False)
+    created_at = db.Column(db.Date, default=datetime.date.today, nullable=False)
+    updated_at = db.Column(db.Date, default=datetime.date.today, nullable=False)
+
+    #relationships
     question_user = db.relationship('User', back_populates='user_question')
-    question_answer = db.relationship(
-        'Answer', back_populates='answer_question')
-    question_tag = db.relationship('Tag', back_populates='tag_question')
+    question_answer = db.relationship('Answer', back_populates='answer_question')
+    question_tag = db.relationship('Tag', secondary=tags_questions, back_populates='tag_question')
+
 
     def to_dict(self):
             return {
