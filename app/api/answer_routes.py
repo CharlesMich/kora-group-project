@@ -11,11 +11,16 @@ def answerIndex():
     return [answer.to_dict() for answer in answers]
 
 
+@answer_route.route('/')
+
+
 @answer_route.route('/<int:id>', methods = ["GET", "POST"])    
 def newanswer(id):
     """
     adds new answer
     """
+
+
     if request.method == "POST":
     
         # userId = current_user.id
