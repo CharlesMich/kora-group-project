@@ -6,8 +6,8 @@ from flask_login import UserMixin
 tags_questions = db.Table(
     "tags_questions",
     db.metadata,
-    db.Column("tag_id", ForeignKey(add_prefix_for_prod("tags.id")), primary_key=True),
-    db.Column("questions_id", ForeignKey(add_prefix_for_prod("questions.id")), primary_key=True))
+    db.Column("tag_id", db.Integer, ForeignKey(add_prefix_for_prod("tags.id")), primary_key=True),
+    db.Column("questions_id", db.Integer, ForeignKey(add_prefix_for_prod("questions.id")), primary_key=True))
 
 if environment == "production":
     tags_questions.schema = SCHEMA
