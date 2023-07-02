@@ -8,6 +8,10 @@ Create Date: 2023-06-30 17:53:31.092728
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 
 # revision identifiers, used by Alembic.
 revision = 'fd504a46180e'
@@ -73,6 +77,9 @@ def upgrade():
             sa.Column('first_name', sa.String(length=50), nullable=False))
         batch_op.add_column(
             sa.Column('last_name', sa.String(length=50), nullable=False))
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
     # ### end Alembic commands ###
 
