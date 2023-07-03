@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import db, Question, Tag
 from app.forms import QuestionForm
 from flask_login import login_required
+from sqlalchemy import func
 
 question_route = Blueprint('question', __name__)
 
@@ -29,14 +30,18 @@ def newquestion():
     if form.validate_on_submit():
         newQuestion = Question(
             question = data['question'],
-            owner_id = data['owner_id'],
-            tag_id = data['tag_id']
+            owner_id = data['owner_id']
         )
 
-        tag_id = data['tag_id']
-        tag = Tag.query.get(tag_id)
+        tag_name = data['tag'].lower()
+        tag = Tag.query.filter(func.lower(Tag.tag_name) == tag_name).first()
         if tag:
-            newQuestion.question_tag.append(tag)
+            newQuestion.tag_id = tag.id
+        else:
+            new_tag = Tag(tag_name=tag_name.title())
+            db.session.add(new_tag)
+            db.session.commit()
+            newQuestion.tag_id = new_tag.id
 
         db.session.add(newQuestion)
         db.session.commit()
