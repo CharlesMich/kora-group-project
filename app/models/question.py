@@ -31,5 +31,7 @@ class Question(db.Model):
                 'owner_id': self.owner_id,
                 'tag_id': self.tag_id,
                 'created_at': self.created_at,
-                'updated_at': self.updated_at
+                'updated_at': self.updated_at,
+                "User_firstName": self.question_user.first_name,
+                'User_lastName': self.question_user.last_name
             }
