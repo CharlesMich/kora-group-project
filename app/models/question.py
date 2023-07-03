@@ -13,12 +13,12 @@ class Question(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(1000), nullable=False)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    tag_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tags.id')))
     created_at = db.Column(
-        db.Date, default=datetime.datetime.now, nullable=False)
+        db.Date, default=datetime.date.today, nullable=False)
     updated_at = db.Column(
-        db.Date, default=datetime.datetime.now, nullable=False)
+        db.Date, default=datetime.date.today, nullable=False)
     question_user = db.relationship('User', back_populates='user_question')
     question_answer = db.relationship(
         'Answer', back_populates='answer_question')
