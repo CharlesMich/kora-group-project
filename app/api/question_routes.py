@@ -1,14 +1,13 @@
 from flask import Blueprint, request
 from app.models import db, Question, Tag
 from app.forms import QuestionForm
-from flask_login import login_required
+from flask_login import login_required, current_user
 from sqlalchemy import func
 
 question_route = Blueprint('question', __name__)
 
 
 @question_route.route('/', methods = ["GET"])
-
 # @login_required
 def questionIndex():
     """
@@ -31,7 +30,7 @@ def newquestion():
     if form.validate_on_submit():
         newQuestion = Question(
             question = data['question'],
-            owner_id = data['owner_id']
+            owner_id = current_user.id
         )
 
         tag_name = data['tag'].lower()
