@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired
 
 class QuestionForm(FlaskForm):
     question = StringField('Question', validators=[DataRequired()])
-    owner_id = IntegerField('OwnerId', validators=[DataRequired()])
+    owner_id = IntegerField('OwnerId')
     tag = StringField('Tag')
     submit = SubmitField('Post Question')
 
