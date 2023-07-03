@@ -57,10 +57,12 @@ export const getAllAnswers = () => async (dispatch) => {
 }
 
 // GET ALL ANSWERS OF A USER
-export const getAllAnswersOfUser = () => async (dispatch) => {
-    const response = await (`/api/....`);
+export const fetchAllAnswersOfUser = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/answer/user/${userId}`);
+    console.log('inside fetch', userId)
     if(response.ok){
         const payload = await response.json();
+        // console.log('payload inside fetch', payload)
         dispatch(all_answers_by_user(payload))
     }
 }
@@ -91,8 +93,8 @@ export const addAnswer = (createAnswerForm, questionId) => async (dispatch) => {
 }
 
 // DELETE ANSWER
-export const deleteAnswer = (answerId) => async (dispatch)=> {
-    const response = await fetch(`/api/answer../${answerId}`, {
+export const fetchDeleteAnswer = (answerId) => async (dispatch)=> {
+    const response = await fetch(`/api/answer/delete-answers/${answerId}`, {
         method: "POST"
     })
     if (response.ok){
@@ -121,21 +123,25 @@ const initialState = {};
 export default function answerReducer(state = initialState, action){
     switch (action.type) {
         case LOAD_ANSWERS: 
-        // const allAnswers = {...action.payload};
-        console.log(action.payload)
         return {...state, ...action.payload};
 
         case SINGLE_ANSWER:
         return { ...state, ...action.payload }
 
-        // case ADD_ANSWER: 'abc'
-        // case ALL_ANSWERS_BY_USER: 'abc'
-        // case DELETE_ANSWER: 'abc'
+        case ALL_ANSWERS_BY_USER: 
+        console.log('inside reducer', {...action.payload})
+        return {...state, ...action.payload }
+        
         case UPDATE_ANSWER: 
         return {
             ...state,
             [action.payload.id]: action.payload,
           };
+
+        case DELETE_ANSWER:
+            const answerState = {...state};
+            delete answerState[action.payload];
+            return answerState;  
         
         default: return state;
     }

@@ -12,11 +12,19 @@ def answerIndex():
     answers = Answer.query.all()
     return [answer.to_dict() for answer in answers]
 
-# GET ANSWER BY ID
+
+
+# GET ANSWER BY ANSWER ID
 @answer_route.route('/<int:id>', methods = ["GET"])
 def getAnswerByID(id):
         answers = Answer.query.filter(Answer.id == id).first()
         return answers.to_dict()
+
+# GET ALL ANSWERS BY USERID
+@answer_route.route('/user/<int:id>', methods = ["GET"])
+def getAnswerByUserID(id):
+        answers = Answer.query.filter(Answer.user_id == id).all()
+        return [answer.to_dict() for answer in answers]
 
 
 # CREATE NEW ANSWER

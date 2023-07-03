@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAnswerById, updateAnswer } from '../../store/answers';
+import { fetchAnswerById, updateAnswer } from '../../store/answerReducer';
 import "./updateanswer.css";
 
 
@@ -45,7 +45,7 @@ function UpdateAnswer() {
         setValidationErrors(errors);
     },[body])
 
-    if(!answer || !answerId) return 
+    if(!answer || !answerId) return null
 
     const onSubmit = async (e) => {
         e.preventDefault();

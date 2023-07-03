@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {addAnswer} from '../../store/answers';
+import {addAnswer} from '../../store/answerReducer';
 import "./createanswer.css";
 
 

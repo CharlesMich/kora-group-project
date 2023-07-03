@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from "react-router-dom"
-import { getAllAnswers } from '../../store/answers';
+import { getAllAnswers } from '../../store/answerReducer';
 import './AllAnswers.css'
 
 function AllAnswers(){

@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import AllAnswers from "./components/AllAnswers";
 import CreateAnswer from "./components/CreateAnswer";
 import UpdateAnswer from "./components/UpdateAnswer";
+import ManageAnswers from "./components/ManageAnswer";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,9 +30,8 @@ function App() {
           </Route>
           <Route exact path="/answers/new/:quesionId"><CreateAnswer/></Route>
           <Route exact path="/answers/update/:answerId"><UpdateAnswer/></Route>
-          <Route path="/answers">
-            <AllAnswers/>
-          </Route>
+          <Route path="/answers"><AllAnswers/></Route>
+          <Route path="/manage-answers"><ManageAnswers/></Route>
         </Switch>
       )}
     </>
