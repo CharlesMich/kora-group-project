@@ -5,13 +5,13 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_questions():
     question1 = Question(
-        question='How can I make ice?', owner_id=1
+        question='How can I make ice?', owner_id=1, tag_id=1
     )
     question2 = Question(
-        question='How do I boil an egg?', owner_id=2
+        question='How do I boil an egg?', owner_id=2, tag_id=1
     )
     question3 = Question(
-        question='Can I die for playing to much videogames?', owner_id=3
+        question='Can I die for playing to much videogames?', owner_id=3, tag_id=3
     )
 
     db.session.add(question1)
