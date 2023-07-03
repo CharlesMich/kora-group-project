@@ -21,17 +21,14 @@ function AllAnswers(){
     }
    console.log(questionId)
     let answersArr = Object.values(answers)
-    const newArr = answersArr.filter(answer => answer.question_id == 3)
+    const newArr = answersArr.filter(answer => answer.question_id === 1)
     console.log('body from component1', newArr)
     return (
         <>
         <div>Question Goes Here</div>
         <div>
         {answersArr && newArr.map((answer)=> 
-        <>
-       
-        <div>{answer.body}</div>
-        </>
+        <div key={answer.id}>{answer.body}</div>
         )}
             </div>
         </>

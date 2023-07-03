@@ -59,13 +59,13 @@ export const getAllAnswersOfUser = () => async (dispatch) => {
 }
 
 // ADD AN ANSWER
-export const addAnswer = (newAnswer) => async (dispatch) => {
-    const response = await fetch(`/api/....`, {
+export const addAnswer = (createAnswerForm, question_id) => async (dispatch) => {
+    const response = await fetch(`/api/answer/${question_id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(newAnswer),
+        body: JSON.stringify(createAnswerForm),
     });
     if(response.ok) {
         const payload = await response.json();
