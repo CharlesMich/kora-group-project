@@ -3,6 +3,7 @@ const ADD_ANSWER = "answers/ADD_ANSWER"
 const ALL_ANSWERS_BY_USER = "answers/ALL_ANSWERS_BY_USER"
 const DELETE_ANSWER = "answers/DELETE_ANSWERS"
 const UPDATE_ANSWER = "answers/EDIT_ANSWERS"
+const SINGLE_ANSWER = "answers/SINGLE_ANSWER"
 
 
 // ACTIONS// 
@@ -10,6 +11,12 @@ const UPDATE_ANSWER = "answers/EDIT_ANSWERS"
 // ALL ANSWERS FOR A SINGLE QUESTION
 const load_answers = payload => ({
     type:LOAD_ANSWERS,
+    payload
+})
+
+// GET ANSWER BY ID
+const single_answer = payload => ({
+    type: SINGLE_ANSWER,
     payload
 })
 
@@ -58,9 +65,18 @@ export const getAllAnswersOfUser = () => async (dispatch) => {
     }
 }
 
+// GET SINGLE ANSWER BY ID
+export const fetchAnswerById =(answerId) => async (dispatch) => {
+    const response = await fetch(`/api/answer/${answerId}`);
+    if (response.ok){
+        const payload = await response.json();
+        dispatch(single_answer(payload))
+    }
+}
+
 // ADD AN ANSWER
-export const addAnswer = (createAnswerForm, question_id) => async (dispatch) => {
-    const response = await fetch(`/api/answer/${question_id}`, {
+export const addAnswer = (createAnswerForm, questionId) => async (dispatch) => {
+    const response = await fetch(`/api/answer/new/${questionId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -76,7 +92,7 @@ export const addAnswer = (createAnswerForm, question_id) => async (dispatch) => 
 
 // DELETE ANSWER
 export const deleteAnswer = (answerId) => async (dispatch)=> {
-    const response = await fetch(`/api/../${answerId}`, {
+    const response = await fetch(`/api/answer../${answerId}`, {
         method: "POST"
     })
     if (response.ok){
@@ -85,9 +101,9 @@ export const deleteAnswer = (answerId) => async (dispatch)=> {
 }
 
 // UPDATE ANSWER
-export const updateAnswer = (updateAnswerForm, spotId) => async (dispatch) => {
-    const res = await fetch(`/api/answers/${spotId}`, {
-        method:"PUSH",
+export const updateAnswer = (updateAnswerForm, answerId) => async (dispatch) => {
+    const res = await fetch(`/api/answer/update-answers/${answerId}`, {
+        method:"POST",
         headers: {
             "Content-Type": "application/json",
           },
@@ -107,11 +123,19 @@ export default function answerReducer(state = initialState, action){
         case LOAD_ANSWERS: 
         // const allAnswers = {...action.payload};
         console.log(action.payload)
-        return {...state, ...action.payload}
+        return {...state, ...action.payload};
+
+        case SINGLE_ANSWER:
+        return { ...state, ...action.payload }
+
         // case ADD_ANSWER: 'abc'
         // case ALL_ANSWERS_BY_USER: 'abc'
         // case DELETE_ANSWER: 'abc'
-        // case UPDATE_ANSWER: 'abc'
+        case UPDATE_ANSWER: 
+        return {
+            ...state,
+            [action.payload.id]: action.payload,
+          };
         
         default: return state;
     }

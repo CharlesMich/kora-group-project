@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllAnswers from "./components/AllAnswers";
 import CreateAnswer from "./components/CreateAnswer";
+import UpdateAnswer from "./components/UpdateAnswer";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,8 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/answers/new"><CreateAnswer/></Route>
+          <Route exact path="/answers/new/:quesionId"><CreateAnswer/></Route>
+          <Route exact path="/answers/update/:answerId"><UpdateAnswer/></Route>
           <Route path="/answers">
             <AllAnswers/>
           </Route>
