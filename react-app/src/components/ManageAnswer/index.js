@@ -9,7 +9,7 @@ import './manageAnswers.css'
 
 function ManageAnswers() {
 
-   
+
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -21,14 +21,14 @@ function ManageAnswers() {
     const answers = useSelector((state) => state.answers);
 
     const userId = sessionUser.id
-       
+
     console.log("sessionUser123", sessionUser.id)
 
     useEffect(() => {
         dispatch(fetchAllAnswersOfUser(userId))
     }, [dispatch, userId])
 
-    if(!answers) return null
+    if (!answers) return null
     console.log(answers)
     const answersArr = Object.values(answers)
     console.log('answersArr', answersArr)
@@ -43,25 +43,25 @@ function ManageAnswers() {
     }
     return (
         <div className="outer">
-         <div >   
-            <h1>Manage Your Answers</h1>
-            {/* <Link to="/spots/new" className="createNew" style={{ textDecoration: 'none', color: 'rgb(6 45 70)' }}>Create a new Spot</Link> */}
-            </div> 
+            <div >
+                <h1>Manage Your Answers</h1>
+                {/* <Link to="/spots/new" className="createNew" style={{ textDecoration: 'none', color: 'rgb(6 45 70)' }}>Create a new Spot</Link> */}
+            </div>
 
             {answersArr.map(ele => (
                 <div className="outerDiv">
                     <div className="map">
-                        
+
                         <div className="ansBody">
-                            <div>{ele.body}</div>
-                           
+                            <div key={ele.id}>{ele.body}</div>
+
                         </div>
                         <div className="updateAnswer">
-                            
-                            <Link to={`/answers/update/${ele.id}`} key= {ele.id} style={{ textDecoration: 'none', fontSize:"15px", height:"13px", paddingTop:"7px" }}>Update Answer</Link>
+
+                            <Link to={`/answers/update/${ele.id}`} key={ele.id} style={{ textDecoration: 'none', fontSize: "15px", height: "13px", paddingTop: "7px" }}>Update</Link>
                             {/* <Link to="" style={{ textDecoration: 'none', color: 'white' }}>Delete</Link> */}
-                            <OpenModalButton buttonText="Delete" modalComponent={<DeleteAnswerModal answer ={ele.id}/>}/>
-    
+                            <OpenModalButton buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
+
                         </div>
 
                     </div>
@@ -70,8 +70,21 @@ function ManageAnswers() {
             )
 
             )}
-       </div>
-       
+
+            <div>
+                <h1>For Testing Only</h1>
+                <h2>Create Answer</h2>
+                <Link to={`/answers/new/${1}`} style={{ textDecoration: 'none', fontSize: "15px", height: "13px", paddingTop: "7px" }}>Post Answer (Question id is hardcoded)</Link>
+
+            </div>
+            <div>
+                
+                <h2>view all answers to a question</h2>
+                <Link to={`/answers`} style={{ textDecoration: 'none', fontSize: "15px", height: "13px", paddingTop: "7px" }}>view Answer (Question id is hardcoded)</Link>
+
+            </div>
+        </div>
+
     )
 }
 

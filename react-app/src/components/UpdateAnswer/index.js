@@ -9,7 +9,7 @@ import "./updateanswer.css";
 function UpdateAnswer() {
     const history = useHistory();
     const { answerId } = useParams();
-    console.log(answerId)
+    // console.log(answerId)
     const dispatch = useDispatch();
 
     //if not logged in, redirect to home
@@ -19,13 +19,11 @@ function UpdateAnswer() {
 
 
     // const user_id = useSelector(state => state.session.user.id)
-    let answer = useSelector((state) => {
-        return state.answers ? state.answers : null
-    })
+    let answer = useSelector((state) =>  state.answers ? state.answers : null )
     
     
-    if(!answerId) history.push('/')
-    console.log('answer.body', answer.body)
+    // if(!answerId) history.push('/')
+    // console.log('answer.body', answer.body)
   
   
     const [body, setBody] = useState(answer.body);
@@ -40,12 +38,12 @@ function UpdateAnswer() {
     
     useEffect(() => {
         const errors = {};
-        if (body.length === 0) errors.body = 'Answer is required';
-        if (body.split('').length < 25) errors.body = 'Answer must be atleast 50 characters';
+        if (body && body.length === 0) errors.body = 'Answer is required';
+        if (body && body.length < 25) errors.body = 'Answer must be atleast 50 characters';
         setValidationErrors(errors);
     },[body])
 
-    if(!answer || !answerId) return null
+    if(!answer || !answer.body) return null
 
     const onSubmit = async (e) => {
         e.preventDefault();

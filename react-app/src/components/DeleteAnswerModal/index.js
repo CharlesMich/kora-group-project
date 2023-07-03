@@ -24,12 +24,12 @@ function DeleteAnswerModal({answer}){
     }
 
 return (
-    <div class ="container1">
+    <div className ="container1">
         <h1>Confirm Delete</h1>
         <p>Are you sure you want to delete this answer</p>
         
-        <button className="deleteButton" type="submit" onClick={handleSubmit}>Yes (Delete Spot)</button>
-        <button className="cancelButton"  type="submit" onClick={handleCancel}>No (Keep Spot)</button>
+        <button className="deleteButton" type="submit" onClick={handleSubmit}>Yes (Delete Answer)</button>
+        <button className="cancelButton"  type="submit" onClick={handleCancel}>No (Keep Answer)</button>
     </div>
 )
 

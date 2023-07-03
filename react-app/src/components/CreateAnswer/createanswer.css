@@ -1,4 +1,4 @@
-.spotform-container{
+.answerform-container{
     display: flex;
     margin: auto;
     flex-direction: column;
@@ -36,7 +36,7 @@ textarea{
     margin-top: 5px;
     margin-left: 0;
 }  
-.spotbutton{
+.answerbutton{
     background-color: rgb(230, 3, 60);
     color: white;
     font-size: 8px;

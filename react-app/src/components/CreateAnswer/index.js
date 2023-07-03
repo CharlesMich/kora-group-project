@@ -5,7 +5,7 @@ import {addAnswer} from '../../store/answerReducer';
 import "./createanswer.css";
 
 
-// QUESTION ID IS HARDCODED / NEED TO CHANGE
+// QUESTION ID IS HARDCODED / NEEDS TO CHANGE
 
 let question_id = 1
 
@@ -16,7 +16,7 @@ function CreateAnswer() {
 
     const user_id  = useSelector(state => state.session.user.id)
 
-    console.log(user_id)
+    // console.log(user_id)
 
     const [body, setBody] = useState('');
     const [validationErrors, setValidationErrors] = useState({});
@@ -25,7 +25,7 @@ function CreateAnswer() {
     useEffect(() => {
         const errors = {};
         if (body.length === 0) errors.body = 'Body is required';
-        // if (body.length < 25) errors.body = 'Body must be atleast 50 characters';
+        if (body.length < 25) errors.body = 'Body must be atleast 50 characters';
     
         setValidationErrors(errors);
     }, [body])
@@ -54,7 +54,7 @@ function CreateAnswer() {
     }
 
     return (
-        <div className="spotform-container">
+        <div className="answerform-container">
                 <div>
                 <h2>This Text will be replaced with the full question</h2>
                 </div>
