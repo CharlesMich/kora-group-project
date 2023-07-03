@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import QuestionComponent from "./components/Questions";
+import CreateQuestion from "./components/CreateQuestion";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/questions">
             <QuestionComponent />
+          </Route>
+          <Route path="/questions/new">
+            <CreateQuestion />
           </Route>
         </Switch>
       )}

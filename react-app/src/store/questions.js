@@ -27,12 +27,30 @@ export const allQuestions = () => async dispatch => {
     dispatch(loadQuestion(questions));
 };
 
+export const addQuestion = (newQuestion) => async dispatch => {
+    const res = await fetch("/api/question/new-question", {
+        method: "POST",
+        header: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newQuestion)
+    });
+    if (res.ok) {
+        const question = await res.json();
+
+        dispatch(addNewQuestion(question));
+        return spot;
+    }
+};
+
 const questionReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_QUESTION:
             const newState = {};
             action.questions.forEach(ele => newState[ele.id] = ele);
             return { ...state, ...newState }
+        case ADD_QUESTION:
+            const np = {};
+            np[action.question.id] = action.question;
+            return { ...state, ...np }
         default:
             return state
     }
