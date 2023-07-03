@@ -16,7 +16,7 @@ const QuestionComponent = () => {
     return (<>
         <div className="allQuestions">
             {questions.map(ele =>
-                <div className="questionNum">
+                <div className="questionNum" key={ele.id}>
                     <div className="userPart">
                         <div className="profileDiv"></div>
                         <div className="textDiv">

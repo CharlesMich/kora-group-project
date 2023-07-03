@@ -1,13 +1,13 @@
 from flask import Blueprint, request
-from app.models import db, Question
+from app.models import db, Question, Tag
 from app.forms import QuestionForm
-from flask_login import login_required
+from flask_login import login_required, current_user
+from sqlalchemy import func
 
 question_route = Blueprint('question', __name__)
 
 
 @question_route.route('/', methods = ["GET"])
-   
 # @login_required
 def questionIndex():
     """
@@ -18,7 +18,7 @@ def questionIndex():
     return [question.to_dict() for question in questions]
     # return {'questions': [question.question for question in questions]}
 
-@question_route.route('/new-question', methods = ["GET", "POST"])    
+@question_route.route('/new-question', methods = ["GET", "POST"])
 def newquestion():
     """
     adds new question
@@ -31,9 +31,18 @@ def newquestion():
         print("ffffffffff",request.json)
         newQuestion = Question(
             question = data['question'],
-            owner_id = data['owner_id'],
-            tag_id = data['tag_id']
+            owner_id = current_user.id
         )
+
+        tag_name = data['tag'].lower()
+        tag = Tag.query.filter(func.lower(Tag.tag_name) == tag_name).first()
+        if tag:
+            newQuestion.tag_id = tag.id
+        else:
+            new_tag = Tag(tag_name=tag_name.title())
+            db.session.add(new_tag)
+            db.session.commit()
+            newQuestion.tag_id = new_tag.id
 
         db.session.add(newQuestion)
         db.session.commit()
@@ -69,9 +78,3 @@ def deleteQuestion(id):
     # question.delete()
     db.session.commit()
     return {"message": "Successfully Deleted"}
-
-
-
-    
-
-
