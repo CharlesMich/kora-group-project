@@ -15,6 +15,7 @@ def questionIndex():
        view all questions
     """
     questions = Question.query.all()
+    print(questions[0].question_user)
     return [question.to_dict() for question in questions]
     # return {'questions': [question.question for question in questions]}
 
