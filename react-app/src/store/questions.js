@@ -20,6 +20,11 @@ const updateQuestion = (question) => ({
     question
 });
 
+const removeQuestion = (questionId) => ({
+    type: REMOVE_QUESTION,
+    questionId
+});
+
 export const allQuestions = () => async dispatch => {
     const res = await fetch("/api/question/");
     const questions = await res.json();
@@ -33,13 +38,38 @@ export const addQuestion = (newQuestion) => async dispatch => {
         header: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newQuestion)
     });
+    
     if (res.ok) {
         const question = await res.json();
-
         dispatch(addNewQuestion(question));
-        return spot;
+        return question;
     }
 };
+
+export const deleteQuestion = (id) => async dispatch => {
+    const res = await fetch(`/api/question/delete-question/${id}`, {
+        method: "POST"
+    });
+    if (res.ok) {
+        // dispatch(removeSpot(id));
+        dispatch(removeQuestion(id));
+    }
+}
+
+export const questionUpdate = (id, ques) => async dispatch => {
+    const res = await fetch(`/api/question/update-question/${id}`, {
+        method: 'POST',
+        header: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(ques)
+    });
+
+    if (res.ok) {
+
+        const updateQues = await res.json()
+
+        dispatch(updateQuestion(updateQues))
+    }
+}
 
 const questionReducer = (state = {}, action) => {
     switch (action.type) {
@@ -51,6 +81,13 @@ const questionReducer = (state = {}, action) => {
             const np = {};
             np[action.question.id] = action.question;
             return { ...state, ...np }
+        case UPDATE_QUESTION:
+            return { ...state, [action.question.id]: action.question }
+        case REMOVE_QUESTION:
+            const nState = { ...state };
+
+            delete nState[action.questionId];
+            return nState
         default:
             return state
     }

@@ -25,7 +25,10 @@ const QuestionComponent = () => {
                         </div>
                     </div>
                     <div className="questionPart">
+                        <NavLink key={ele.id} exact to={`/answers/${ele.id}`}>
                         <p className="ques">{ele.question}</p>
+
+                        </NavLink>
                         <p>I've never had one and I'm 99% sure that I'm not capable of maintaining one.
 
                             I would have to fall in love with someone who's kind and decent, however I was programmed and conditioned at a young age to fall in love with assholes, who will hurt me, just like my mother did.

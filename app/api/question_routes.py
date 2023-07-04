@@ -18,7 +18,7 @@ def questionIndex():
     return [question.to_dict() for question in questions]
     # return {'questions': [question.question for question in questions]}
 
-@question_route.route('/new-question', methods = ["GET", "POST"])
+@question_route.route('/new-question', methods = [ "POST"])
 def newquestion():
     """
     adds new question
@@ -27,22 +27,24 @@ def newquestion():
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
+    print("dataaaa", data)
     if form.validate_on_submit():
-        print("ffffffffff",request.json)
         newQuestion = Question(
             question = data['question'],
             owner_id = current_user.id
         )
+        newQuestion.question_user = current_user
 
-        tag_name = data['tag'].lower()
-        tag = Tag.query.filter(func.lower(Tag.tag_name) == tag_name).first()
-        if tag:
-            newQuestion.tag_id = tag.id
-        else:
-            new_tag = Tag(tag_name=tag_name.title())
-            db.session.add(new_tag)
-            db.session.commit()
-            newQuestion.tag_id = new_tag.id
+        if data["tag"]:
+            tag_name = data['tag'].lower()
+            tag = Tag.query.filter(func.lower(Tag.tag_name) == tag_name).first()
+            if tag:
+                newQuestion.tag_id = tag.id
+            else:
+                new_tag = Tag(tag_name=tag_name.title())
+                db.session.add(new_tag)
+                db.session.commit()
+                newQuestion.tag_id = new_tag.id
 
         db.session.add(newQuestion)
         db.session.commit()

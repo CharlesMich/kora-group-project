@@ -30,15 +30,15 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/new-question">
+            <CreateQuestion />
+          </Route>
           <Route exact path="/answers/new/:quesionId"><CreateAnswer/></Route>
           <Route exact path="/answers/update/:answerId"><UpdateAnswer/></Route>
           <Route path="/answers"><AllAnswers/></Route>
           <Route path="/manage-answers"><ManageAnswers/></Route>
           <Route path="/">
             <QuestionComponent />
-          </Route>
-          <Route path="/questions/new">
-            <CreateQuestion />
           </Route>
         </Switch>
       )}

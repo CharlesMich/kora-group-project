@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./createForm.css";
 import { addQuestion } from "../../store/questions";
 
 
@@ -41,7 +40,7 @@ function CreateQuestion() {
     useEffect(() => {
         if (Object.values(newQuestion).length && run === 'yes') {
             const refun = async () => {
-                res = await dispatch(addQuestion(newQuestion))
+               const res = await dispatch(addQuestion(newQuestion))
                 history.push('/')
             }
             refun();
@@ -57,6 +56,7 @@ function CreateQuestion() {
                 <div>
                     <textarea value={question} onChange={updateQuestion} placeholder="Enter your question here"></textarea>
                 </div>
+                <button>Add Question</button>
             </form>
         </>
     )
