@@ -10,7 +10,9 @@ import { useModal } from "../../context/Modal";
 function UpdateQuestion({id}){
     const {closeModal} = useModal();
 
-  const ques = useSelector(state => state.question[id])
+   
+  const ques = useSelector(state => state.questions[id])
+  
   const dispatch = useDispatch();
 
   const [question, setQuestion] = useState(ques.question)
@@ -36,8 +38,8 @@ function UpdateQuestion({id}){
         setValidationErrors(errors);
         e.preventDefault();
 
-        if(!Object.value(errors).length){
-            setRun("Yes")
+        if(!Object.values(errors).length){
+            setRun("yes")
         } else{
             setRun("no")
         }
@@ -47,7 +49,7 @@ function UpdateQuestion({id}){
     useEffect (()=>{
         if(Object.values(newQuestion).length && run === "yes"){
       const refun = async () => {
-        const res = await dispatch(spotUpdate(ques.id, newQuestion))
+        const res = await dispatch(questionUpdate(ques.id, newQuestion))
         closeModal()
         history.push("/")
       }

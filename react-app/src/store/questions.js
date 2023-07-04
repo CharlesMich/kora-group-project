@@ -32,13 +32,12 @@ export const allQuestions = () => async dispatch => {
     dispatch(loadQuestion(questions));
 };
 
-export const addQuestion = (newQuestion) => async dispatch => {
+export const addQuestion = (question) => async dispatch => {
     const res = await fetch("/api/question/new-question", {
         method: "POST",
-        header: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newQuestion)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({question})
     });
-    
     if (res.ok) {
         const question = await res.json();
         dispatch(addNewQuestion(question));
@@ -58,8 +57,8 @@ export const deleteQuestion = (id) => async dispatch => {
 
 export const questionUpdate = (id, ques) => async dispatch => {
     const res = await fetch(`/api/question/update-question/${id}`, {
-        method: 'POST',
-        header: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(ques)
     });
 

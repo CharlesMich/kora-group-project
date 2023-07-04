@@ -40,7 +40,7 @@ function CreateQuestion() {
     useEffect(() => {
         if (Object.values(newQuestion).length && run === 'yes') {
             const refun = async () => {
-               const res = await dispatch(addQuestion(newQuestion))
+               const res = await dispatch(addQuestion(question))
                 history.push('/')
             }
             refun();
