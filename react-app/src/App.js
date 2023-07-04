@@ -9,6 +9,7 @@ import AllAnswers from "./components/AllAnswers";
 import CreateAnswer from "./components/CreateAnswer";
 import UpdateAnswer from "./components/UpdateAnswer";
 import ManageAnswers from "./components/ManageAnswer";
+import QuestionComponent from "./components/Questions";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           <Route exact path="/answers/update/:answerId"><UpdateAnswer/></Route>
           <Route path="/answers"><AllAnswers/></Route>
           <Route path="/manage-answers"><ManageAnswers/></Route>
+          <Route path="/">
+            <QuestionComponent />
+          </Route>
         </Switch>
       )}
     </>

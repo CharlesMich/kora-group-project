@@ -9,10 +9,14 @@ answer_route = Blueprint('answer', __name__)
 # GET ALL ANSWERS
 @answer_route.route('/', methods = ["GET"])
 def answerIndex():
+    """
+    gets all answers
+    """
     answers = Answer.query.all()
     return [answer.to_dict() for answer in answers]
 
 
+<<<<<<< HEAD
 
 # GET ANSWER BY ANSWER ID
 @answer_route.route('/<int:id>', methods = ["GET"])
@@ -31,6 +35,15 @@ def getAnswerByUserID(id):
 @answer_route.route('/new/<int:id>', methods = ["GET", "POST"])    
 def newanswer(id):
     if request.method == "POST": 
+=======
+@answer_route.route('/<int:id>', methods = ["GET", "POST"])
+def newanswer(id):
+    """
+    adds new answer
+    """
+    if request.method == "POST":
+
+>>>>>>> dev
         # userId = current_user.id
         # print('userid', userId)
         form = AnswerForm()
@@ -47,6 +60,7 @@ def newanswer(id):
             db.session.add(newAnswer)
             db.session.commit()
             return newAnswer.to_dict()
+<<<<<<< HEAD
     # else:
     #     return form.errors
     
@@ -55,7 +69,16 @@ def newanswer(id):
 
     
 @answer_route.route('/update-answers/<int:id>', methods = ["GET", "POST"])   
+=======
+    else:
+        return form.errors
+
+@answer_route.route('/update-answers/<int:id>', methods = ["Get", "POST"])
+>>>>>>> dev
 def answerUpdate(id):
+    """
+
+    """
     # form['csrf_token'].data = request.cookies['csrf_token']
     # print(id)
     answer = Answer.query.filter(Answer.id == id).first()
@@ -80,4 +103,3 @@ def deleteAnswer(id):
     # question.delete()
     db.session.commit()
     return {"message": "Successfully Deleted"}
-
