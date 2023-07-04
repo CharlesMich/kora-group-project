@@ -11,6 +11,7 @@ import UpdateAnswer from "./components/Answers/UpdateAnswer";
 import ManageAnswers from "./components/Answers/ManageAnswer";
 import QuestionComponent from "./components/Questions";
 import CreateQuestion from "./components/CreateQuestion";
+import SingleUserQuestion from "./components/Questions/singleUserQuestion";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/answers/new/:quesionId"><CreateAnswer/></Route>
           <Route exact path="/answers/update/:answerId"><UpdateAnswer/></Route>
           <Route path="/answers/:questionId"><AllAnswers/></Route>
+          <Route path="/questions/current"><SingleUserQuestion /> </Route>
           <Route path="/manage-answers"><ManageAnswers/></Route>
           <Route path="/">
             <QuestionComponent />

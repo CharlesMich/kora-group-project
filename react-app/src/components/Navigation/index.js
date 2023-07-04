@@ -17,7 +17,7 @@ function Navigation({ isLoaded }) {
 				<NavLink exact to='/'>
 					Home
 				</NavLink>
-				<NavLink exact to='/'>
+				<NavLink exact to='/questions/current'>
 					Questions
 				</NavLink>
 				<NavLink exact to='/'>
