@@ -1,9 +1,10 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useParams} from "react-router-dom"
+import {useParams} from "react-router-dom";
 import { getAllAnswers } from '../../../store/answerReducer';
 import {allQuestions} from '../../../store/questions';
 import './AllAnswers.css';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function AllAnswers(){
     const dispatch = useDispatch();
@@ -31,10 +32,12 @@ function AllAnswers(){
    
     let answersArr = Object.values(answers)
     const newArr = answersArr.filter(answer => answer.question_id === 1)
+    if(!newArr[0]) return null
 
     return (
         <div className="container">
-            <div>Question Here</div>
+            <div className="question">{newArr[0] && newArr[0].Question_question}</div>
+            <span className="ansBtn"><Link to={`/answers/new/${newArr[0].question_id}`}>Answer</Link></span>
                 <div>
                 {answersArr && newArr.map((answer)=> 
                 

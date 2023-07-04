@@ -1,9 +1,21 @@
 from flask import Blueprint, request
+from sqlalchemy.orm import joinedload
 from app.models import db, Answer
 from app.forms import AnswerForm
 from flask_login import login_required, current_user
 
 answer_route = Blueprint('answer', __name__)
+
+@answer_route.route('/abc', methods = ["GET"])
+def answerTest():
+    
+    answers = Answer.query.options(joinedload(Answer.answer_user)).all()
+
+    return  [answer.to_dict() for answer in answers]
+      
+    
+
+
 
 
 # GET ALL ANSWERS
