@@ -1,0 +1,14 @@
+.container{
+   display: flex;
+   flex-direction: column; 
+   width: 60%;
+   padding-top: 20px;
+   margin: 0 auto;
+
+}   
+
+.eachanswer{
+   padding: 10px;
+   background-color: white;
+   margin-top:20px;
+}

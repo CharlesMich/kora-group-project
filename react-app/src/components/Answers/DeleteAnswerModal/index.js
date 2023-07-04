@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
+import { useModal } from "../../../context/Modal";
 import "./deleteanswer.css";
-import { fetchDeleteAnswer } from "../../store/answerReducer";
+import { fetchDeleteAnswer } from "../../../store/answerReducer";
 
 
 
