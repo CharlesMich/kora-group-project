@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Question, Tag
+from app.models import db, Question, Space
 from app.forms import QuestionForm
 from flask_login import login_required, current_user
 from sqlalchemy import func
@@ -34,15 +34,15 @@ def newquestion():
             owner_id = current_user.id
         )
 
-        tag_name = data['tag'].lower()
-        tag = Tag.query.filter(func.lower(Tag.tag_name) == tag_name).first()
-        if tag:
-            newQuestion.tag_id = tag.id
+        space_name = data['space'].lower()
+        space = Space.query.filter(func.lower(Space.space_name) == space_name).first()
+        if space:
+            newQuestion.space_id = space.id
         else:
-            new_tag = Tag(tag_name=tag_name.title())
-            db.session.add(new_tag)
+            new_space = Space(space_name=space_name.title())
+            db.session.add(new_space)
             db.session.commit()
-            newQuestion.tag_id = new_tag.id
+            newQuestion.space_id = new_space.id
 
         db.session.add(newQuestion)
         db.session.commit()

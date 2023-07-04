@@ -37,7 +37,7 @@ export const addQuestion = (newQuestion) => async dispatch => {
         const question = await res.json();
 
         dispatch(addNewQuestion(question));
-        return spot;
+        return res;
     }
 };
 
