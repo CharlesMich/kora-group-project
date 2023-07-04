@@ -5,7 +5,12 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginForm";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import AuthPage from "./components/AuthPage";
+import AllAnswers from "./components/Answers/AllAnswers";
+import CreateAnswer from "./components/Answers/CreateAnswer";
+import UpdateAnswer from "./components/Answers/UpdateAnswer";
+import ManageAnswers from "./components/Answers/ManageAnswer";
+import QuestionComponent from "./components/Questions";
+import CreateQuestion from "./components/CreateQuestion";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +23,24 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <AuthPage />
+        <Switch>
+          <Route path="/signup">
+            <SignupFormPage />
+          </Route>
+          <Route path="/login" >
+            <LoginFormPage />
+          </Route>
+          <Route path="/new-question">
+            <CreateQuestion />
+          </Route>
+          <Route exact path="/answers/new/:quesionId"><CreateAnswer/></Route>
+          <Route exact path="/answers/update/:answerId"><UpdateAnswer/></Route>
+          <Route path="/answers/:questionId"><AllAnswers/></Route>
+          <Route path="/manage-answers"><ManageAnswers/></Route>
+          <Route path="/">
+            <QuestionComponent />
+          </Route>
+        </Switch>
       )}
     </>
   );

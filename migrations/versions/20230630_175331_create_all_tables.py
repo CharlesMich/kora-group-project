@@ -8,6 +8,10 @@ Create Date: 2023-06-30 17:53:31.092728
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 
 # revision identifiers, used by Alembic.
 revision = 'fd504a46180e'
@@ -24,6 +28,10 @@ def upgrade():
                         length=100), nullable=True),
                     sa.PrimaryKeyConstraint('id')
                     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE tags SET SCHEMA {SCHEMA};")
+
     op.create_table('follows',
                     sa.Column('following_user_id',
                               sa.Integer(), nullable=False),
@@ -36,6 +44,10 @@ def upgrade():
                     sa.PrimaryKeyConstraint(
                         'following_user_id', 'followed_user_id')
                     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE follows SET SCHEMA {SCHEMA};")
+
     op.create_table('questions',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('question', sa.String(
@@ -48,6 +60,10 @@ def upgrade():
                     sa.ForeignKeyConstraint(['tag_id'], ['tags.id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE questions SET SCHEMA {SCHEMA};")
+
     op.create_table('answers',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('body', sa.String(length=1000), nullable=False),
@@ -60,6 +76,10 @@ def upgrade():
                     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE answers SET SCHEMA {SCHEMA};")
+
     op.create_table('tags_questions',
                     sa.Column('tag_id', sa.Integer(), nullable=False),
                     sa.Column('questions_id', sa.Integer(), nullable=False),
@@ -68,6 +88,10 @@ def upgrade():
                     sa.ForeignKeyConstraint(['tag_id'], ['tags.id'], ),
                     sa.PrimaryKeyConstraint('tag_id', 'questions_id')
                     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE tags_questions SET SCHEMA {SCHEMA};")
+
     with op.batch_alter_table('users', schema=None) as batch_op:
         batch_op.add_column(
             sa.Column('first_name', sa.String(length=50), nullable=False))
