@@ -18,7 +18,7 @@ const CreateSpace = () => {
     useEffect(() => {
         const errors = {}
 
-        if (!name.length) errors.name = 'New tags must have a name'
+        if (!name.length) errors.name = 'New spaces must have a name'
         setValidationErrors(errors)
     }, [name])
 
