@@ -28,6 +28,7 @@ def newquestion():
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
     if form.validate_on_submit():
+        print("ffffffffff",request.json)
         newQuestion = Question(
             question = data['question'],
             owner_id = current_user.id

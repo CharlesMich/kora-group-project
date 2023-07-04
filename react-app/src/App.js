@@ -10,6 +10,7 @@ import CreateAnswer from "./components/CreateAnswer";
 import UpdateAnswer from "./components/UpdateAnswer";
 import ManageAnswers from "./components/ManageAnswer";
 import QuestionComponent from "./components/Questions";
+import CreateQuestion from "./components/CreateQuestion";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           <Route path="/manage-answers"><ManageAnswers/></Route>
           <Route path="/">
             <QuestionComponent />
+          </Route>
+          <Route path="/questions/new">
+            <CreateQuestion />
           </Route>
         </Switch>
       )}
