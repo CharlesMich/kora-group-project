@@ -1,0 +1,16 @@
+.outer{
+   display: flex;
+   flex-direction: column;
+   margin: 0 auto; 
+   width: 60%
+}
+
+.ansDelbutton{
+    color: red;
+}
+.ansupdButton{
+    color: black;
+    font-family: sans-serif;
+  font-size: small;
+
+}

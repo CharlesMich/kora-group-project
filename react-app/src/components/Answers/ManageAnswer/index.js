@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { useEffect } from 'react';
-import { fetchAllAnswersOfUser } from '../../store/answerReducer';
+import { fetchAllAnswersOfUser } from '../../../store/answerReducer';
 import { Link } from 'react-router-dom';
 import DeleteAnswerModal from '../DeleteAnswerModal';
-import OpenModalButton from "../OpenModalButton";
+import OpenModalButton from "../../OpenModalButton";
 import './manageAnswers.css'
 
 function ManageAnswers() {
@@ -53,12 +53,13 @@ function ManageAnswers() {
                     <div className="map">
 
                         <div className="ansBody">
+                            <div><h2>Question Goes Here</h2></div>
                             <div key={ele.id}>{ele.body}</div>
 
                         </div>
                         <div className="updateAnswer">
 
-                            <Link to={`/answers/update/${ele.id}`} key={ele.id} style={{ textDecoration: 'none', fontSize: "15px", height: "13px", paddingTop: "7px" }}>Update</Link>
+                            <span><Link to={`/answers/update/${ele.id}`} key={ele.id} style={{ textDecoration: 'none', fontSize: "15px", height: "13px", paddingTop: "7px" }}>Update</Link></span>
                             {/* <Link to="" style={{ textDecoration: 'none', color: 'white' }}>Delete</Link> */}
                             <OpenModalButton buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
 
@@ -71,18 +72,7 @@ function ManageAnswers() {
 
             )}
 
-            <div>
-                <h1>For Testing Only</h1>
-                <h2>Create Answer</h2>
-                <Link to={`/answers/new/${1}`} style={{ textDecoration: 'none', fontSize: "15px", height: "13px", paddingTop: "7px" }}>Post Answer (Question id is hardcoded)</Link>
-
-            </div>
-            <div>
-                
-                <h2>view all answers to a question</h2>
-                <Link to={`/answers`} style={{ textDecoration: 'none', fontSize: "15px", height: "13px", paddingTop: "7px" }}>view Answer (Question id is hardcoded)</Link>
-
-            </div>
+            
         </div>
 
     )
