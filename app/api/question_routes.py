@@ -1,20 +1,20 @@
 from flask import Blueprint, request
 from app.models import db, Question, Tag
 from app.forms import QuestionForm
-from flask_login import login_required
+from flask_login import login_required, current_user
 from sqlalchemy import func
 
 question_route = Blueprint('question', __name__)
 
 
 @question_route.route('/', methods = ["GET"])
-
 # @login_required
 def questionIndex():
     """
        view all questions
     """
     questions = Question.query.all()
+    print(questions[0].question_user)
     return [question.to_dict() for question in questions]
     # return {'questions': [question.question for question in questions]}
 
@@ -28,9 +28,10 @@ def newquestion():
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
     if form.validate_on_submit():
+        print("ffffffffff",request.json)
         newQuestion = Question(
             question = data['question'],
-            owner_id = data['owner_id']
+            owner_id = current_user.id
         )
 
         tag_name = data['tag'].lower()

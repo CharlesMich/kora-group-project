@@ -1,0 +1,41 @@
+body{
+    background-color: rgb(241, 242, 242);
+}
+
+.ques{
+    font-weight: bold;
+}
+
+.questionNum{
+    background-color: white;
+    margin: 2% 0;
+    padding: 2%;
+   
+    /* width: 100%; */ 
+ 
+   
+}
+
+.allQuestions{
+    width: 60%;
+}
+
+.userPart{
+
+}
+
+.profileDiv{
+
+}
+
+.textDiv{
+
+}
+
+.questionPart{
+
+}
+
+.nom{
+    font-weight: bold;
+}

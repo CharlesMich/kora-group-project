@@ -5,6 +5,8 @@ from flask_login import login_required, current_user
 
 answer_route = Blueprint('answer', __name__)
 
+
+# GET ALL ANSWERS
 @answer_route.route('/', methods = ["GET"])
 def answerIndex():
     """
@@ -14,13 +16,24 @@ def answerIndex():
     return [answer.to_dict() for answer in answers]
 
 
-@answer_route.route('/<int:id>', methods = ["GET", "POST"])
-def newanswer(id):
-    """
-    adds new answer
-    """
-    if request.method == "POST":
 
+# GET ANSWER BY ANSWER ID
+@answer_route.route('/<int:id>', methods = ["GET"])
+def getAnswerByID(id):
+        answers = Answer.query.filter(Answer.id == id).first()
+        return answers.to_dict()
+
+# GET ALL ANSWERS BY USERID
+@answer_route.route('/user/<int:id>', methods = ["GET"])
+def getAnswerByUserID(id):
+        answers = Answer.query.filter(Answer.user_id == id).all()
+        return [answer.to_dict() for answer in answers]
+
+
+# CREATE NEW ANSWER
+@answer_route.route('/new/<int:id>', methods = ["GET", "POST"])    
+def newanswer(id):
+    if request.method == "POST": 
         # userId = current_user.id
         # print('userid', userId)
         form = AnswerForm()
@@ -37,10 +50,14 @@ def newanswer(id):
             db.session.add(newAnswer)
             db.session.commit()
             return newAnswer.to_dict()
-    else:
-        return form.errors
+    # else:
+    #     return form.errors
+    
 
-@answer_route.route('/update-answers/<int:id>', methods = ["Get", "POST"])
+
+
+    
+@answer_route.route('/update-answers/<int:id>', methods = ["GET", "POST"])   
 def answerUpdate(id):
     """
 
@@ -59,7 +76,7 @@ def answerUpdate(id):
         print('answer.body', new_answer_text )
         db.session.commit()
         return answer.to_dict()
-    return "nothing found"
+    return 
 
 @answer_route.route('/delete-answers/<int:id>', methods = ["GET", "POST"])
 
