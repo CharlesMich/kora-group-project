@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { allQuestions } from "../../store/questions";
 import "./questions.css"
+import OpenModalButton from "../OpenModalButton";
+import UpdateQuestion from "../UpdateQuestion";
+import DeleteQuestion from "../DeleteQuestion";
 
 const QuestionComponent = () => {
     const dispatch = useDispatch();
@@ -12,7 +15,11 @@ const QuestionComponent = () => {
     }, [dispatch]);
 
     const questions = useSelector(state => Object.values(state.questions))
-
+    const us = useSelector(state=>state.session.user)
+    let user;
+    if(us){
+        user = us.id 
+    }
     return (<>
         <div className="allQuestions">
             {questions.map(ele =>
@@ -25,7 +32,19 @@ const QuestionComponent = () => {
                         </div>
                     </div>
                     <div className="questionPart">
+                        <div>
+                        <NavLink key={ele.id} exact to={`/answers/${ele.id}`}>
                         <p className="ques">{ele.question}</p>
+                        </NavLink>
+                        {user && ele.owner_id === user && <OpenModalButton
+                        buttonText="Update"
+                        modalComponent={<UpdateQuestion id={ele.id}/>}
+                        /> }
+                        {user && ele.owner_id === user && <OpenModalButton 
+                        buttonText="Delete"
+                        modalComponent={<DeleteQuestion id={ele.id}/> }
+                        />}
+                        </div>
                         <p>I've never had one and I'm 99% sure that I'm not capable of maintaining one.
 
                             I would have to fall in love with someone who's kind and decent, however I was programmed and conditioned at a young age to fall in love with assholes, who will hurt me, just like my mother did.
