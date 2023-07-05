@@ -19,7 +19,7 @@
 }
 
 
-
+/* 
 label {
      display:inline-block;
      font-size: 15px;
@@ -34,7 +34,7 @@ textarea{
     margin-left: 0;
     border-radius: 3px;
     border-color: rgb(215, 211, 211);
-}  
+}   */
 .answerbutton{
     background-color: rgb(75, 74, 74);
     color: white;

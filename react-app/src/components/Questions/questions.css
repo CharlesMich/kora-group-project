@@ -1,41 +1,60 @@
-body{
+/* body{
     background-color: rgb(241, 242, 242);
 }
+*/
 
-.ques{
+.main-question-page{
+    display: flex;
+    margin: auto 10.5%;
+}
+
+.question-tilte{
+    color: black;
+    text-decoration: none;
     font-weight: bold;
 }
 
-.questionNum{
+.single-question-container{
     background-color: white;
-    margin: 2% 0;
-    padding: 2%;
-   
-    /* width: 100%; */ 
- 
-   
+    margin: 18px auto;
+    padding: 18px;
+    border-radius: 5px;
+}
+
+.question-profile-pic{
+    background-color: grey;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+}
+
+.space-sidebar{
+    margin-top: 125px;
+    margin-left: 150px;
+}
+
+.question-update-delete-btn{
+    margin: 5px;
+}
+
+.delete-update-btn{
+    margin: 5px;
 }
 
 .allQuestions{
-    width: 60%;
+    margin: 100px auto auto 100px;
+    max-width: 586.5px;
 }
 
-.userPart{
+.question-user-container{
+    display: flex;
 
+    margin: 5px;
 }
 
-.profileDiv{
+.question-user-name{
+    font-size: 15px;
+    font-weight: 700;
 
-}
-
-.textDiv{
-
-}
-
-.questionPart{
-
-}
-
-.nom{
-    font-weight: bold;
+    margin: 5px;
 }

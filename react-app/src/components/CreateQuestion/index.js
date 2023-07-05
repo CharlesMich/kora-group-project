@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-// import "./createForm.css";
+import "./createQuestion.css";
 
 import { addQuestion } from "../../store/questions";
 
@@ -39,10 +39,15 @@ function CreateQuestion() {
         }
     }
 
+    const submitNo = () => {
+        history.push('/')
+    }
+
     useEffect(() => {
         if (Object.values(newQuestion).length && run === 'yes') {
             const refun = async () => {
                 const res = await dispatch(addQuestion(newQuestion))
+                // history.push(`/answers/${res.id}`)
                 history.push('/')
             }
             refun();
@@ -51,14 +56,20 @@ function CreateQuestion() {
 
     return (
         <>
-            <h1>Create a Question</h1>
-            {validationErrors.question && <p className="errors">{validationErrors.question}</p>}
+            <h1 className="createQuestion">Create a Question</h1>
+           
+            {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
 
-            <form onSubmit={onSubmit}>
-                <div>
-                    <textarea value={question} onChange={updateQuestion} placeholder="Enter your question here"></textarea>
+            <form onSubmit={onSubmit} className="createForm">
+                <div className="enterQuestion">
+                    <textarea value={question} onChange={updateQuestion} placeholder="Enter your question here" className="textArea"></textarea>
                 </div>
-                <button>Add Question</button>
+                <div className="quesButtonDiv">
+
+                    <button className="addQuestion" disabled={question.length < 1}>Add Question</button>
+                    <button onClick={submitNo} type="delNo" className="cancelCreate">Cancel</button>
+                </div>
+
             </form>
         </>
     )
