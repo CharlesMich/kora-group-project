@@ -33,16 +33,16 @@ def newquestion():
             owner_id = current_user.id
         )
         newQuestion.question_user = current_user
-
-        space_name = data['space'].lower()
-        space = Space.query.filter(func.lower(Space.space_name) == space_name).first()
-        if space:
-            newQuestion.space_id = space.id
-        else:
-            new_space = Space(space_name=space_name.title())
-            db.session.add(new_space)
-            db.session.commit()
-            newQuestion.space_id = new_space.id
+        if data["space"]:
+            space_name = data['space'].lower()
+            space = Space.query.filter(func.lower(Space.space_name) == space_name).first()
+            if space:
+                newQuestion.space_id = space.id
+            else:
+                new_space = Space(space_name=space_name.title())
+                db.session.add(new_space)
+                db.session.commit()
+                newQuestion.space_id = new_space.id
 
 
         db.session.add(newQuestion)
@@ -73,9 +73,7 @@ def updateQuestion(id):
 
 @question_route.route('/delete-question/<int:id>', methods = ['POST'])
 def deleteQuestion(id):
-
     question = Question.query.filter(Question.id == id).first()
     db.session.delete(question)
-    # question.delete()
     db.session.commit()
     return {"message": "Successfully Deleted"}
