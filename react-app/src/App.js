@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginForm";
+import AuthPage from "./components/AuthPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllAnswers from "./components/Answers/AllAnswers";
@@ -26,19 +25,26 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
+            <AuthPage />
           </Route>
           <Route path="/new-question">
             <CreateQuestion />
           </Route>
-          <Route exact path="/answers/new/:quesionId"><CreateAnswer/></Route>
-          <Route exact path="/answers/update/:answerId"><UpdateAnswer/></Route>
-          <Route path="/answers/:questionId"><AllAnswers/></Route>
-          <Route path="/questions/current"><SingleUserQuestion /> </Route>
-          <Route path="/manage-answers"><ManageAnswers/></Route>
+          <Route exact path="/answers/new/:quesionId">
+            <CreateAnswer/>
+            </Route>
+          <Route exact path="/answers/update/:answerId">
+            <UpdateAnswer/>
+            </Route>
+          <Route path="/answers/:questionId">
+            <AllAnswers/>
+            </Route>
+          <Route path="/questions/current">
+            <SingleUserQuestion />
+            </Route>
+          <Route path="/manage-answers">
+            <ManageAnswers/>
+            </Route>
           <Route path="/">
             <QuestionComponent />
           </Route>

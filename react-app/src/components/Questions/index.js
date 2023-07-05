@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { allQuestions } from "../../store/questions";
 import "./questions.css"
 import OpenModalButton from "../OpenModalButton";
 import UpdateQuestion from "../UpdateQuestion";
 import DeleteQuestion from "../DeleteQuestion";
 
+
+
 const QuestionComponent = () => {
+
+    
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(allQuestions())
-
+        
     }, [dispatch]);
-
+    
     const questions = useSelector(state => Object.values(state.questions))
     const us = useSelector(state=>state.session.user)
     let user;
     if(us){
         user = us.id 
     }
+
+    const sessionUser = useSelector((state) => state.session.user);
+    if (!sessionUser) return <Redirect to="/login" />;
+
     return (<>
         <div className="allQuestions">
             {questions.map(ele =>

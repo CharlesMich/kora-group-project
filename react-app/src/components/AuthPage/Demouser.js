@@ -12,7 +12,7 @@ const onClick = () => {
   .then(() => closeModal())
 };
 
-return <Link to= '/api/question/' onClick={onClick} className="demo-user">Demo User</Link>;
+return <Link to= '/question/' onClick={onClick} className="demo-user">Demo User</Link>;
 };
 
 export default DemoUser;

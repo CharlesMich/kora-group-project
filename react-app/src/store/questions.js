@@ -26,7 +26,7 @@ const removeQuestion = (questionId) => ({
 });
 
 export const allQuestions = () => async dispatch => {
-    const res = await fetch("/api/question/");
+    const res = await fetch("/api/question");
     const questions = await res.json();
 
     dispatch(loadQuestion(questions));
@@ -46,7 +46,7 @@ export const addQuestion = (question) => async dispatch => {
 };
 
 export const deleteQuestion = (id) => async dispatch => {
-    const res = await fetch(`/api/question/delete-question/${id}`, {
+    const res = await fetch(`/api/question/delete-question${id}`, {
         method: "POST"
     });
     if (res.ok) {
@@ -56,7 +56,7 @@ export const deleteQuestion = (id) => async dispatch => {
 }
 
 export const questionUpdate = (id, ques) => async dispatch => {
-    const res = await fetch(`/api/question/update-question/${id}`, {
+    const res = await fetch(`/api/question/update-question${id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(ques)
