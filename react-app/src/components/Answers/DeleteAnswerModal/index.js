@@ -1,7 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import "./deleteanswer.css";
-import { fetchDeleteAnswer } from "../../../store/answerReducer";
+import { fetchDeleteAnswer, fetchAllAnswersOfUser } from "../../../store/answerReducer";
+
+
 
 
 
@@ -9,12 +11,14 @@ function DeleteAnswerModal({answer}){
     const dispatch = useDispatch();
     const {closeModal} = useModal();
 
+    const userId = useSelector(state=> state.session.user.id)
+    
 
     const answerId = answer;
     
     // console.log("inside component", answerId)
     const handleSubmit = (e) => {
-       return dispatch(fetchDeleteAnswer(answerId))
+       return dispatch(fetchDeleteAnswer(answerId)).then(dispatch(fetchAllAnswersOfUser(userId)))
        .then(closeModal)        
     }
 

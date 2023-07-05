@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAnswerById, updateAnswer } from '../../../store/answerReducer';
+import { fetchAnswerById, updateAnswer, fetchAllAnswersOfUser } from '../../../store/answerReducer';
 import "./updateanswer.css";
 
 
@@ -17,13 +17,17 @@ function UpdateAnswer() {
   sessionUser = useSelector((state) => state.session.user);
   if (!sessionUser) history.push(`/`);
 
-
+    const userId = sessionUser.id
+    console.log('userId in updateform', userId)
     // const user_id = useSelector(state => state.session.user.id)
-    let answer = useSelector((state) =>  state.answers ? state.answers : null )
+
+
+    let answer = useSelector((state) =>  state.answers? state.answers[answerId] : null )
     
     
     // if(!answerId) history.push('/')
-    // console.log('answer.body', answer.body)
+    console.log('answerId', answerId)
+    console.log('answer.body', answer.body)
   
   
     const [body, setBody] = useState(answer.body);
@@ -32,8 +36,8 @@ function UpdateAnswer() {
 
 
     useEffect(() => {
-        dispatch(fetchAnswerById(answerId));
-        },[dispatch, answerId])
+        dispatch(fetchAllAnswersOfUser(userId));
+        },[dispatch, userId])
 
     
     useEffect(() => {

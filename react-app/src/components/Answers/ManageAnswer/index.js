@@ -18,9 +18,15 @@ function ManageAnswers() {
     if (!sessionUser || !sessionUser.id) history.push(`/`);
 
 
-    const answers = useSelector((state) => state.answers);
+    const answers = useSelector((state) => state.answers.newState);
 
-    const userId = sessionUser.id
+    let userId;
+
+    if(sessionUser){
+        userId = sessionUser.id
+    }
+
+    // const userId = sessionUser.id
 
 
     useEffect(() => {
@@ -29,6 +35,7 @@ function ManageAnswers() {
 
     if (!answers) return null
     if (!userId) return null
+    if(!sessionUser.id) return null
     // console.log(answers)
     const answersArr = Object.values(answers)
     // console.log('answersArr', answersArr)
@@ -37,7 +44,6 @@ function ManageAnswers() {
             <>
                 <h1 className="manageh1">Manage Your Answers</h1>
                 <div>You have not Answered to any Questions</div>
-                {/* <Link to="/spots/new" className="createNew" style={{ textDecoration: 'none', color: 'white' }}>Visit the questions page</Link> */}
             </>
         )
     }
