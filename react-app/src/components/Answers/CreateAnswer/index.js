@@ -16,12 +16,17 @@ function CreateAnswer() {
     const history = useHistory();
     let question_id = useParams().questionId;
     
-
+    // console.log(question_id)
     let sessionUser;
     sessionUser = useSelector((state) => state.session.user);
     if (!sessionUser) history.push(`/`);
 
-    const user_id  = useSelector(state => state.session.user.id)
+    const user_id  = useSelector(state => state.session.user.id);
+
+
+    const question = useSelector(state=> state.questions[question_id])
+
+   
 
     
 
@@ -37,8 +42,11 @@ function CreateAnswer() {
         setValidationErrors(errors);
     },[body])
 
-
     const dispatch= useDispatch()
+
+    // if(user_id) return null;
+
+
     const onSubmit = async (e) => {
         e.preventDefault();
 
@@ -63,7 +71,7 @@ function CreateAnswer() {
     return (
         <div className="answerform-container">
                 <div>
-                <h2 className="QuesTitle">This Text will be replaced with the full question</h2>
+                <h2 className="QuesTitle">{question && question.question}</h2>
                 </div>
                 <form onSubmit={onSubmit}>
                     
