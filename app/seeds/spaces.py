@@ -5,13 +5,13 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_spaces():
     spaces1 = Space(
-        space_name='Cooking'
+        space_name='Cooking', description='Learn about Cooking'
     )
     spaces2 = Space(
-        space_name='Sports'
+        space_name='Sports', description='Learn about Sports'
     )
     spaces3 = Space(
-        space_name='Video Games'
+        space_name='Video Games', description='Learn about Video Games'
     )
 
     db.session.add(spaces1)

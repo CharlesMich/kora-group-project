@@ -26,6 +26,7 @@ def upgrade():
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('space_name', sa.String(
                         length=100), nullable=True),
+                    sa.Column('description', sa.String(length=1000), nullable=True),
                     sa.PrimaryKeyConstraint('id')
                     )
 

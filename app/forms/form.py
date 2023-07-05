@@ -20,3 +20,4 @@ class FollowForm(FlaskForm):
 
 class SpaceForm(FlaskForm):
     space_name = StringField('spaceName')
+    description = StringField('description')

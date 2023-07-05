@@ -19,6 +19,7 @@ def createSpace():
     if form.validate_on_submit():
         newSpace = Space(
             space_name = data['space_name'],
+            description = data['description']
         )
 
         db.session.add(newSpace)

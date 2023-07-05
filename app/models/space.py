@@ -22,6 +22,7 @@ class Space(db.Model):
     #columns
     id = db.Column(db.Integer, primary_key=True)
     space_name = db.Column(db.String(100))
+    description = db.Column(db.String(1000))
 
     #relationships
     space_question = db.relationship('Question', secondary=spaces_questions, back_populates='question_space', primaryjoin='Space.id == Question.space_id')
@@ -31,4 +32,5 @@ class Space(db.Model):
             return {
                 'id': self.id,
                 'space_name': self.space_name,
+                'description': self.description
             }
