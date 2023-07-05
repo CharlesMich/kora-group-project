@@ -27,16 +27,16 @@ const CreateSpace = () => {
         e.preventDefault()
         setHasSubmitted(true)
 
-        const createSpace = { userId: userId, name, description }
+        const createSpace = { userId: userId, space_name: name, description }
 
         const createdSpace = await dispatch(thunkCreateSpace(createSpace))
 
-        if (createdSpace.message) {
+        if (createdSpace && createdSpace.message) {
             setValidationErrors(createdSpace)
             return
         } else {
             closeModal()
-                .then(history.push(`/tags/${createdSpace.id}`))
+            history.push(`/spaces/${createdSpace.id}`)
         }
     }
 
