@@ -19,7 +19,7 @@ function Navigation({ isLoaded, user }) {
 					<NavLink exact to='/'>
 						Home
 					</NavLink>
-					<NavLink exact to='/question/current'>
+					<NavLink exact to='/questions/current'>
 						Questions
 					</NavLink>
 					<NavLink exact to='/manage-answers'>

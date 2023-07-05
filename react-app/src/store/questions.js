@@ -68,6 +68,7 @@ export const questionUpdate = (id, ques) => async dispatch => {
         const updateQues = await res.json()
 
         dispatch(updateQuestion(updateQues))
+        return res
     }
 }
 

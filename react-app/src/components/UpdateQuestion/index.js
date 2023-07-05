@@ -51,7 +51,7 @@ function UpdateQuestion({id}){
       const refun = async () => {
         const res = await dispatch(questionUpdate(ques.id, newQuestion))
         closeModal()
-        history.push("/")
+        history.push(`/answers/${id}`)
       }
             refun();
         }
