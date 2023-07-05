@@ -5,26 +5,14 @@ from app.forms import AnswerForm
 from flask_login import login_required, current_user
 
 answer_route = Blueprint('answer', __name__)
-
-@answer_route.route('/abc', methods = ["GET"])
-def answerTest():
-    
-    answers = Answer.query.options(joinedload(Answer.answer_user)).all()
-
-    return  [answer.to_dict() for answer in answers]
       
-    
-
-
-
-
-# GET ALL ANSWERS
-@answer_route.route('/', methods = ["GET"])
-def answerIndex():
+# GET ALL ANSWERS FOR A QUESTION
+@answer_route.route('/question/<int:id>', methods = ["GET"])
+def answerIndex(id):
     """
     gets all answers
     """
-    answers = Answer.query.all()
+    answers = Answer.query.filter(Answer.question_id == id).all()
     return [answer.to_dict() for answer in answers]
 
 

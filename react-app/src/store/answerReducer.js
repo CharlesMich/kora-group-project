@@ -47,8 +47,8 @@ const delete_answer = payload => ({
 
 // THUNKS
 // GET ALL ANSWERS TO A QUESTION
-export const getAllAnswers = () => async (dispatch) => {
-    const response = await fetch(`/api/answer/`);
+export const getAllAnswers = (id) => async (dispatch) => {
+    const response = await fetch(`/api/answer/question/${id}`);
     // console.log(response)
     if (response.ok){
         const payload = await response.json();
