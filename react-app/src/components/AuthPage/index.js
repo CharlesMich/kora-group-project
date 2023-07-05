@@ -10,7 +10,7 @@ import "./authPage.css"
 function AuthPage() {
 
   return (
-  <>
+  <div>
     <img src={koralogo} id='logo' alt='logo' />
     <div className="auth-container"> 
         <div className="auth-container-section signupform-container">
@@ -28,7 +28,7 @@ function AuthPage() {
           <LoginForm />
         </div>
     </div>
-  </>
+  </div>
   );
 }
 
