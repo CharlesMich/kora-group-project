@@ -21,12 +21,12 @@ export const actionCreateSpace = (space) => {
 
 /*-----THUNKS-----*/
 
-//GET SPACEs
+//GET SPACES
 export const thunkGetSpaces = () => async dispatch => {
-    const res = await fetch('/api/spaces')
+    const res = await fetch('/api/spaces/')
     const data = await res.json()
     if (res.ok) {
-        dispatch(actionGetSpaces(data['spaces']))
+        dispatch(actionGetSpaces(data))
         return data
     }
 }
@@ -50,7 +50,7 @@ export const thunkCreateSpace = (space) => async dispatch => {
 
 
 /*-----REDUCER-----*/
-const initialState = {}
+const initialState = { allSpaces: {} }
 
 export default function spacesReducer(state = initialState, action) {
     let newState

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { useModal } from "../../../context/Modal"
 import { thunkCreateSpace } from "../../../store/space"
@@ -7,6 +7,7 @@ import { thunkCreateSpace } from "../../../store/space"
 const CreateSpace = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const userId = useSelector(state => state.session.user.id)
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -26,12 +27,12 @@ const CreateSpace = () => {
         e.preventDefault()
         setHasSubmitted(true)
 
-        const createSpace = { userId: user.id, name, description }
+        const createSpace = { userId: userId, name, description }
 
         const createdSpace = await dispatch(thunkCreateSpace(createSpace))
 
         if (createdSpace.message) {
-            setValidationErrors(createdTag)
+            setValidationErrors(createdSpace)
             return
         } else {
             closeModal()
@@ -41,7 +42,7 @@ const CreateSpace = () => {
 
     return (
         <div>
-            <div>
+            <div className="modal-create-space">
                 <h2>Create a Space</h2>
                 <div className="error"> {hasSubmitted && validationErrors.name && `${validationErrors.name}`}</div>
                 <div className="name">
@@ -66,7 +67,14 @@ const CreateSpace = () => {
                         />
                     </div>
                 </div>
+                <button
+                    onClick={onSubmit}
+                    disabled={Object.values(validationErrors).length > 0}
+                    id={Object.values(validationErrors).length > 0 ? 'submit-button-disabled' : 'submit-button-active'}
+                >Create</button>
             </div>
         </div>
     )
 }
+
+export default CreateSpace

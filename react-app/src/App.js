@@ -12,6 +12,11 @@ import ManageAnswers from "./components/Answers/ManageAnswer";
 import QuestionComponent from "./components/Questions";
 import CreateQuestion from "./components/CreateQuestion";
 import SingleUserQuestion from "./components/Questions/singleUserQuestion";
+import CreateSpace from "./components/Space/CreateSpace";
+import SpaceSidebar from "./components/Space/SpaceSidebar";
+import AllSpaces from "./components/Space/AllSpaces";
+import SpaceTile from "./components/Space/SpaceTile";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +44,11 @@ function App() {
           <Route path="/answers/:questionId"><AllAnswers/></Route>
           <Route path="/questions/current"><SingleUserQuestion /> </Route>
           <Route path="/manage-answers"><ManageAnswers/></Route>
+          <Route path='/spaces'><AllSpaces /></Route>
+          {/* <Route path='/spaces'><CreateSpace /></Route> */}
+
           <Route path="/">
+            <SpaceSidebar />
             <QuestionComponent />
           </Route>
         </Switch>

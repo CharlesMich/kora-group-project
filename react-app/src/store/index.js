@@ -4,13 +4,15 @@ import answerReducer from './answerReducer';
 import session from './session'
 import reducer from './session'
 import questionReducer from './questions';
+import spacesReducer from './space';
 
 
 
 const rootReducer = combineReducers({
   session: reducer,
   questions: questionReducer,
-  answers: answerReducer
+  answers: answerReducer,
+  spaces: spacesReducer
 });
 
 

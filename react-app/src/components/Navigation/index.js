@@ -23,6 +23,9 @@ function Navigation({ isLoaded }) {
 				<NavLink exact to='/manage-answers'>
 					Answers
 				</NavLink>
+				<NavLink exact to='/spaces'>
+					Spaces
+				</NavLink>
 				{isLoaded && (
 					<ProfileButton user={sessionUser} />
 				)}
