@@ -1,5 +1,6 @@
 body{
     background-color: rgb(241, 242, 242);
+   
 }
 
 .ques{
@@ -10,14 +11,22 @@ body{
     background-color: white;
     margin: 2% 0;
     padding: 2%;
-   
-    /* width: 100%; */ 
  
    
 }
+.spaceSidebar{
+    margin: 2% 0;
+    position: fixed;
+}
+
+.mainQuestionPage{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin: 9% 8%;
+}
 
 .allQuestions{
-    width: 60%;
+    width: 70%;
 }
 
 .userPart{
