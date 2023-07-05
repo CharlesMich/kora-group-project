@@ -7,7 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import UpdateQuestion from "../UpdateQuestion";
 import DeleteQuestion from "../DeleteQuestion";
 
-const QuestionComponent = () => {
+const SingleUserQuestion = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(allQuestions())
@@ -17,12 +17,15 @@ const QuestionComponent = () => {
     const questions = useSelector(state => Object.values(state.questions))
     const us = useSelector(state=>state.session.user)
     let user;
+    let userQuestion
     if(us){
         user = us.id 
+        userQuestion = questions.filter(question=> question.owner_id === user)
     }
     return (<>
+    <h1>My Questions</h1>
         <div className="allQuestions">
-            {questions.map(ele =>
+            {userQuestion.map(ele =>
                 <div className="questionNum" key={ele.id}>
                     <div className="userPart">
                         <div className="profileDiv"></div>
@@ -62,4 +65,4 @@ const QuestionComponent = () => {
 
 
 }
-export default QuestionComponent;
+export default SingleUserQuestion;

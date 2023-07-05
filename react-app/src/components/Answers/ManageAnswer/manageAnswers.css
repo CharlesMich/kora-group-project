@@ -5,12 +5,23 @@
    width: 60%
 }
 
-.ansDelbutton{
-    color: red;
-}
-.ansupdButton{
-    color: black;
-    font-family: sans-serif;
+.updateBtn{
+  margin-top: 10px;
+  margin-right: 10PX;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: small;
+}
 
+button{
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
 }

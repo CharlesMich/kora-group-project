@@ -15,23 +15,23 @@ function ManageAnswers() {
 
     //if not logged in, redirect to home
     const sessionUser = useSelector((state) => state.session.user);
-    if (!sessionUser) history.push(`/`);
+    if (!sessionUser || !sessionUser.id) history.push(`/`);
 
 
     const answers = useSelector((state) => state.answers);
 
     const userId = sessionUser.id
 
-    console.log("sessionUser123", sessionUser.id)
 
     useEffect(() => {
         dispatch(fetchAllAnswersOfUser(userId))
     }, [dispatch, userId])
 
     if (!answers) return null
-    console.log(answers)
+    if (!userId) return null
+    // console.log(answers)
     const answersArr = Object.values(answers)
-    console.log('answersArr', answersArr)
+    // console.log('answersArr', answersArr)
     if (!answersArr.length) {
         return (
             <>
@@ -53,15 +53,15 @@ function ManageAnswers() {
                     <div className="map">
 
                         <div className="ansBody">
-                            <div><h2>Question Goes Here</h2></div>
+                            <div><h2>{ele.Question_question}</h2></div>
                             <div key={ele.id}>{ele.body}</div>
 
                         </div>
                         <div className="updateAnswer">
 
-                            <span><Link to={`/answers/update/${ele.id}`} key={ele.id} style={{ textDecoration: 'none', fontSize: "15px", height: "13px", paddingTop: "7px" }}>Update</Link></span>
+                            <span className="updateBtn"><Link to={`/answers/update/${ele.id}`} key={ele.id} style={{ textDecoration: 'none', color: 'black'}}>Update</Link></span>
                             {/* <Link to="" style={{ textDecoration: 'none', color: 'white' }}>Delete</Link> */}
-                            <OpenModalButton buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
+                            <OpenModalButton className="delbut" buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
 
                         </div>
 

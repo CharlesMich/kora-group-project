@@ -47,9 +47,9 @@ const delete_answer = payload => ({
 
 // THUNKS
 // GET ALL ANSWERS TO A QUESTION
-export const getAllAnswers = () => async (dispatch) => {
-    const response = await fetch(`/api/answer/`);
-    console.log(response)
+export const getAllAnswers = (id) => async (dispatch) => {
+    const response = await fetch(`/api/answer/question/${id}`);
+    // console.log(response)
     if (response.ok){
         const payload = await response.json();
         dispatch(load_answers(payload));
@@ -59,7 +59,7 @@ export const getAllAnswers = () => async (dispatch) => {
 // GET ALL ANSWERS OF A USER
 export const fetchAllAnswersOfUser = (userId) => async (dispatch) => {
     const response = await fetch(`/api/answer/user/${userId}`);
-    console.log('inside fetch', userId)
+    // console.log('inside fetch', userId)
     if(response.ok){
         const payload = await response.json();
         // console.log('payload inside fetch', payload)
@@ -141,7 +141,7 @@ export default function answerReducer(state = initialState, action){
         case DELETE_ANSWER:
             const answerState = {...state};
             delete answerState[action.payload];
-            console.log(answerState)
+           
             return answerState;  
         
         default: return state;

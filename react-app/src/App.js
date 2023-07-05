@@ -11,10 +11,12 @@ import UpdateAnswer from "./components/Answers/UpdateAnswer";
 import ManageAnswers from "./components/Answers/ManageAnswer";
 import QuestionComponent from "./components/Questions";
 import CreateQuestion from "./components/CreateQuestion";
+import SingleUserQuestion from "./components/Questions/singleUserQuestion";
 import CreateSpace from "./components/Space/CreateSpace";
 import SpaceSidebar from "./components/Space/SpaceSidebar";
 import AllSpaces from "./components/Space/AllSpaces";
 import SpaceTile from "./components/Space/SpaceTile";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -34,18 +36,20 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/answers/new/:quesionId"><CreateAnswer /></Route>
-          <Route exact path="/answers/update/:answerId"><UpdateAnswer /></Route>
-          <Route path="/answers/:questionId"><AllAnswers /></Route>
-          <Route path="/manage-answers"><ManageAnswers /></Route>
+          <Route path="/new-question">
+            <CreateQuestion />
+          </Route>
+          <Route exact path="/answers/new/:questionId"><CreateAnswer/></Route>
+          <Route exact path="/answers/update/:answerId"><UpdateAnswer/></Route>
+          <Route path="/answers/:questionId"><AllAnswers/></Route>
+          <Route path="/questions/current"><SingleUserQuestion /> </Route>
+          <Route path="/manage-answers"><ManageAnswers/></Route>
           <Route path='/spaces'><AllSpaces /></Route>
           {/* <Route path='/spaces'><CreateSpace /></Route> */}
+
           <Route path="/">
             <SpaceSidebar />
             <QuestionComponent />
-          </Route>
-          <Route path="/questions/new">
-            <CreateQuestion />
           </Route>
         </Switch>
       )}

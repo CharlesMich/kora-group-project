@@ -17,10 +17,10 @@ function Navigation({ isLoaded }) {
 				<NavLink exact to='/'>
 					Home
 				</NavLink>
-				<NavLink exact to='/'>
+				<NavLink exact to='/questions/current'>
 					Questions
 				</NavLink>
-				<NavLink exact to='/'>
+				<NavLink exact to='/manage-answers'>
 					Answers
 				</NavLink>
 				<NavLink exact to='/spaces'>
