@@ -58,11 +58,11 @@ function CreateQuestion() {
         <>
             <h1 className="createQuestion">Create a Question</h1>
            
-            {validationErrors.question && <p className="errors">{validationErrors.question}</p>}
+            {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
 
             <form onSubmit={onSubmit} className="createForm">
                 <div className="enterQuestion">
-                    <textarea value={question} onChange={updateQuestion} placeholder="Enter your question here"></textarea>
+                    <textarea value={question} onChange={updateQuestion} placeholder="Enter your question here" className="textArea"></textarea>
                 </div>
                 <div className="quesButtonDiv">
 

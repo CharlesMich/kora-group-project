@@ -1,4 +1,4 @@
-.profile-dropdown {
+/* .profile-dropdown {
   position: absolute;
   right: 14rem;
   top: 2rem;
@@ -11,12 +11,12 @@ li {
 a {
   text-decoration: none;
 }
+*/
 
 #logo {
   height: 2rem;
   width: 6rem;
 }
-
 .hidden {
   display: none;
 }

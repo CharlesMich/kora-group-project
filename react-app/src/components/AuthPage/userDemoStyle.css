@@ -1,0 +1,8 @@
+.demo-user {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-size: medium;
+    color: black;
+    background-color: rgb(217, 217, 217);
+}

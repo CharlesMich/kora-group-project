@@ -3,7 +3,7 @@ const ADD_ANSWER = "answers/ADD_ANSWER"
 const ALL_ANSWERS_BY_USER = "answers/ALL_ANSWERS_BY_USER"
 const DELETE_ANSWER = "answers/DELETE_ANSWERS"
 const UPDATE_ANSWER = "answers/EDIT_ANSWERS"
-const SINGLE_ANSWER = "answers/SINGLE_ANSWER"
+// const SINGLE_ANSWER = "answers/SINGLE_ANSWER"
 
 
 // ACTIONS// 
@@ -15,10 +15,10 @@ const load_answers = payload => ({
 })
 
 // GET ANSWER BY ANSWER ID
-const single_answer = payload => ({
-    type: SINGLE_ANSWER,
-    payload
-})
+// const single_answer = payload => ({
+//     type: SINGLE_ANSWER,
+//     payload
+// })
 
 
 // ADD AN ANSWER
@@ -47,9 +47,9 @@ const delete_answer = payload => ({
 
 // THUNKS
 // GET ALL ANSWERS TO A QUESTION BY QUESTIONID
-export const getAllAnswers = (id) => async (dispatch) => {
-    const response = await fetch(`/api/answer/question/${id}`);
-    // console.log(response)
+export const getAllAnswers = (questionId) => async (dispatch) => {
+    const response = await fetch(`/api/answer/question/${questionId}`);
+    
     if (response.ok){
         const payload = await response.json();
         dispatch(load_answers(payload));
@@ -68,13 +68,13 @@ export const fetchAllAnswersOfUser = (userId) => async (dispatch) => {
 }
 
 // GET SINGLE ANSWER BY ANSWER ID
-export const fetchAnswerById =(answerId) => async (dispatch) => {
-    const response = await fetch(`/api/answer/${answerId}`);
-    if (response.ok){
-        const payload = await response.json();
-        dispatch(single_answer(payload))
-    }
-}
+// export const fetchAnswerById =(answerId) => async (dispatch) => {
+//     const response = await fetch(`/api/answer/${answerId}`);
+//     if (response.ok){
+//         const payload = await response.json();
+//         dispatch(single_answer(payload))
+//     }
+// }
 
 // ADD AN ANSWER
 export const addAnswer = (createAnswerForm, questionId) => async (dispatch) => {
@@ -123,20 +123,26 @@ const initialState = {};
 export default function answerReducer(state = initialState, action){
     switch (action.type) {
         case LOAD_ANSWERS: 
-        return {...state, ...action.payload};
+        const tempState = {}
+            action.payload.forEach(ele => tempState[ele.id] = ele);
+            // console.log('inside reducer', tempState)
+            return {...state, tempState }
 
-        case SINGLE_ANSWER:
-            console.log('singleaanswer', {...action.payload})
-        return {...action.payload }
+        // case SINGLE_ANSWER:
+        //     console.log('singleaanswer', {...action.payload})
+        // return {...action.payload }
 
         case ALL_ANSWERS_BY_USER: 
-        return {...action.payload }
+            const newState = {}
+            action.payload.forEach(ele => newState[ele.id] = ele);
+            return { ...state, newState }
         
+        case ADD_ANSWER:
+            return {...state, [action.payload.id]: action.payload} 
+
+
         case UPDATE_ANSWER: 
-        return {
-            ...state,
-            [action.payload.id]: action.payload,
-          };
+        return {...state, [action.payload.id]: action.payload};
 
         case DELETE_ANSWER:
             const answerState = { ...state };

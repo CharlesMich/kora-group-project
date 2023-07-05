@@ -1,17 +1,22 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { thunkGetSpaces } from "../../../store/space"
+import { Redirect } from 'react-router-dom';
 import SpaceTile from "../SpaceTile"
 
 const AllSpaces = () => {
     const dispatch = useDispatch()
     const spaces = useSelector(state => state.spaces.allSpaces)
-
+    
     useEffect(() => {
         dispatch(thunkGetSpaces())
     }, [dispatch])
-
+    
+    const sessionUser = useSelector((state) => state.session.user);
+    if (!sessionUser) return <Redirect to="/login" />;
+    
     if (!Array.isArray(spaces)) return null
+
 
     return (
         <div>

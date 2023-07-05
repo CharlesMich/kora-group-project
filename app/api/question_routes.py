@@ -19,6 +19,7 @@ def questionIndex():
     # return {'questions': [question.question for question in questions]}
 
 @question_route.route('/new-question', methods = ['POST'])
+@login_required
 def newquestion():
     """
     adds new question
