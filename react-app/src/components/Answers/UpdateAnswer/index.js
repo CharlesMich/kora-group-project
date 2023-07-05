@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAnswerById, updateAnswer, fetchAllAnswersOfUser } from '../../../store/answerReducer';
+import { updateAnswer, fetchAllAnswersOfUser } from '../../../store/answerReducer';
 import "./updateanswer.css";
 
 
@@ -22,13 +22,8 @@ function UpdateAnswer() {
     // const user_id = useSelector(state => state.session.user.id)
 
 
-    let answer = useSelector((state) =>  state.answers? state.answers[answerId] : null )
-    
-    
-    // if(!answerId) history.push('/')
-    console.log('answerId', answerId)
-    console.log('answer.body', answer.body)
-  
+    let answer = useSelector((state) =>  state.answers? state.answers.newState[answerId] : null )
+    console.log(answer)
   
     const [body, setBody] = useState(answer.body);
     const [validationErrors, setValidationErrors] = useState({});
