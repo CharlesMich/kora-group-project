@@ -6,17 +6,16 @@
 }
 
 .updateBtn{
-  margin-top: 10px;
+  margin-top: 5px;
   margin-right: 10PX;
-  border: 1px solid black;
+  border: 1px solid rgb(77, 75, 75);
   border-radius: 3px;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding: 2px 10px 2px 10px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: small;
 }
 
-button{
+/* button{
   margin-top: 10px;
   border: 1px solid black;
   border-radius: 3px;
@@ -24,4 +23,34 @@ button{
   padding-left: 10px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: small;
+} */
+
+.manageh1{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: black;
+  font-size: 25px;
+}
+
+.manageh2{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: black;
+  font-size: 20px;
+}
+
+.map{
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.manageBody{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+
+}
+
+.upanddelbutton{
+  margin-top: 10px;
 }

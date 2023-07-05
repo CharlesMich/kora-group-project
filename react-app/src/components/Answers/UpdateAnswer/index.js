@@ -9,7 +9,7 @@ import "./updateanswer.css";
 function UpdateAnswer() {
     const history = useHistory();
     const { answerId } = useParams();
-    // console.log(answerId)
+    
     const dispatch = useDispatch();
 
     //if not logged in, redirect to home
@@ -67,7 +67,7 @@ function UpdateAnswer() {
     return (
         <div className="spotform-container">
             <div>
-                <h2>This Text will be replaced with the full question</h2>
+                <h2>{answer && answer.Question_question}</h2>
             </div>
             <form onSubmit={onSubmit}>
 
