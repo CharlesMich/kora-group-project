@@ -43,6 +43,7 @@ function CreateQuestion() {
         if (Object.values(newQuestion).length && run === 'yes') {
             const refun = async () => {
                 const res = await dispatch(addQuestion(newQuestion))
+                // history.push(`/answers/${res.id}`)
                 history.push('/')
             }
             refun();
