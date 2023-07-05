@@ -34,7 +34,7 @@ function App() {
           <Route path="/new-question">
             <CreateQuestion />
           </Route>
-          <Route exact path="/answers/new/:quesionId"><CreateAnswer/></Route>
+          <Route exact path="/answers/new/:questionId"><CreateAnswer/></Route>
           <Route exact path="/answers/update/:answerId"><UpdateAnswer/></Route>
           <Route path="/answers/:questionId"><AllAnswers/></Route>
           <Route path="/questions/current"><SingleUserQuestion /> </Route>

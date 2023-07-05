@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import {useParams} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import {addAnswer} from '../../../store/answerReducer';
 import "./createanswer.css";
@@ -7,16 +8,22 @@ import "./createanswer.css";
 
 // QUESTION ID IS HARDCODED / NEEDS TO CHANGE
 
-let question_id = 1
+
 
 // FULL QUESTION MUST GO AS A HEADING IN THE ANSWER FORM
 
 function CreateAnswer() {
     const history = useHistory();
+    let question_id = useParams().questionId;
+    
+
+    let sessionUser;
+    sessionUser = useSelector((state) => state.session.user);
+    if (!sessionUser) history.push(`/`);
 
     const user_id  = useSelector(state => state.session.user.id)
 
-    // console.log(user_id)
+    
 
     const [body, setBody] = useState('');
     const [validationErrors, setValidationErrors] = useState({});
@@ -28,7 +35,7 @@ function CreateAnswer() {
         if (body.length < 25) errors.body = 'Body must be atleast 50 characters';
     
         setValidationErrors(errors);
-    }, [body])
+    },[body])
 
 
     const dispatch= useDispatch()
@@ -56,7 +63,7 @@ function CreateAnswer() {
     return (
         <div className="answerform-container">
                 <div>
-                <h2>This Text will be replaced with the full question</h2>
+                <h2 className="QuesTitle">This Text will be replaced with the full question</h2>
                 </div>
                 <form onSubmit={onSubmit}>
                     
