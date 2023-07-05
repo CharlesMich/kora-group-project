@@ -13,6 +13,7 @@ def answerIndex(id):
     gets all answers
     """
     answers = Answer.query.filter(Answer.question_id == id).all()
+    print([answer.to_dict() for answer in answers])
     return [answer.to_dict() for answer in answers]
 
 
