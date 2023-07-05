@@ -15,36 +15,36 @@ function ManageAnswers() {
 
     //if not logged in, redirect to home
     const sessionUser = useSelector((state) => state.session.user);
-    if (!sessionUser) history.push(`/`);
+    if (!sessionUser || !sessionUser.id) history.push(`/`);
 
 
     const answers = useSelector((state) => state.answers);
 
     const userId = sessionUser.id
 
-    console.log("sessionUser123", sessionUser.id)
 
     useEffect(() => {
         dispatch(fetchAllAnswersOfUser(userId))
     }, [dispatch, userId])
 
     if (!answers) return null
-    console.log(answers)
+    if (!userId) return null
+    // console.log(answers)
     const answersArr = Object.values(answers)
-    console.log('answersArr', answersArr)
+    // console.log('answersArr', answersArr)
     if (!answersArr.length) {
         return (
             <>
-                <h1>Manage Your Answers</h1>
+                <h1 className="manageh1">Manage Your Answers</h1>
                 <div>You have not Answered to any Questions</div>
                 {/* <Link to="/spots/new" className="createNew" style={{ textDecoration: 'none', color: 'white' }}>Visit the questions page</Link> */}
             </>
         )
     }
     return (
-        <div className="outer">
+        <div  className="outer">
             <div >
-                <h1>Manage Your Answers</h1>
+                <h1 className="manageh1">Manage Your Answers</h1>
                 {/* <Link to="/spots/new" className="createNew" style={{ textDecoration: 'none', color: 'rgb(6 45 70)' }}>Create a new Spot</Link> */}
             </div>
 
@@ -53,15 +53,16 @@ function ManageAnswers() {
                     <div className="map">
 
                         <div className="ansBody">
-                            <div><h2>Question Goes Here</h2></div>
-                            <div key={ele.id}>{ele.body}</div>
+                          
+                            <div><h2 className="manageh2">{ele.Question_question}</h2></div>
+                            <div className="manageBody" key={ele.id}>{ele.body}</div>
 
                         </div>
-                        <div className="updateAnswer">
+                        <div className="upanddelbutton">
 
-                            <span><Link to={`/answers/update/${ele.id}`} key={ele.id} style={{ textDecoration: 'none', fontSize: "15px", height: "13px", paddingTop: "7px" }}>Update</Link></span>
+                            <span className="updateBtn" style={{backgroundColor:'rgba(237,236,237,1)'}}><Link to={`/answers/update/${ele.id}`} key={ele.id} style={{ textDecoration: 'none', color: 'black', backgroundColor:'none'}}>Update</Link></span>
                             {/* <Link to="" style={{ textDecoration: 'none', color: 'white' }}>Delete</Link> */}
-                            <OpenModalButton buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
+                            <OpenModalButton className="updateBtn" buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
 
                         </div>
 

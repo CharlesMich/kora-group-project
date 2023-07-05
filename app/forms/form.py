@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 class QuestionForm(FlaskForm):
     question = StringField('Question', validators=[DataRequired()])
     owner_id = IntegerField('OwnerId')
-    tag = StringField('Tag')
+    space = StringField('Space')
     submit = SubmitField('Post Question')
 
 class AnswerForm(FlaskForm):
@@ -18,5 +18,6 @@ class FollowForm(FlaskForm):
     following_userId = IntegerField('followUser')
     followed_userId = IntegerField('followedUser')
 
-class TagForm(FlaskForm):
-    tag_name = StringField('tagName')
+class SpaceForm(FlaskForm):
+    space_name = StringField('spaceName')
+    description = StringField('description')

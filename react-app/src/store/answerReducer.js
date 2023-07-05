@@ -14,7 +14,7 @@ const load_answers = payload => ({
     payload
 })
 
-// GET ANSWER BY ID
+// GET ANSWER BY ANSWER ID
 const single_answer = payload => ({
     type: SINGLE_ANSWER,
     payload
@@ -46,10 +46,10 @@ const delete_answer = payload => ({
 })
 
 // THUNKS
-// GET ALL ANSWERS TO A QUESTION
-export const getAllAnswers = () => async (dispatch) => {
-    const response = await fetch(`/api/answer/`);
-    console.log(response)
+// GET ALL ANSWERS TO A QUESTION BY QUESTIONID
+export const getAllAnswers = (id) => async (dispatch) => {
+    const response = await fetch(`/api/answer/question/${id}`);
+    // console.log(response)
     if (response.ok){
         const payload = await response.json();
         dispatch(load_answers(payload));
@@ -59,7 +59,7 @@ export const getAllAnswers = () => async (dispatch) => {
 // GET ALL ANSWERS OF A USER
 export const fetchAllAnswersOfUser = (userId) => async (dispatch) => {
     const response = await fetch(`/api/answer/user/${userId}`);
-    console.log('inside fetch', userId)
+    // console.log('inside fetch', userId)
     if(response.ok){
         const payload = await response.json();
         // console.log('payload inside fetch', payload)
@@ -67,7 +67,7 @@ export const fetchAllAnswersOfUser = (userId) => async (dispatch) => {
     }
 }
 
-// GET SINGLE ANSWER BY ID
+// GET SINGLE ANSWER BY ANSWER ID
 export const fetchAnswerById =(answerId) => async (dispatch) => {
     const response = await fetch(`/api/answer/${answerId}`);
     if (response.ok){
@@ -126,11 +126,11 @@ export default function answerReducer(state = initialState, action){
         return {...state, ...action.payload};
 
         case SINGLE_ANSWER:
-        return { ...state, ...action.payload }
+            console.log('singleaanswer', {...action.payload})
+        return {...action.payload }
 
         case ALL_ANSWERS_BY_USER: 
-        console.log('inside reducer', {...action.payload})
-        return {...state, ...action.payload }
+        return {...action.payload }
         
         case UPDATE_ANSWER: 
         return {
@@ -139,9 +139,9 @@ export default function answerReducer(state = initialState, action){
           };
 
         case DELETE_ANSWER:
-            const answerState = {...state};
+            const answerState = { ...state };
             delete answerState[action.payload];
-            console.log(answerState)
+           
             return answerState;  
         
         default: return state;

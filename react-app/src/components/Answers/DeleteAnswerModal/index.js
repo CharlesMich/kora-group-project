@@ -12,7 +12,7 @@ function DeleteAnswerModal({answer}){
 
     const answerId = answer;
     
-    console.log("inside component", answerId)
+    // console.log("inside component", answerId)
     const handleSubmit = (e) => {
        return dispatch(fetchDeleteAnswer(answerId))
        .then(closeModal)        

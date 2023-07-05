@@ -5,10 +5,11 @@
     
     height: fit-content;
     align-items: center;
+    border-radius: 3px;
     
 }
 .container1 h1{
-color: red;
+color: rgb(19, 18, 18);
 }
 .container1 p{
     text-align: center;

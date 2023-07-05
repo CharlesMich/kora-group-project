@@ -9,7 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.question_routes import question_route
 from .api.answer_routes import answer_route
-from .api.tags_routes import tags_route
+from .api.spaces_routes import spaces_route
 from .api.follows_routes import follow_route
 from .seeds import seed_commands
 from .config import Config
@@ -34,7 +34,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(question_route, url_prefix='/api/question')
 app.register_blueprint(answer_route, url_prefix='/api/answer')
-app.register_blueprint(tags_route, url_prefix ='/api/tags')
+app.register_blueprint(spaces_route, url_prefix ='/api/spaces')
 app.register_blueprint(follow_route, url_prefix='/api/follows')
 db.init_app(app)
 Migrate(app, db)

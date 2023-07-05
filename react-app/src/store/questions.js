@@ -41,7 +41,8 @@ export const addQuestion = (question) => async dispatch => {
     if (res.ok) {
         const question = await res.json();
         dispatch(addNewQuestion(question));
-        return question;
+        return res;
+
     }
 };
 
