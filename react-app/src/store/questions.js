@@ -36,12 +36,12 @@ export const addQuestion = (question) => async dispatch => {
     const res = await fetch("/api/question/new-question", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({question})
+        body: JSON.stringify(question)
     });
     if (res.ok) {
-        const question = await res.json();
-        dispatch(addNewQuestion(question));
-        return res;
+        const data = await res.json();
+        dispatch(addNewQuestion(data));
+        return data;
 
     }
 };

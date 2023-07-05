@@ -33,7 +33,7 @@ export const thunkGetSpaces = () => async dispatch => {
 
 //CREATE SPACES
 export const thunkCreateSpace = (space) => async dispatch => {
-    const res = await fetch('/api/create-space', {
+    const res = await fetch('/api/spaces/create-space', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
