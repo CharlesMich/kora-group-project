@@ -57,14 +57,9 @@ def updateQuestion(id):
     print(id)
     question = Question.query.filter(Question.id == id).first()
     if request.method == 'POST':
-
-        print('question',question)
         data = request.get_json()
-        print('data',data)
         new_question_text = data.get('question')
-        print('question', question)
         question.question = new_question_text
-        print('quesion.question', question.question, new_question_text )
         db.session.commit()
         return question.to_dict()
 
