@@ -26,39 +26,40 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <Switch>
-          <Route path="/login" >
-            <AuthPage />
-          </Route>
-          <Route path="/new-question">
-            <CreateQuestion />
-          </Route>
-          <Route exact path="/answers/new/:questionId">
-            <CreateAnswer />
-          </Route>
-          <Route exact path="/answers/update/:answerId">
-            <UpdateAnswer />
-          </Route>
-          <Route path="/answers/:questionId">
-            <AllAnswers />
-          </Route>
-          <Route path="/questions/current">
-            <SingleUserQuestion />
-          </Route>
-          <Route path="/manage-answers">
-            <ManageAnswers />
-          </Route>
-          <Route path='/spaces/:spaceId'>
-            <SpaceDetails />
-          </Route>
-          <Route path='/spaces'>
-            <AllSpaces />
-          </Route>
-          <Route path="/">
-
-            <QuestionComponent />
-          </Route>
-        </Switch>
+        <div className="main">
+          <Switch>
+            <Route path="/login" >
+              <AuthPage />
+            </Route>
+            <Route path="/new-question">
+              <CreateQuestion />
+            </Route>
+            <Route exact path="/answers/new/:questionId">
+              <CreateAnswer />
+            </Route>
+            <Route exact path="/answers/update/:answerId">
+              <UpdateAnswer />
+            </Route>
+            <Route path="/answers/:questionId">
+              <AllAnswers />
+            </Route>
+            <Route path="/questions/current">
+              <SingleUserQuestion />
+            </Route>
+            <Route path="/manage-answers">
+              <ManageAnswers />
+            </Route>
+            <Route path='/spaces/:spaceId'>
+              <SpaceDetails />
+            </Route>
+            <Route path='/spaces'>
+              <AllSpaces />
+            </Route>
+            <Route path="/">
+              <QuestionComponent />
+            </Route>
+          </Switch>
+        </div>
       )}
     </>
   );

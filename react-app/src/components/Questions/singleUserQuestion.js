@@ -34,7 +34,7 @@ const SingleUserQuestion = () => {
                 {userQuestion.map(ele =>
                     <div className="single-question-container" key={ele.id}>
                         <div className="question-user-container">
-                            <div className="question-profile-pic"></div>
+                        <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo"/>
                                 <p className="question-user-name">{ele.User_firstName} {ele.User_lastName}</p>
                         </div>
                                 <NavLink className="question-tilte" key={ele.id} exact to={`/answers/${ele.id}`}>
@@ -52,9 +52,6 @@ const SingleUserQuestion = () => {
                                         modalComponent={<DeleteQuestion id={ele.id} />}
                                     />}
                                 </div>
-                           <p>
-                           It was July 4, 2000. I asked him for a couple dollars for gas, he laughed and told me I was going to couple dollar him to death. That’s what he always said. I was a 28 year old, single mother, living an hour away from him and my mom and was in
-                           </p>
                     </div>
                 )}
             </div>
