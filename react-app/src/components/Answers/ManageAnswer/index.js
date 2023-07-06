@@ -19,6 +19,9 @@ function ManageAnswers() {
 
 
     const answers = useSelector((state) => state.answers.newState);
+    const questions = useSelector((state)=> state.questions)
+
+    // console.log(questions)
 
     let userId;
 
@@ -36,6 +39,7 @@ function ManageAnswers() {
     if (!answers) return null
     if (!userId) return null
     if(!sessionUser.id) return null
+    if(!questions) return null
     // console.log(answers)
     const answersArr = Object.values(answers)
     // console.log('answersArr', answersArr)
@@ -47,6 +51,10 @@ function ManageAnswers() {
             </div>
         )
     }
+
+
+    
+
     return (
         <div  className="outer">
             <div >
@@ -60,8 +68,8 @@ function ManageAnswers() {
 
                         <div className="ansBody">
                         <div className="profileclass1">
-                        <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
-                        <div className="mngansname">Question by Full Name • Follow</div>    
+                        <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo"/></div>
+                        <div className="mngansname">Question by {questions && questions[ele.question_id].User_firstName} {questions && questions[ele.question_id].User_lastName} • Follow</div>    
                             <div><h2 className="manageh2">{ele.Question_question}</h2></div>
                             </div>
                             <div className="manageBody" key={ele.id}>{ele.body}</div>
