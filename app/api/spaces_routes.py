@@ -6,6 +6,7 @@ from flask_login import login_required
 spaces_route = Blueprint('spaces', __name__)
 
 @spaces_route.route('/', methods = ["GET"])
+@login_required
 def spaceIndex():
     spaces = Space.query.all()
     print('spaces', spaces)
