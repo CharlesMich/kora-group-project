@@ -112,5 +112,5 @@ def downgrade():
     op.drop_table('answers')
     op.drop_table('questions')
     op.drop_table('follows')
-    op.drop_table('spaces')
+    op.drop_table('tags')
     # ### end Alembic commands ###
