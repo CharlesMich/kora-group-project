@@ -49,7 +49,7 @@ function CreateQuestion() {
             const refun = async () => {
                 const res = await dispatch(addQuestion(newQuestion))
                 // history.push(`/answers/${res.id}`)
-                history.push('/')
+                history.push('/questions/current')
             }
             refun();
         }
