@@ -48,3 +48,14 @@
    font-weight: bold;
    font-size: 14px;
 }
+
+.imgclass{
+   max-width: 50px;
+   max-height: 50px
+}
+
+.profileclass{
+   display: flex;
+   flex-direction: row;
+   padding: 10px 10px 0px 20px 
+}

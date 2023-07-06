@@ -145,10 +145,15 @@ export default function answerReducer(state = initialState, action){
         return {...state, [action.payload.id]: action.payload};
 
         case DELETE_ANSWER:
-            const answerState = { ...state };
-            delete answerState[action.payload];
+            const state1 = {...state.newState}
+            delete state1[action.payload]
+            return { ...state }
+
+            // const answerState = { ...state };
+            // console.log(answerState)
+            // delete answerState[action.payload];
            
-            return answerState;  
+            // return answerState;  
         
         default: return state;
     }

@@ -1,6 +1,7 @@
 import { useDispatch , useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import "./deleteanswer.css";
+import { useHistory } from "react-router-dom";
 import { fetchDeleteAnswer, fetchAllAnswersOfUser } from "../../../store/answerReducer";
 
 
@@ -10,7 +11,7 @@ import { fetchDeleteAnswer, fetchAllAnswersOfUser } from "../../../store/answerR
 function DeleteAnswerModal({answer}){
     const dispatch = useDispatch();
     const {closeModal} = useModal();
-
+    const history = useHistory()
     const userId = useSelector(state=> state.session.user.id)
     
 
@@ -18,10 +19,13 @@ function DeleteAnswerModal({answer}){
     
     // console.log("inside component", answerId)
     const handleSubmit = (e) => {
-       return dispatch(fetchDeleteAnswer(answerId)).then(dispatch(fetchAllAnswersOfUser(userId)))
-       .then(closeModal)        
+
+       
+       return dispatch(fetchDeleteAnswer(answerId))
+       .then(closeModal).then(dispatch(fetchAllAnswersOfUser(userId)))   
     }
 
+    
 
     const handleCancel =(e)=> {
         closeModal()
