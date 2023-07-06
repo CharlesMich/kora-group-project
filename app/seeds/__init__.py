@@ -26,8 +26,8 @@ def seed():
         undo_questions()
         undo_users()
     seed_users()
-    seed_questions()
     seed_spaces()
+    seed_questions()
     seed_answers()
     seed_followers()
     # Add other seed functions here
@@ -38,7 +38,7 @@ def seed():
 def undo():
     undo_followers()
     undo_answers()
-    undo_spaces()
     undo_questions()
+    undo_spaces()
     undo_users()
     # Add other undo functions here
