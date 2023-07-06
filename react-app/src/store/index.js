@@ -5,7 +5,7 @@ import session from './session'
 import reducer from './session'
 import questionReducer from './questions';
 import spacesReducer from './space';
-import followReducer from '../components/Follows/CreateFollows';
+import followReducer from './followsReducer';
 
 
 
