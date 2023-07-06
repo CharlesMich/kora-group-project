@@ -30,6 +30,7 @@ const SingleUserQuestion = () => {
             <div className="space-sidebar">
                 < SpaceSidebar />
             </div>
+            
             <div className="allQuestions">
                 {userQuestion.map(ele =>
                     <div className="single-question-container" key={ele.id}>
@@ -52,6 +53,10 @@ const SingleUserQuestion = () => {
                                         modalComponent={<DeleteQuestion id={ele.id} />}
                                     />}
                                 </div>
+<<<<<<< HEAD
+=======
+                          
+>>>>>>> dev
                     </div>
                 )}
             </div>

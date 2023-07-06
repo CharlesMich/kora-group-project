@@ -1,6 +1,10 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { thunkGetSpaces } from "../../../store/space"
+import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem"
+import CreateSpace from "../CreateSpace"
+import { Link } from "react-router-dom/cjs/react-router-dom.min"
+import './SpaceSidebar.css'
 
 const SpaceSidebar = () => {
     const dispatch = useDispatch()
@@ -15,10 +19,15 @@ const SpaceSidebar = () => {
 
     return (
         <div>
-            <div>Create Space</div>
+            <button className="create-space-btn">
+                <OpenModalMenuItem
+                    modalComponent={<CreateSpace />}
+                    itemText='Create Space'
+                />
+            </button>
             <div className="spaces">
-                {spaces && spaces.map(space => (
-                    <p key={space.id}>{space.space_name}</p>
+                {spaces && Object.values(spaces).reverse().map(space => (
+                    <Link to={`/spaces/${space.id}`} key={space.id}>{space.space_name}</Link>
                 ))}
             </div>
         </div>

@@ -16,6 +16,10 @@
     word-wrap: break-word;
 }
 
+.question-tilte:hover{
+    text-decoration: underline;
+}
+
 .single-question-container{
     margin:  auto auto 7px auto;
     padding: 18px;
@@ -30,7 +34,7 @@
     background-color: rgba(128, 128, 128, 0.579);
     width: 36px;
     height: 36px;
-    border-radius: 10px;
+    border-radius: 16px;
 }
 
 .space-sidebar{
