@@ -1,6 +1,7 @@
 .spotform-container{
     display: flex;
     margin: auto;
+    padding-top: 100px;
     flex-direction: column;
     width: 500px;
     padding: 20px;
@@ -10,32 +11,6 @@
     margin-top: 50px;
 }
 
-/* h2{
-    font-size: 20px;
-}
-
-h3{
-    font-size: 15px;
-}
-
-p{
-    font-size: 15px;
-}
-
-label {
-     display:inline-block;
-     font-size: 15px;
-    }
-input {
-    width: 100%;
-    margin-top: 5px;
-    margin-left: 0;
-}    
-textarea{
-    width: 100%;
-    margin-top: 5px;
-    margin-left: 0;
-}   */
 .spotbutton{
     background-color: rgb(230, 3, 60);
     color: white;
