@@ -22,7 +22,7 @@ class Question(db.Model):
     #relationships
     question_user = db.relationship('User', back_populates='user_question')
     question_answer = db.relationship('Answer', back_populates='answer_question')
-    question_space = db.relationship('Space', secondary=spaces_questions, back_populates='space_question')
+    question_space = db.relationship('Space', secondary=spaces_questions, backref='questions')
 
 
     def to_dict(self):
