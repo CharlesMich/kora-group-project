@@ -108,7 +108,7 @@ def downgrade():
         batch_op.drop_column('last_name')
         batch_op.drop_column('first_name')
 
-    op.drop_table('spaces_questions')
+    op.drop_table('tags_questions')
     op.drop_table('answers')
     op.drop_table('questions')
     op.drop_table('follows')
