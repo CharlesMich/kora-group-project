@@ -21,7 +21,7 @@ class Question(db.Model):
 
     #relationships
     question_user = db.relationship('User', back_populates='user_question')
-    question_answer = db.relationship('Answer', back_populates='answer_question')
+    question_answer = db.relationship('Answer', back_populates='answer_question', cascade='all, delete')
     question_space = db.relationship('Space', secondary=spaces_questions, backref='questions')
 
 

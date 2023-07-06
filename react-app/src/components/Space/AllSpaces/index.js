@@ -5,24 +5,26 @@ import { Redirect } from 'react-router-dom';
 import SpaceTile from "../SpaceTile"
 import OpenModalMenuItem from '../../Navigation/OpenModalMenuItem'
 import CreateSpace from "../CreateSpace"
+import './AllSpaces.css'
 
 const AllSpaces = () => {
     const dispatch = useDispatch()
     const spaces = useSelector(state => state.spaces.allSpaces)
-    
+
     useEffect(() => {
         dispatch(thunkGetSpaces())
     }, [dispatch])
-    
+
     const sessionUser = useSelector((state) => state.session.user);
     if (!sessionUser) return <Redirect to="/login" />;
-    
+
     if (!Array.isArray(spaces)) return null
 
 
     return (
-        <div>
+        <div className="container">
             <div>
+                <h2>Welcome to Spaces!</h2>
                 <button className="create-space-btn">
                     <OpenModalMenuItem
                         modalComponent={<CreateSpace />}
