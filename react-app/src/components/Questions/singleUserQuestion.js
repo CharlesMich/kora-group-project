@@ -35,7 +35,7 @@ const SingleUserQuestion = () => {
                 {userQuestion.map(ele =>
                     <div className="single-question-container" key={ele.id}>
                         <div className="question-user-container">
-                            <div className="question-profile-pic"></div>
+                        <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo"/>
                                 <p className="question-user-name">{ele.User_firstName} {ele.User_lastName}</p>
                         </div>
                                 <NavLink className="question-tilte" key={ele.id} exact to={`/answers/${ele.id}`}>
@@ -53,7 +53,10 @@ const SingleUserQuestion = () => {
                                         modalComponent={<DeleteQuestion id={ele.id} />}
                                     />}
                                 </div>
+<<<<<<< HEAD
+=======
                           
+>>>>>>> dev
                     </div>
                 )}
             </div>
