@@ -5,6 +5,14 @@ from flask_login import login_required, current_user
 
 follow_route = Blueprint('follows', __name__)
 
+@follow_route.route('/<int:id>', methods = ["GET"])
+def get_Follow(id):
+    follows = Follow.query.filter(Follow.following_user_id == id).count()
+    print('follows count', follows)
+    return {"follows":follows, "id":id, }
+
+
+
 @follow_route.route('/<int:id>', methods = ["POST"])
 def add_Follow(id):
     follows = Follow.query.filter(Follow.following_user_id == current_user.id).first()

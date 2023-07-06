@@ -11,28 +11,32 @@ function Navigation({ isLoaded, user }) {
 	return (
 		<>
 		{sessionUser && 
-			<nav>
-				<div className='nav-bar'>
-					<NavLink exact to="/">
+			<nav className='nav-bar'>
+				<div className='nav-bar-container'>
+					<NavLink className="nav-btn" exact to="/">
 						<img src={koralogo} id='logo' alt='logo' />
 					</NavLink>
-					<NavLink exact to='/'>
+					<NavLink className="nav-btn nav-home-btn" exact to='/'>
 						Home
+						<i className="nav-icon fa-solid fa-house"></i>
 					</NavLink>
-					<NavLink exact to='/questions/current'>
+					<NavLink className="nav-btn" exact to='/questions/current'>
 						Questions
+						<i className="nav-icon fa-solid fa-question"></i>
 					</NavLink>
-					<NavLink exact to='/manage-answers'>
+					<NavLink className="nav-btn" exact to='/manage-answers'>
 						Answers
+						<i className="nav-icon fa-solid fa-comments"></i>
 					</NavLink>
-					<NavLink exact to='/spaces'>
+					<NavLink className="nav-btn" exact to='/spaces'>
 						Spaces
+						<i className="nav-icon fa-solid fa-hashtag"></i>
 					</NavLink>
-					<NavLink exact to='/new-question'>
-						<button>Add question</button>
+					<NavLink className="nav-add-question-btn" exact to='/new-question'>
+						Add question <i className="nav-icon fa-solid fa-plus"/>
 					</NavLink>
 					{isLoaded && (
-						<ProfileButton user={sessionUser} />
+						<ProfileButton className="nav-profile-btn" user={sessionUser} />
 					)}
 				</div>
 			</nav>

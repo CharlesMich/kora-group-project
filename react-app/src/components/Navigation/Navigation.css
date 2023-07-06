@@ -1,18 +1,3 @@
-/* .profile-dropdown {
-  position: absolute;
-  right: 14rem;
-  top: 2rem;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-*/
-
 #logo {
   height: 2.5rem;
   width: 6rem;
@@ -21,31 +6,88 @@ a {
   display: none;
 }
 
-.nav-bar {
+.nav-bar{
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: center;
 
   position: fixed;
-  box-shadow: 0 2px lightgray;
-  background-color: white;
-  
   top: 0;
+
   width: 100%;
   height: 60px;
+  
+  box-shadow: 0px 1px 5px rgb(225, 225, 225);
+  background-color: white;
+}
+
+.nav-bar-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .profile-dropdown{
   position: absolute;
-  right: 75px;
-  margin-top: 150px;
+  right: 200px;
+  top: 100%;
+
+  margin: 0;
 
   width: 135px;
   height: 70px;
+  z-index: 2;
 
   border-radius: 5px 5% / 0 0 5px 5px;
-  border: 2px solid rgb(185, 185, 185);
-  
+  border: 2px solid rgb(225, 225, 225);
+  border-top: 0;
+
   background-color: white;
+}
+
+
+.nav-btn{
+  display: flex;
+  flex-direction: column;
+  
+  text-decoration: none;
+  color: black;
+  
+  padding: 12.5px 20px;
+  margin: auto 30px;
+}
+
+.nav-btn:hover{
+  padding: 12.5px 20px;
+  
+  background-color: rgb(225, 225, 225);
+  color: rgb(102, 102, 102);
+}
+
+.nav-home-btn{
+  color: #B92B27;
+}
+
+.nav-home-btn:hover{
+  color: #b15350;
+}
+
+.nav-add-question-btn{
+  text-decoration: none;
+
+  padding: 5px 10px;
+  margin: auto 30px;
+
+  color: white;
+  background-color: #B92B27;
+
+  border-radius: 15px;
+
+}
+
+.nav-add-question-btn:hover{
+  background-color: #89231f;
+}
+
+.nav-icon{
+  margin: auto;
 }
