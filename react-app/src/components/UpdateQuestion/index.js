@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { questionUpdate } from "../../store/questions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
-
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import "./Update.css"
 import { useModal } from "../../context/Modal";
 
 function UpdateQuestion({id}){
@@ -58,15 +56,17 @@ function UpdateQuestion({id}){
     },[run])
 
     return(<>
-     <h1>Update your Question</h1>
-            {validationErrors.question && <p className="errors">{validationErrors.question}</p>}
+    <div className="updateDiv">
+     <h1 className="updateText">Update your Question</h1>
+            {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
 
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="updateForm">
                 <div>
-                    <textarea value={question} onChange={updateQ} placeholder="Enter your question here"></textarea>
+                    <textarea value={question} onChange={updateQ} placeholder="Update your question here" className="updateTextArea"></textarea>
                 </div>
-                <button>Update Question</button>
+                <button className="updateButton" disabled={question.length < 1}>Update Question</button>
             </form>
+    </div>
     </>)
 
 }

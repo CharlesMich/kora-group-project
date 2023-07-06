@@ -15,7 +15,6 @@ function CreateQuestion() {
 
     const err = {}
     if (question.length < 5) err['question'] = "your question is too short";
-
     let newQuestion = {}
     if (!Object.values(err).length) {
         newQuestion = {
@@ -29,6 +28,8 @@ function CreateQuestion() {
     function onSubmit(e) {
         const errors = {};
         if (question.length < 5) errors['question'] = "your question is too short";
+        
+
         setValidationErrors(errors);
         e.preventDefault();
 
@@ -57,7 +58,7 @@ function CreateQuestion() {
     return (
         <>
             <h1 className="createQuestion">Create a Question</h1>
-           
+
             {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
 
             <form onSubmit={onSubmit} className="createForm">
