@@ -1,16 +1,19 @@
 import { useDispatch } from "react-redux";
-import { login } from "../../store/session";
+import * as sessionActions from "../../store/session";
 import { useModal } from "../../context/Modal";
 import { Link } from "react-router-dom";
 import "./userDemoStyle.css"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const DemoUser = () => {
   const dispatch = useDispatch();
-const onClick = () => {
-  dispatch(login({ email: "demo@aa.io", password: "password" }))
-};
+  const history = useHistory()
+  const onClick = () => {
+    dispatch(sessionActions.login("demo@aa.io", "password"))
+      .then(history.push('/'))
+  };
 
-return <Link to= '/question/' onClick={onClick} className="demo-user">Demo User</Link>;
+  return <Link to='/' onClick={onClick} className="demo-user">Demo User</Link>;
 };
 
 export default DemoUser;

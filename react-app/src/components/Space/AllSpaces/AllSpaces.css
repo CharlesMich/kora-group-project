@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding-top: 100px;
+    margin:  0 auto;
+ }
+
+.create-space-btn {
+    list-style: none;
+}
+
+.space-tiles {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}

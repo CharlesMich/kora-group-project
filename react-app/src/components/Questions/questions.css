@@ -12,6 +12,8 @@
     color: black;
     text-decoration: none;
     font-weight: bold;
+    max-width: 500px;
+    word-wrap: break-word;
 }
 
 .single-question-container{
