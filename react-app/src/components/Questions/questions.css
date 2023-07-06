@@ -16,6 +16,10 @@
     word-wrap: break-word;
 }
 
+.question-tilte:hover{
+    text-decoration: underline;
+}
+
 .single-question-container{
     background-color: white;
     margin: 18px auto;
