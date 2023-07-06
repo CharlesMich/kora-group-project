@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from "react-router-dom";
 import { getAllAnswers } from '../../../store/answerReducer';
 import { allQuestions } from '../../../store/questions';
 import './AllAnswers.css';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function AllAnswers() {
     const dispatch = useDispatch();
@@ -32,15 +32,15 @@ function AllAnswers() {
     }, [dispatch]);
 
     if (!answers) return null;
-    if(!question1) return null;
+    if (!question1) return null;
 
     let newArr = Object.values(answers)
 
-    if(!newArr.length){
-        return(
+    if (!newArr.length) {
+        return (
             <div className="container">
-            <div className="question">{question1.question}</div>
-            <span className="ansBtn"><Link to={`/answers/new/${questionId}`}>Be the first one to Answer</Link></span>
+                <div className="question">{question1.question}</div>
+                <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: 'white' }}>Be the first one to Answer</Link></span>
             </div>
         )
     }
@@ -48,11 +48,14 @@ function AllAnswers() {
     return (
         <div className="container">
             <div className="question">{question1.question}</div>
-            <span className="ansBtn"><Link to={`/answers/new/${questionId}`}>Answer</Link></span>
+            <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: "white" }}>Post your Answer</Link></span>
             <div>
                 {newArr && newArr.map((answer) =>
                     <div className="answerCol">
-                        <div className='name'>{answer.User_firstName} {answer.User_lastName}</div>
+                        <div className="profileclass">
+                            <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
+                            <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</div>
+                        </div>
                         <div className="eachanswer" key={answer.id}>{answer.body}</div>
                     </div>
 

@@ -11,9 +11,8 @@ import ManageAnswers from "./components/Answers/ManageAnswer";
 import QuestionComponent from "./components/Questions";
 import CreateQuestion from "./components/CreateQuestion";
 import SingleUserQuestion from "./components/Questions/singleUserQuestion";
-import CreateSpace from "./components/Space/CreateSpace";
 import AllSpaces from "./components/Space/AllSpaces";
-import SpaceTile from "./components/Space/SpaceTile";
+import SpaceDetails from "./components/Space/SpaceDetails";
 
 
 function App() {
@@ -35,25 +34,23 @@ function App() {
             <CreateQuestion />
           </Route>
           <Route exact path="/answers/new/:questionId">
-            <CreateAnswer/>
-            </Route>
+            <CreateAnswer />
+          </Route>
           <Route exact path="/answers/update/:answerId">
-            <UpdateAnswer/>
-            </Route>
+            <UpdateAnswer />
+          </Route>
           <Route path="/answers/:questionId">
-            <AllAnswers/>
-            </Route>
+            <AllAnswers />
+          </Route>
           <Route path="/questions/current">
             <SingleUserQuestion />
-            </Route>
+          </Route>
           <Route path="/manage-answers">
-            <ManageAnswers/>
-            </Route>
+            <ManageAnswers />
+          </Route>
           <Route path='/spaces'><AllSpaces /></Route>
-          {/* <Route path='/spaces'><CreateSpace /></Route> */}
-
           <Route path="/">
-            
+
             <QuestionComponent />
           </Route>
         </Switch>

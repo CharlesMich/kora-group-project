@@ -41,17 +41,17 @@ function ManageAnswers() {
     // console.log('answersArr', answersArr)
     if (!answersArr.length) {
         return (
-            <>
-                <h1 className="manageh1">Manage Your Answers</h1>
-                <div>You have not Answered to any Questions</div>
-            </>
+            <div  className="outer">
+                <div className="manageh1">Manage Your Answers</div>
+                <div >You have not Answered to any Questions</div>
+            </div>
         )
     }
     return (
         <div  className="outer">
             <div >
-                <h1 className="manageh1">Manage Your Answers</h1>
-                {/* <Link to="/spots/new" className="createNew" style={{ textDecoration: 'none', color: 'rgb(6 45 70)' }}>Create a new Spot</Link> */}
+                <div className="manageh1">Manage Your Answers</div>
+                
             </div>
 
             {answersArr.map(ele => (
@@ -59,8 +59,11 @@ function ManageAnswers() {
                     <div className="map">
 
                         <div className="ansBody">
-                          
+                        <div className="profileclass1">
+                        <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
+                        <div className="mngansname">Question by Full Name • Follow</div>    
                             <div><h2 className="manageh2">{ele.Question_question}</h2></div>
+                            </div>
                             <div className="manageBody" key={ele.id}>{ele.body}</div>
 
                         </div>

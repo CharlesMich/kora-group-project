@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 import {addAnswer} from '../../../store/answerReducer';
 import "./createanswer.css";
 
@@ -26,10 +27,7 @@ function CreateAnswer() {
 
     const question = useSelector(state=> state.questions[question_id])
 
-   
-
-    
-
+    console.log(question)
     const [body, setBody] = useState('');
     const [validationErrors, setValidationErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -70,19 +68,19 @@ function CreateAnswer() {
 
     return (
         <div className="answerform-container">
-                <div>
-                <h2 className="QuesTitle">{question && question.question}</h2>
-                </div>
+                <div><h2 className="QuesTitle">{question && question.question}</h2> </div>
                 <form onSubmit={onSubmit}>
                     
-                    <span><label htmlFor='body' >Your Answer: </label></span><span className='error'> { hasSubmitted && validationErrors.body && `${validationErrors.body}`}</span>
-                    <textarea id='body' placeholder='Please write your answer (atleast 50 Characters)' type="text" value={body}
-                        onChange={(e) => setBody(e.target.value)} />
+                    <div className="answersubtitle"><span><label htmlFor='body' >Your Answer: </label></span><span className='error'> { hasSubmitted && validationErrors.body && `${validationErrors.body}`}</span></div>
+                    <div><textarea id='body' className="inputbody" placeholder='Please write your answer (atleast 50 Characters)' type="text" value={body}
+                        onChange={(e) => setBody(e.target.value)} /></div>
 
                     <button
                         type="submit"
                         className="answerbutton" style={{fontSize:"10px", padding:"10px", marginTop:"10px"}}>Post Answer</button>
+                       
                 </form >
+                <div className="createcancel"><Link to="/" style={{ textDecoration: 'none', backgroundColor:'none', fontSize:"10px", marginTop:"10px", color:"white"}}>Cancel</Link></div>
            
         </div>
     )
