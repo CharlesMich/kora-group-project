@@ -10,7 +10,7 @@ function Navigation({ isLoaded, user }) {
 
 	return (
 		<>
-		{/* {user &&  */}
+		{sessionUser && 
 			<nav>
 				<div className='nav-bar'>
 					<NavLink exact to="/">
@@ -28,15 +28,17 @@ function Navigation({ isLoaded, user }) {
 					<NavLink exact to='/spaces'>
 						Spaces
 					</NavLink>
-					{isLoaded && (
-						<ProfileButton user={sessionUser} />
-					)}
 					<NavLink exact to='/new-question'>
 						<button>Add question</button>
 					</NavLink>
+					{isLoaded && (
+						<ProfileButton user={sessionUser} />
+					)}
 				</div>
 			</nav>
-		{/* } */}
+			}
+			<>
+			</>
 		</>
 	);
 }

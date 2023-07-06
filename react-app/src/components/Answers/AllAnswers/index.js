@@ -53,7 +53,7 @@ function AllAnswers() {
                 {newArr && newArr.map((answer) =>
                     <div className="answerCol">
                         <div className="profileclass">
-                            <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
+                            <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
                             <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</div>
                         </div>
                         <div className="eachanswer" key={answer.id}>{answer.body}</div>

@@ -5,11 +5,9 @@ import { Link } from "react-router-dom";
 import "./userDemoStyle.css"
 
 const DemoUser = () => {
-  const { closeModal } = useModal();
   const dispatch = useDispatch();
 const onClick = () => {
   dispatch(login({ email: "demo@aa.io", password: "password" }))
-  .then(() => closeModal())
 };
 
 return <Link to= '/question/' onClick={onClick} className="demo-user">Demo User</Link>;
