@@ -19,6 +19,9 @@ function ManageAnswers() {
 
 
     const answers = useSelector((state) => state.answers.newState);
+    const questions = useSelector((state)=> state.questions)
+
+    // console.log(questions)
 
     let userId;
 
@@ -36,6 +39,7 @@ function ManageAnswers() {
     if (!answers) return null
     if (!userId) return null
     if(!sessionUser.id) return null
+    if(!questions) return null
     // console.log(answers)
     const answersArr = Object.values(answers)
     // console.log('answersArr', answersArr)
@@ -47,6 +51,10 @@ function ManageAnswers() {
             </div>
         )
     }
+
+
+    
+
     return (
         <div  className="outer">
             <div >
