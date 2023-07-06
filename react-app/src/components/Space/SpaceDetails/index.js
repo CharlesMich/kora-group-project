@@ -6,7 +6,7 @@ import { allQuestions } from "../../../store/questions"
 import OpenModalButton from "../../OpenModalButton"
 import UpdateQuestion from "../../UpdateQuestion"
 import DeleteQuestion from "../../DeleteQuestion"
-
+import './SpaceDetails.css'
 
 const SpaceDetails = () => {
     const { spaceId } = useParams()
@@ -26,11 +26,11 @@ const SpaceDetails = () => {
     const spaceQuestions = questionsArray.filter(question => question.space_id === space.id)
 
     return (
-        <div>
+        <div className="space-detail-container">
             <div>
                 <h2>{space.space_name}</h2>
             </div>
-            <div className="allQuestions">
+            <div className="allQuestions-space">
                 {spaceQuestions.map(ele =>
                     <div className="single-question-container" key={ele.id}>
                         <div className="question-user-container">
