@@ -44,6 +44,7 @@
 .allQuestions{
     margin: 100px auto auto 100px;
     max-width: 586.5px;
+    width: 586.5px;
 }
 
 .question-user-container{
