@@ -5,6 +5,7 @@ import session from './session'
 import reducer from './session'
 import questionReducer from './questions';
 import spacesReducer from './space';
+import followReducer from '../components/Follows/CreateFollows';
 
 
 
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   session: reducer,
   questions: questionReducer,
   answers: answerReducer,
-  spaces: spacesReducer
+  spaces: spacesReducer,
+  follows: followReducer
 });
 
 
