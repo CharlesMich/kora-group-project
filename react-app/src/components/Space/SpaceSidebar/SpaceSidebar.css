@@ -1,4 +1,11 @@
 .spaces {
     display: flex;
     flex-direction: column;
+    max-width: 100px;
+    width: 100px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

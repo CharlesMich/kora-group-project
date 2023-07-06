@@ -32,8 +32,8 @@ const AllSpaces = () => {
                     />
                 </button>
             </div>
-            <h2>Discover Spaces</h2>
-            <p>Spaces</p>
+            <h2 id='discover-title'>Discover Spaces</h2>
+            <p id='spaces-title'>Spaces</p>
             <div className="space-tiles">
                 {spaces && spaces.map(space => (
                     <SpaceTile key={space.id} space={space} />
