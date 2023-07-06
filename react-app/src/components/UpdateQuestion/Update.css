@@ -1,0 +1,23 @@
+.updateButton{
+    background-color: #759dc8;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.updateForm{
+
+}
+
+.updateText{
+
+}
+
+.updateTextArea{
+    width: 90%;
+    height: 300px;
+    margin: 3%; 
+}
+
+.updateDiv{
+
+}

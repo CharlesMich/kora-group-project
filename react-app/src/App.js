@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
+import AuthPage from "./components/AuthPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import AllAnswers from "./components/Answers/AllAnswers";
+import CreateAnswer from "./components/Answers/CreateAnswer";
+import UpdateAnswer from "./components/Answers/UpdateAnswer";
+import ManageAnswers from "./components/Answers/ManageAnswer";
 import QuestionComponent from "./components/Questions";
+import CreateQuestion from "./components/CreateQuestion";
+import SingleUserQuestion from "./components/Questions/singleUserQuestion";
+import AllSpaces from "./components/Space/AllSpaces";
+import SpaceDetails from "./components/Space/SpaceDetails";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -20,12 +28,29 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/login" >
-            <LoginFormPage />
+            <AuthPage />
           </Route>
-          <Route path="/signup">
-            <SignupFormPage />
+          <Route path="/new-question">
+            <CreateQuestion />
           </Route>
-          <Route path="/questions">
+          <Route exact path="/answers/new/:questionId">
+            <CreateAnswer />
+          </Route>
+          <Route exact path="/answers/update/:answerId">
+            <UpdateAnswer />
+          </Route>
+          <Route path="/answers/:questionId">
+            <AllAnswers />
+          </Route>
+          <Route path="/questions/current">
+            <SingleUserQuestion />
+          </Route>
+          <Route path="/manage-answers">
+            <ManageAnswers />
+          </Route>
+          <Route path='/spaces'><AllSpaces /></Route>
+          <Route path="/">
+
             <QuestionComponent />
           </Route>
         </Switch>

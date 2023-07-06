@@ -1,0 +1,12 @@
+.deleteText{
+
+}
+.delQuestion{
+    background-color: #759dc8;
+    border-radius: 10px;
+    border: 0px;
+    cursor: pointer;
+}
+.deleteDiv{
+    padding: 2%;
+}

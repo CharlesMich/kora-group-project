@@ -1,7 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .questions import seed_questions, undo_questions
-from .tags import seed_tags, undo_tags
+from .spaces import seed_spaces, undo_spaces
 from .answers import seed_answers, undo_answers
 from .follows import seed_followers, undo_followers
 
@@ -22,12 +22,12 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_followers()
         undo_answers()
-        undo_tags()
+        undo_spaces()
         undo_questions()
         undo_users()
     seed_users()
     seed_questions()
-    seed_tags()
+    seed_spaces()
     seed_answers()
     seed_followers()
     # Add other seed functions here
@@ -38,7 +38,7 @@ def seed():
 def undo():
     undo_followers()
     undo_answers()
-    undo_tags()
+    undo_spaces()
     undo_questions()
     undo_users()
     # Add other undo functions here
