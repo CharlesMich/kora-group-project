@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams, NavLink, useHistory, Redirect } from "react-router-dom/cjs/react-router-dom.min"
+import { useParams, NavLink, Redirect } from "react-router-dom/cjs/react-router-dom.min"
 import { thunkGetSingleSpace } from "../../../store/space"
 import { allQuestions } from "../../../store/questions"
 import OpenModalButton from "../../OpenModalButton"
@@ -14,7 +14,6 @@ const SpaceDetails = () => {
     const space = useSelector(state => state.spaces.singleSpace)
     const questions = useSelector(state => state.questions)
     const user = useSelector(state => state.session.user)
-    const history = useHistory()
 
     useEffect(() => {
         dispatch(thunkGetSingleSpace(spaceId))
