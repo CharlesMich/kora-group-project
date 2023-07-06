@@ -11,7 +11,16 @@ def spaceIndex():
     print('spaces', spaces)
     return [space.to_dict() for space in spaces]
 
-@spaces_route.route('/create-space', methods = ["GET", "POST"])
+
+@spaces_route.route('/<int:id>', methods=['GET'])
+@login_required
+def getSingleSpace(id):
+    space = Space.query.filter(Space.id == id).first()
+    return space.to_dict()
+
+
+@spaces_route.route('/', methods = ["POST"])
+@login_required
 def createSpace():
     form = SpaceForm()
     form['csrf_token'].data = request.cookies['csrf_token']

@@ -14,7 +14,8 @@ const SpaceTile = ({ space }) => {
         <div>
             <div className="space-tile" onClick={onClick}>
                 <div className="space-name">
-                    <p>{space.name}</p>
+                    <p>{space.space_name}</p>
+                    <p>{space.description}</p>
                 </div>
             </div>
         </div >

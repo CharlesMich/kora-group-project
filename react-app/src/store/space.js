@@ -1,4 +1,5 @@
 const GET_SPACES = 'spaces/GET_SPACES'
+const GET_SINGLE_SPACE = 'spaces/GET_SINGLE_SPACE'
 const CREATE_SPACE = 'spaces/CREATE_SPACE'
 
 /*-----ACTIONS-----*/
@@ -8,6 +9,14 @@ export const actionGetSpaces = (spaces) => {
     return {
         type: GET_SPACES,
         spaces
+    }
+}
+
+//GET SINGLE SPACE
+export const actionGetSingleSpace = (space) => {
+    return {
+        type: GET_SINGLE_SPACE,
+        space
     }
 }
 
@@ -31,9 +40,19 @@ export const thunkGetSpaces = () => async dispatch => {
     }
 }
 
+//GET SINGLE SPACE
+export const thunkGetSingleSpace = (spaceId) => async dispatch => {
+    const res = await fetch(`/api/spaces/${spaceId}`)
+    const space = await res.json()
+    if (res.ok) {
+        dispatch(actionGetSingleSpace(space))
+        return space
+    }
+}
+
 //CREATE SPACES
 export const thunkCreateSpace = (space) => async dispatch => {
-    const res = await fetch('/api/spaces/create-space', {
+    const res = await fetch('/api/spaces/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -50,7 +69,7 @@ export const thunkCreateSpace = (space) => async dispatch => {
 
 
 /*-----REDUCER-----*/
-const initialState = { allSpaces: {} }
+const initialState = { allSpaces: {}, singleSpace: {} }
 
 export default function spacesReducer(state = initialState, action) {
     let newState
@@ -58,6 +77,11 @@ export default function spacesReducer(state = initialState, action) {
         case GET_SPACES: {
             newState = { ...state, allSpaces: action.spaces }
             newState.allSpaces = action.spaces
+            return newState
+        }
+        case GET_SINGLE_SPACE: {
+            newState = { ...state.allSpaces, singleSpace: {} }
+            newState.singleSpace = action.space
             return newState
         }
         case CREATE_SPACE: {

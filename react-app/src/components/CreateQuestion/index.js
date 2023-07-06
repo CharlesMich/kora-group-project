@@ -1,54 +1,75 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-// import "./createForm.css";
+import "./createQuestion.css";
 
 import { addQuestion } from "../../store/questions";
 
 
 function CreateQuestion() {
     const dispatch = useDispatch();
-    const userId = useSelector(state => state.session.user.id)
 
     const [question, setQuestion] = useState("");
     const [validationErrors, setValidationErrors] = useState({});
-    const [run, setRun] = useState(false)
+    const [run, setRun] = useState("no")
 
-    useEffect(() => {
-        const err = {}
-        if (question.length < 5) err.question = "your question is too short";
-        setValidationErrors(err);
-    }, [question])
+    const err = {}
+    if (question.length < 5) err['question'] = "your question is too short";
 
-    const history = useHistory();
-
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        setRun(true)
-
-        const newQuestion = { owner_id: userId, question }
-        const response = await dispatch(addQuestion(newQuestion))
-
-        if (response.message) {
-            const data = await response.json()
-            setValidationErrors(data)
-            return
-        } else {
-            history.push('/')
+    let newQuestion = {}
+    if (!Object.values(err).length) {
+        newQuestion = {
+            "question": question
         }
     }
 
+    const history = useHistory();
+    const updateQuestion = (e) => setQuestion(e.target.value);
+
+    function onSubmit(e) {
+        const errors = {};
+        if (question.length < 5) errors['question'] = "your question is too short";
+        setValidationErrors(errors);
+        e.preventDefault();
+
+        if (!Object.values(errors).length) {
+            setRun('yes')
+        } else {
+            setRun('no')
+        }
+    }
+
+    const submitNo = () => {
+        history.push('/')
+    }
+
+    useEffect(() => {
+        if (Object.values(newQuestion).length && run === 'yes') {
+            const refun = async () => {
+                const res = await dispatch(addQuestion(newQuestion))
+                // history.push(`/answers/${res.id}`)
+                history.push('/')
+            }
+            refun();
+        }
+    }, [run])
 
     return (
         <>
-            <h1>Create a Question</h1>
-            {run && validationErrors.question && <p className="errors">{validationErrors.question}</p>}
+            <h1 className="createQuestion">Create a Question</h1>
+           
+            {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
 
-            <form>
-                <div>
-                    <textarea value={question} onChange={e => setQuestion(e.target.value)} placeholder="Enter your question here"></textarea>
+            <form onSubmit={onSubmit} className="createForm">
+                <div className="enterQuestion">
+                    <textarea value={question} onChange={updateQuestion} placeholder="Enter your question here" className="textArea"></textarea>
                 </div>
-                <button onClick={onSubmit}>Add Question</button>
+                <div className="quesButtonDiv">
+
+                    <button className="addQuestion" disabled={question.length < 1}>Add Question</button>
+                    <button onClick={submitNo} type="delNo" className="cancelCreate">Cancel</button>
+                </div>
+
             </form>
         </>
     )
