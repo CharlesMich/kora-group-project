@@ -21,7 +21,7 @@ function AllAnswers() {
 
     const answers = useSelector(state => state.answers ? state.answers.tempState : null);
     const question1 = useSelector(state => state.questions ? state.questions[questionId] : null)
-    console.log(question1.question)
+
 
     useEffect(() => {
         dispatch(getAllAnswers(questionId));
@@ -32,15 +32,15 @@ function AllAnswers() {
     }, [dispatch]);
 
     if (!answers) return null;
-    if(!question1) return null;
+    if (!question1) return null;
 
     let newArr = Object.values(answers)
 
-    if(!newArr.length){
-        return(
+    if (!newArr.length) {
+        return (
             <div className="container">
-            <div className="question">{question1.question}</div>
-            <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{textDecoration:'none'}}>Be the first one to Answer</Link></span>
+                <div className="question">{question1.question}</div>
+                <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: 'white' }}>Be the first one to Answer</Link></span>
             </div>
         )
     }
@@ -48,11 +48,14 @@ function AllAnswers() {
     return (
         <div className="container">
             <div className="question">{question1.question}</div>
-            <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{textDecoration:'none', color:"white"}}>Post your Answer</Link></span>
+            <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: "white" }}>Post your Answer</Link></span>
             <div>
                 {newArr && newArr.map((answer) =>
                     <div className="answerCol">
-                        <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</div>
+                        <div className="profileclass">
+                            <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
+                            <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</div>
+                        </div>
                         <div className="eachanswer" key={answer.id}>{answer.body}</div>
                     </div>
 
