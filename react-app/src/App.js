@@ -48,7 +48,12 @@ function App() {
           <Route path="/manage-answers">
             <ManageAnswers />
           </Route>
-          <Route path='/spaces'><AllSpaces /></Route>
+          <Route path='/spaces/:spaceId'>
+            <SpaceDetails />
+          </Route>
+          <Route path='/spaces'>
+            <AllSpaces />
+          </Route>
           <Route path="/">
 
             <QuestionComponent />

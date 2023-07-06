@@ -1,0 +1,11 @@
+.space-tile {
+    background-color: white;
+    border-radius: 10%;
+    padding-top: 1rem;
+    cursor: pointer;
+}
+
+.space-info {
+    text-align: center;
+    min-height: 60px;
+}

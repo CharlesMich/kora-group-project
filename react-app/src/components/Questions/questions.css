@@ -12,6 +12,8 @@
     color: black;
     text-decoration: none;
     font-weight: bold;
+    max-width: 500px;
+    word-wrap: break-word;
 }
 
 .single-question-container{
@@ -22,10 +24,10 @@
 }
 
 .question-profile-pic{
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.579);
     width: 36px;
     height: 36px;
-    border-radius: 10px;
+    border-radius: 16px;
 }
 
 .space-sidebar{
@@ -44,6 +46,7 @@
 .allQuestions{
     margin: 100px auto auto 100px;
     max-width: 586.5px;
+    width: 586.5px;
 }
 
 .question-user-container{

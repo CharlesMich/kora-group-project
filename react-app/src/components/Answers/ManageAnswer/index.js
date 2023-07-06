@@ -60,7 +60,7 @@ function ManageAnswers() {
 
                         <div className="ansBody">
                         <div className="profileclass1">
-                        <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
+                        <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
                         <div className="mngansname">Question by Full Name • Follow</div>    
                             <div><h2 className="manageh2">{ele.Question_question}</h2></div>
                             </div>
