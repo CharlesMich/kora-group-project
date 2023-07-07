@@ -34,28 +34,30 @@ export const fetchAllFollows = (userId) => async (dispatch) => {
 }
 
 // ADD FOLLOW A PERSON
-export const fetchPostFollows = (followForm, userId) => async (dispatch) => {
-    const response = await fetch(`/api/follows/${userId}`, {
+export const fetchPostFollows = (user_id) => async (dispatch) => {
+    const response = await fetch(`/api/follows/add-follows/${user_id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(followForm),
+        // body: JSON.stringify(None),
     });
     if (response.ok) {
         const payload = await response.json();
         dispatch(add_follow(payload))
+        console.log("Added follow", payload)
         return payload
     }
 }
 
 // DELETE A FOLLOW
 export const fetchDeleteFollow = (userId) => async (dispatch)=> {
-    const response = await fetch(`/api/follows/delete-answers/${userId}`, {
+    const response = await fetch(`/api/follows/delete-follows/${userId}`, {
         method: "POST"
     })
     if (response.ok){
         dispatch(delete_follow(userId))
+        console.log("deleted follow", userId)
     }
 }
 
@@ -63,19 +65,17 @@ const initialState = {};
 export default function followReducer(state = initialState, action){
     switch (action.type) {
         case LOAD_FOLLOWS: 
-        // const allFollows = {}
-        //     action.payload.forEach(ele => allFollows[ele.id] = ele);
-          
-        //     return {...state, allFollows }
-        // const allFollows = {state, ...action.payload}
-        return {[action.payload.id]: action.payload} 
+        const myFollowers = {};
+        myFollowers[action.payload.id] = action.payload
+        return myFollowers
         case ADD_FOLLOW:
-            return {[action.payload.id]: action.payload} 
+                const followedUser = {}
+            return followedUser[action.payload.followed_user_id]= action.payload
 
         case DELETE_FOLLOW:
-            const followState = {...state};
-            delete followState[action.spotId];
-            return followState;
+            const unfollow = {...state};
+            delete unfollow[action.payload];
+            return unfollow;
         
         default: return state;
     }
