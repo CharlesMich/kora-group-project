@@ -5,11 +5,21 @@ from flask_login import login_required, current_user
 
 follow_route = Blueprint('follows', __name__)
 
+
+# Get count of the followers of the user
 @follow_route.route('/<int:id>', methods = ["GET"])
-def get_Follow(id):
+def get_FollowCount(id):
     follows = Follow.query.filter(Follow.following_user_id == id).count()
     print('follows count', follows)
     return {"follows":follows, "id":id, }
+
+
+# Get all the followers of the user
+@follow_route.route('/followers/<int:id>', methods = ["GET"])
+def get_AllFollowers(id):
+    followers = Follow.query.filter(Follow.following_user_id == id).all()
+    return [follower.to_dict() for follower in followers]
+   
 
 
 

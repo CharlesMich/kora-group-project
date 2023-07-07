@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from "react-router-dom";
 import { getAllAnswers } from '../../../store/answerReducer';
 import { allQuestions } from '../../../store/questions';
+import { fetchAllFollows, fetchDeleteFollow } from '../../../store/followsReducer';
+import { fetchPostFollows } from '../../../store/followsReducer';
+
 import './AllAnswers.css';
 
 function AllAnswers() {
@@ -21,7 +24,29 @@ function AllAnswers() {
 
     const answers = useSelector(state => state.answers ? state.answers.tempState : null);
     const question1 = useSelector(state => state.questions ? state.questions[questionId] : null)
+    const follows = useSelector((state) => state.follows.myFollows)
 
+    console.log('follows', follows)
+
+    let userId;
+
+    if (sessionUser) {
+        userId = sessionUser.id
+    }
+
+    const [active, setActive] = useState(false);
+    const handleClick = async (e) => {
+        e.preventDefault();
+        setActive(!active);
+        const { value } = e.target.dataset;
+        console.log(value);
+
+        if (!active) {
+            await dispatch(fetchPostFollows(value))
+        } else {
+            await dispatch(fetchDeleteFollow(value))
+        }
+    }
 
     useEffect(() => {
         dispatch(getAllAnswers(questionId));
@@ -33,7 +58,7 @@ function AllAnswers() {
 
     if (!answers) return null;
     if (!question1) return null;
-    // if(!sessionUser) return null;
+    if (!follows) return null
 
     let newArr = Object.values(answers)
 
@@ -63,6 +88,7 @@ function AllAnswers() {
                         <div className="profileclass">
                             <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
                             <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</div>
+                            <button onClick={handleClick} style={{ color: active ? "blue" : "black" }} data-value={answer.Question_ownerId}>Follow</button>
                         </div>
                         <div className="eachanswer" key={answer.id}>{answer.body}</div>
                     </div>
