@@ -7,5 +7,27 @@
 
 .space-info {
     text-align: center;
-    min-height: 60px;
+    min-height: 120px;
+    max-height: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.space-name, .space-desc {
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.space-tile-container {
+    width: 8.5rem;
+}
+
+.space-name {
+    max-height: 2rem;
+}
+
+.space-desc {
+    padding-left: 5px;
+    padding-right: 5px;
 }

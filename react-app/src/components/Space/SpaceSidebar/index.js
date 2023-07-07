@@ -25,7 +25,7 @@ const SpaceSidebar = () => {
                     itemText='Create Space'
                 />
             </button>
-            <div className="spaces">
+            <div className='spaces'>
                 {spaces && Object.values(spaces).reverse().map(space => (
                     <Link to={`/spaces/${space.id}`} key={space.id}>{space.space_name}</Link>
                 ))}

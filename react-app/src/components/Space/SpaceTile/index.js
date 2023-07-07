@@ -11,7 +11,7 @@ const SpaceTile = ({ space }) => {
 
 
     return (
-        <div>
+        <div className="space-tile-container">
             <div className="space-tile" onClick={onClick}>
                 <div className="space-info">
                     <p className="space-name">{space.space_name}</p>
