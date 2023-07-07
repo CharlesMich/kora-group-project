@@ -13,7 +13,7 @@ def get_Follow(id):
 
 
 
-@follow_route.route('/<int:id>', methods = ["POST"])
+@follow_route.route('/add-follows/<int:id>', methods = ["POST"])
 def add_Follow(id):
     follows = Follow.query.filter(Follow.following_user_id == current_user.id).first()
     if follows:
