@@ -10,6 +10,7 @@ function CreateQuestion() {
     const dispatch = useDispatch();
 
     const [question, setQuestion] = useState("");
+    const [space, setSpace] = useState("")
     const [validationErrors, setValidationErrors] = useState({});
     const [run, setRun] = useState("no")
 
@@ -18,13 +19,14 @@ function CreateQuestion() {
     let newQuestion = {}
     if (!Object.values(err).length) {
         newQuestion = {
-            "question": question
+            "question": question,
+            "space": space
         }
     }
 
     const history = useHistory();
     const updateQuestion = (e) => setQuestion(e.target.value);
-
+    const updateSpace = (e) => setSpace(e.target.value);
     function onSubmit(e) {
         const errors = {};
         if (question.length < 5) errors['question'] = "your question is too short";
@@ -65,6 +67,20 @@ function CreateQuestion() {
                 <div className="enterQuestion">
                     <textarea value={question} onChange={updateQuestion} placeholder="Enter your question here" className="textArea"></textarea>
                 </div>
+                <div className="divlab">
+            <h5 >Space</h5>
+            <label className="lab">
+
+              <input
+                type="text"
+                value={space}
+                onChange={updateSpace}
+                placeholder="Space"
+              // 
+              />
+            </label>
+            
+          </div>
                 <div className="quesButtonDiv">
 
                     <button className="addQuestion" disabled={question.length < 1}>Add Question</button>
