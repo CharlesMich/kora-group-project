@@ -1,11 +1,11 @@
 import { useDispatch, useSelector, } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { fetchAllAnswersOfUser } from '../../../store/answerReducer';
 import { Link } from 'react-router-dom';
 import DeleteAnswerModal from '../DeleteAnswerModal';
 import OpenModalButton from "../../OpenModalButton";
-import { fetchAllFollows, fetchDeleteFollow } from '../../../store/followsReducer';
+import { fetchDeleteFollow, fetchAllFollowers } from '../../../store/followsReducer';
 import { fetchPostFollows } from '../../../store/followsReducer';
 import './manageAnswers.css'
 
@@ -22,10 +22,9 @@ function ManageAnswers() {
 
     const answers = useSelector((state) => state.answers.newState);
     const questions = useSelector((state) => state.questions)
-    const follows = useSelector((state) => state.follows.myFollows)
+    const follows = useSelector((state) => Object.values(state.follows))
 
-    console.log('follows', follows)
-
+   
     let userId;
 
     if (sessionUser) {
@@ -36,24 +35,35 @@ function ManageAnswers() {
         dispatch(fetchAllAnswersOfUser(userId))
     }, [dispatch, userId])
 
+
     useEffect(() => {
-        dispatch(fetchAllFollows(userId))
+        dispatch(fetchAllFollowers(userId))
     }, [dispatch, userId])
 
-
-    const [active, setActive] = useState(false);
+    let active;
+    
+    console.log(active)
+    
     const handleClick = async (e) => {
         e.preventDefault();
-        setActive(!active);
+      
         const { value } = e.target.dataset;
         console.log(value);
 
-        if (!active) {
-            await dispatch(fetchPostFollows(value))
-        } else {
+        const checkDuplicate = obj => obj.followed_user_id === 3;
+        console.log(follows.some(checkDuplicate))
+        
+        if(follows.some(checkDuplicate)){
+            active = false;
             await dispatch(fetchDeleteFollow(value))
-        }
+         } else {
+             active = true;
+             console.log(active)
+             await dispatch(fetchPostFollows(value))
+         }
     }
+
+    
 
     if (!answers) return null
     if (!userId) return null
@@ -77,13 +87,12 @@ function ManageAnswers() {
 
     // • <span style={{ color: 'blue' }}>{follows ? follows[0].follows : 0}Follows</span>
 
-
-
+    
     return (
         <div className="outer">
             <div>
                 <div className="manageh1">Manage Your Answers</div>
-                <div className="manage-subtitle" style={{ paddingBottom: "20px" }}><span>{sessionUser.firstname} {sessionUser.lastname}</span> • <span style={{ color: 'blue' }}>{follows ? follows.follows : '0'}Follows</span></div>
+                <div className="manage-subtitle" style={{ paddingBottom: "20px" }}><span>{sessionUser.firstname} {sessionUser.lastname}</span></div>
 
             </div>
 
