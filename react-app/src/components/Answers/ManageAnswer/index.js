@@ -1,6 +1,6 @@
-import { useDispatch, useSelector, } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import { fetchAllAnswersOfUser } from '../../../store/answerReducer';
 import { Link } from 'react-router-dom';
 import DeleteAnswerModal from '../DeleteAnswerModal';
@@ -14,6 +14,7 @@ function ManageAnswers() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const store = useStore()
 
     //if not logged in, redirect to home
     const sessionUser = useSelector((state) => state.session.user);
@@ -22,48 +23,49 @@ function ManageAnswers() {
 
     const answers = useSelector((state) => state.answers.newState);
     const questions = useSelector((state) => state.questions)
-    const follows = useSelector((state) => Object.values(state.follows))
+    const follows = useSelector((state) => state.follows)
 
-   
+    const [active, setActive] = useState(false)
+
+
     let userId;
 
     if (sessionUser) {
         userId = sessionUser.id
+    } else {
+        userId = null
     }
 
     useEffect(() => {
         dispatch(fetchAllAnswersOfUser(userId))
-    }, [dispatch, userId])
-
-
-    useEffect(() => {
         dispatch(fetchAllFollowers(userId))
     }, [dispatch, userId])
 
-    let active;
-    
-    console.log(active)
-    
+    // let active;
+
+    // console.log(active)
+    const isFollowed = (value) => {
+        return follows && follows[value];
+    };
+
     const handleClick = async (e) => {
         e.preventDefault();
-      
+
         const { value } = e.target.dataset;
-        console.log(value);
+        console.log('value', value);
 
-        const checkDuplicate = obj => obj.followed_user_id === 3;
-        console.log(follows.some(checkDuplicate))
-        
-        if(follows.some(checkDuplicate)){
-            active = false;
-            await dispatch(fetchDeleteFollow(value))
-         } else {
-             active = true;
-             console.log(active)
-             await dispatch(fetchPostFollows(value))
-         }
-    }
+        console.log('isfollowed', isFollowed(value));
 
-    
+        if (value !== sessionUser.id && isFollowed(value)) {
+            await dispatch(fetchDeleteFollow(value));
+        } else if (value !== sessionUser.id && !isFollowed(value)) {
+            await dispatch(fetchPostFollows(value));
+        }
+
+        // dispatch(fetchAllFollowers(userId));
+    };
+
+
 
     if (!answers) return null
     if (!userId) return null
@@ -87,7 +89,7 @@ function ManageAnswers() {
 
     // • <span style={{ color: 'blue' }}>{follows ? follows[0].follows : 0}Follows</span>
 
-    
+
     return (
         <div className="outer">
             <div>
