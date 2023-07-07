@@ -22,9 +22,9 @@ function ManageAnswers() {
 
     const answers = useSelector((state) => state.answers.newState);
     const questions = useSelector((state) => state.questions)
-    const follows = useSelector((state) => Object.values(state.follows))
+    const follows = useSelector((state) => state.follows.myFollows)
 
-    // console.log('follows', follows)
+    console.log('follows', follows)
 
     let userId;
 
@@ -75,6 +75,7 @@ function ManageAnswers() {
         )
     }
 
+    // • <span style={{ color: 'blue' }}>{follows ? follows[0].follows : 0}Follows</span>
 
 
 
@@ -82,7 +83,7 @@ function ManageAnswers() {
         <div className="outer">
             <div>
                 <div className="manageh1">Manage Your Answers</div>
-                <div className="manage-subtitle" style={{ paddingBottom: "20px" }}><span>{answersArr && answersArr[0].User_firstName} {answersArr && answersArr[0].User_lastName}</span> • <span style={{ color: 'blue' }}>{follows ? follows[0].follows : 0}Follows</span></div>
+                <div className="manage-subtitle" style={{ paddingBottom: "20px" }}><span>{sessionUser.firstname} {sessionUser.lastname}</span> • <span style={{ color: 'blue' }}>{follows ? follows.follows : '0'}Follows</span></div>
 
             </div>
 
@@ -93,9 +94,9 @@ function ManageAnswers() {
                         <div className="ansBody">
                             <div className="profileclass1">
                                 <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
-                                <div className="mngansname">Question by {questions && questions[ele.question_id].User_firstName} {questions && questions[ele.question_id].User_lastName}</div>
+                                <div className="mngansname">Question by {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</div>
 
-                                <button onClick={handleClick} style={{ color: active ? "blue" : "black" }} data-value={questions[ele.question_id].id}>Follow</button>
+                                <button onClick={handleClick} style={{ color: active ? "blue" : "black" }} data-value={ele.Question_ownerId}>Follow</button>
                                 <div><h2 className="manageh2">{ele.Question_question}</h2></div>
                             </div>
                             <div className="manageBody" key={ele.id}>{ele.body}</div>

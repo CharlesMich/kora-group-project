@@ -31,8 +31,9 @@ class Answer(db.Model):
                 'user_id': self.user_id,
                 'question_id': self.question_id,
                 'created_at': self.created_at,
-                'updated_at': self.updated_at,
+                'User_id': self.answer_user.id,
                 "User_firstName": self.answer_user.first_name,
                 'User_lastName': self.answer_user.last_name,
-                "Question_question": self.answer_question.question
+                "Question_question": self.answer_question.question,
+                "Question_ownerId": self.answer_question.owner_id
             }
