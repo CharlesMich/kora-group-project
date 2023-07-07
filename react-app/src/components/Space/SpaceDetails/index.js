@@ -32,7 +32,7 @@ const SpaceDetails = () => {
     }
 
     if (isLoading) {
-        return null
+        return <div></div>
     }
 
     return (
