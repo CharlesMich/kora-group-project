@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, NavLink, Redirect } from "react-router-dom/cjs/react-router-dom.min"
 import { thunkGetSingleSpace } from "../../../store/space"
@@ -14,9 +14,11 @@ const SpaceDetails = () => {
     const space = useSelector(state => state.spaces.singleSpace)
     const questions = useSelector(state => state.questions)
     const user = useSelector(state => state.session.user)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         dispatch(thunkGetSingleSpace(spaceId))
+            .then(() => setIsLoading(false))
         dispatch(allQuestions())
     }, [dispatch, spaceId])
 
@@ -27,6 +29,10 @@ const SpaceDetails = () => {
 
     if (!user) {
         return <Redirect to='/login' />
+    }
+
+    if (isLoading) {
+        return null
     }
 
     return (
