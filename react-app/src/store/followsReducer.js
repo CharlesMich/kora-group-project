@@ -66,16 +66,16 @@ export default function followReducer(state = initialState, action){
     switch (action.type) {
         case LOAD_FOLLOWS: 
         const myFollowers = {};
-        myFollowers[action.payload.id] = action.payload
+        myFollowers['myFollows'] = action.payload
         return myFollowers
-        case ADD_FOLLOW:
-                const followedUser = {}
-            return followedUser[action.payload.followed_user_id]= action.payload
+        // case ADD_FOLLOW:
+        //         const followedUser = {}
+        //     return followedUser[action.payload.followed_user_id]= action.payload
 
-        case DELETE_FOLLOW:
-            const unfollow = {...state};
-            delete unfollow[action.payload];
-            return unfollow;
+        // case DELETE_FOLLOW:
+        //     const unfollow = {...state};
+        //     delete unfollow[action.payload];
+        //     return unfollow;
         
         default: return state;
     }
