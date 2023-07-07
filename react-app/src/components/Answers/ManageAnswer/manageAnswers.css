@@ -3,7 +3,9 @@
    flex-direction: column;
    margin: 0 auto;
    width: 60%;
-   padding-top: 100px;
+   padding: 80px 30px 30px 30px;
+   background-color: white;
+   border-radius: 5px;
    /* margin-top: 100px */
 }
 
@@ -57,4 +59,19 @@
 
 .upanddelbutton{
   margin-top: 10px;
+}
+
+.manage-answers-text{
+  font-size: 19px;
+}
+
+.manage-subtitle{
+  font-size: medium;
+  color: rgb(97, 13, 13);
+}
+
+.manage-subtitle-2{
+  padding-top: 10px;
+  color: black;
+  font-weight: bold;
 }
