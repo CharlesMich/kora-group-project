@@ -75,6 +75,7 @@ function ManageAnswers() {
         )
     }
 
+    // • <span style={{ color: 'blue' }}>{follows ? follows[0].follows : 0}Follows</span>
 
 
 
@@ -82,7 +83,7 @@ function ManageAnswers() {
         <div className="outer">
             <div>
                 <div className="manageh1">Manage Your Answers</div>
-                <div className="manage-subtitle" style={{ paddingBottom: "20px" }}><span>{answersArr && answersArr[0].User_firstName} {answersArr && answersArr[0].User_lastName}</span> • <span style={{ color: 'blue' }}>{follows ? follows[0].follows : 0}Follows</span></div>
+                <div className="manage-subtitle" style={{ paddingBottom: "20px" }}><span>{answersArr && answersArr[0].User_firstName} {answersArr && answersArr[0].User_lastName}</span></div>
 
             </div>
 
