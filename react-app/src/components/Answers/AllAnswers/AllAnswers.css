@@ -1,8 +1,5 @@
-.container{
-   display: flex;
-   flex-direction: column; 
+.answer-container{
    width: 60%;
-   padding-top: 100px;
    margin:  0 auto;
 }
 
@@ -35,16 +32,14 @@
    background-color: black;
 }
 
-.answerCol{
-   margin-top: 10px;
-   background-color: white;
-   border-bottom: 1px solid rgb(208, 203, 203);
-   border-radius: 5px;
+.single-answer-container{    
+    background-color: white;
+
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 5px;
 }
 .name{
-   padding-top: 20px;
    padding-left: 20px;
-   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
    font-weight: bold;
    font-size: 14px;
 }

@@ -53,10 +53,6 @@ const SingleUserQuestion = () => {
                                         modalComponent={<DeleteQuestion id={ele.id} />}
                                     />}
                                 </div>
-<<<<<<< HEAD
-=======
-                          
->>>>>>> dev
                     </div>
                 )}
             </div>

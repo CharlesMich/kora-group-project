@@ -40,17 +40,16 @@ function ProfileButton({ user }) {
     <>
       {user && 
         <>
-          <button onClick={openMenu}>
-            <i className="fas fa-user-circle" />
+          <button className="nav-profile-btn" onClick={openMenu}>
+            Profile
+            <i className="nav-icon fas fa-user-circle" />
           </button>
           <ul className={ulClassName} ref={ulRef}>
-              <>
                 <li>{user.username}</li>
                 <li>{user.email}</li>
                 <li>
                   <button onClick={handleLogout}>Log Out</button>
                 </li>
-              </>
           </ul>
         </>
       }

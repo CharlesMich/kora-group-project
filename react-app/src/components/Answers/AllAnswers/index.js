@@ -41,7 +41,7 @@ function AllAnswers() {
     // if there are no answers
     if (!newArr.length && sessionUser.id !== question1.owner_id ) {
         return (
-            <div className="container">
+            <div className="answer-container">
                 <div className="question">{question1.question}</div>
                 <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: 'white' }}>Be the first one to Answer</Link></span>
             </div>
@@ -53,22 +53,20 @@ function AllAnswers() {
     console.log(sessionUser.id === question1.owner_id)
     if(sessionUser.id === question1.owner_id){
         return(
-        <div className="container">
-            <div className="question">{question1.question}</div>
-            <div>You are the creator of this Question</div>
+        <div className="answer-container">
+            <h2 className="question">{question1.question}</h2>
+            <h3>You are the creator of this Question</h3>
             {/* <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: "white" }}>Post your Answer</Link></span> */}
-            <div>
                 {newArr && newArr.map((answer) =>
-                    <div className="answerCol">
+                    <div className="single-answer-container">
                         <div className="profileclass">
-                            <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
-                            <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</div>
+                            <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
+                            <p className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</p>
                         </div>
-                        <div className="eachanswer" key={answer.id}>{answer.body}</div>
+                        <p className="eachanswer" key={answer.id}>{answer.body}</p>
                     </div>
 
                 )}
-            </div>
         </div>
         )
     }
