@@ -1,13 +1,13 @@
 import { useDispatch, useSelector, } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { fetchAllAnswersOfUser } from '../../../store/answerReducer';
 import { Link } from 'react-router-dom';
 import DeleteAnswerModal from '../DeleteAnswerModal';
 import OpenModalButton from "../../OpenModalButton";
 import { fetchDeleteFollow, fetchAllFollowers } from '../../../store/followsReducer';
 import { fetchPostFollows } from '../../../store/followsReducer';
-import {allQuestions} from '../../../store/questions'
+import { allQuestions } from '../../../store/questions'
 import './manageAnswers.css'
 
 function ManageAnswers() {
@@ -25,45 +25,51 @@ function ManageAnswers() {
     const questions = useSelector((state) => state.questions)
     const follows = useSelector((state) => Object.values(state.follows))
 
-   
+
     let userId;
 
     if (sessionUser) {
         userId = sessionUser.id
     }
 
+
     useEffect(() => {
         dispatch(fetchAllAnswersOfUser(userId))
-    }, [dispatch, userId])
+    }, [dispatch, userId]);
 
 
     useEffect(() => {
         dispatch(fetchAllFollowers(userId))
-    }, [dispatch, userId])
+    }, [dispatch, userId]);
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(allQuestions())
-    }, [dispatch])
+    },[dispatch]);
 
-    let active;
-    
+
+
+    let color;
+
     const handleClick = async (e) => {
         e.preventDefault();
-      
+
         const { value } = e.target.dataset;
         console.log(value);
 
         const checkDuplicate = obj => obj.followed_user_id === +value;
         console.log(follows.some(checkDuplicate))
+
         
-        if(follows.some(checkDuplicate)){
-            active = false;
+       
+        if (follows.some(checkDuplicate)) {
+            color = 'blue'
             await dispatch(fetchDeleteFollow(value))
-         } else {
-             active = true;
-            
-             await dispatch(fetchPostFollows(value))
-         }
+            // setColor('blue')
+        } else {
+            await dispatch(fetchPostFollows(value))
+            color = 'green';
+            // setColor('green')
+        }
     }
 
 
@@ -95,22 +101,14 @@ function ManageAnswers() {
                     <p className="manage-answers-text">• Don’t finish your answer in a hanging situation, many a time we loose patience or we go out of stamina to write further. To overcome this distress, simply stop writing for a while and take your time for rejuvenation.</p>
                     <p className="manage-answers-text">• Kora allows you to edit your answer drafts anytime, so chill.</p>
                     <p className="manage-answers-text">• After you feel satiated with your answer, don’t hit the “submit” button directly. Every answer should be free of typos and grammatical errors which can be easily overcome by proof reading of the draft twice or thrice.</p>
-                    
-
-
- 
-
-
- 
-
-</div>
+                </div>
             </div>
         )
     }
 
     // • <span style={{ color: 'blue' }}>{follows ? follows[0].follows : 0}Follows</span>
 
-    
+
     return (
         <div className="outer">
             <div>
@@ -126,9 +124,9 @@ function ManageAnswers() {
                         <div className="ansBody">
                             <div className="profileclass1">
                                 <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
-                                <div className="mngansname">Question by {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</div>
+                                <span className="mngansname">Question by {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</span>
 
-                                <button onClick={handleClick} style={{ color: active ? "blue" : "black" }} data-value={ele.Question_ownerId}>Follow</button>
+                                <span><button onClick={handleClick} style={{ color:color, backgroundColor: 'white', border: 'none' }} data-value={ele.Question_ownerId}>• Follow</button></span>
                                 <div><h2 className="manageh2">{ele.Question_question}</h2></div>
                             </div>
                             <div className="manageBody" key={ele.id}>{ele.body}</div>

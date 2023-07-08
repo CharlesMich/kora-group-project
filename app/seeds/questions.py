@@ -11,12 +11,20 @@ def seed_questions():
         question='How do I boil an egg?', owner_id=2, space_id=1
     )
     question3 = Question(
-        question='Can I die for playing to much videogames?', owner_id=3, space_id=3
+        question='Can I die for playing too much videogames?', owner_id=3, space_id=3
+    )
+    question4 = Question(
+        question='Is python an easy language to learn?', owner_id=4, space_id=5
+    )
+    question5 = Question(
+        question='How much will it take me to learn Javascript?', owner_id=5, space_id=5
     )
 
     db.session.add(question1)
     db.session.add(question2)
     db.session.add(question3)
+    db.session.add(question4)
+    db.session.add(question5)
     db.session.commit()
 
 
