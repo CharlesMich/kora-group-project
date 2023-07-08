@@ -13,6 +13,7 @@ import CreateQuestion from "./components/CreateQuestion";
 import SingleUserQuestion from "./components/Questions/singleUserQuestion";
 import AllSpaces from "./components/Space/AllSpaces";
 import SpaceDetails from "./components/Space/SpaceDetails";
+import Footer from "./components/footer";
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
               <QuestionComponent />
             </Route>
           </Switch>
+          <Footer></Footer>
         </div>
       )}
     </>
