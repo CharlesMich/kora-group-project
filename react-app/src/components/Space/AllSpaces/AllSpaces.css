@@ -11,6 +11,10 @@
     margin: auto;
 }
 
+.create-btn:hover {
+    cursor: pointer;
+}
+
 .space-tiles {
     display: flex;
     justify-content: flex-start;
