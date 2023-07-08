@@ -59,7 +59,6 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
-    print(request.json)
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
