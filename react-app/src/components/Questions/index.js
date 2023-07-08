@@ -7,6 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import UpdateQuestion from "../UpdateQuestion";
 import DeleteQuestion from "../DeleteQuestion";
 import SpaceSidebar from "../Space/SpaceSidebar";
+import { fetchAllFollowers, fetchPostFollows, fetchDeleteFollow } from "../../store/followsReducer";
 
 
 const QuestionComponent = () => {
@@ -24,9 +25,27 @@ const QuestionComponent = () => {
     if (us) {
         user = us.id
     }
+    
+    useEffect(()=>{
+          if(user){
+              dispatch(fetchAllFollowers(user))
+          }
+      },[dispatch, user])
+      const followed = useSelector(state=> Object.keys(state.follows))
+      console.log("followwwwed",followed)
+    
+    const handleAdd = async(e)=>{
+        e.preventDefault();
+        const {value} = e.target.dataset
+        await dispatch(fetchPostFollows(value))
+    }
 
-    const sessionUser = useSelector((state) => state.session.user);
-    if (!sessionUser) return <Redirect to="/login" />;
+    const handleRemove = async(e)=>{
+        e.preventDefault();
+        const {value} = e.target.dataset
+        await dispatch(fetchDeleteFollow(value))
+    }
+
 
     return (<>
         <div className="main-question-page">
@@ -40,6 +59,9 @@ const QuestionComponent = () => {
                         <div className="question-user-container">
                         <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo"/>
                                 <p className="question-user-name">{ele.User_firstName} {ele.User_lastName}</p>
+                                {user !== ele.owner_id && <p className="point">•</p>}
+                                {user !== ele.owner_id && followed.includes(ele.owner_id.toString()) && <button key={ele.id} onClick={handleRemove} data-value={ele.owner_id} className="followButton"> Following</button>}
+                                {user !== ele.owner_id && !followed.includes(ele.owner_id.toString()) && <button key={ele.id} onClick={handleAdd} data-value={ele.owner_id} className="followButton"> Follow</button>}
                         </div>
                                 <NavLink className="question-tilte" key={ele.id} exact to={`/answers/${ele.id}`}>
                                     {ele.question}
