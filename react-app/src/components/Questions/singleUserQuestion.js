@@ -31,9 +31,9 @@ const SingleUserQuestion = () => {
                 < SpaceSidebar />
             </div>
 
-            <div className="allQuestions">
+            <div className="display-all-containers">
                 {userQuestion.map(ele =>
-                    <div className="single-question-container" key={ele.id}>
+                    <div className="single-container" key={ele.id}>
                         <div className="question-user-container">
                             <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
                             <p className="question-user-name">{ele.User_firstName} {ele.User_lastName}</p>

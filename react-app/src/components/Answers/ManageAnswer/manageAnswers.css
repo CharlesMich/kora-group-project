@@ -1,8 +1,5 @@
 .outer{
-   display: flex;
-   flex-direction: column;
-   margin: 0 auto;
-   width: 60%;
+  margin: auto 31%;
    /* margin-top: 100px */
 }
 
@@ -16,20 +13,10 @@
   font-size: small;
 }
 
-/* button{
-  margin-top: 10px;
-  border: 1px solid black;
-  border-radius: 3px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: small;
-} */
-
-.manageh1{
+.answer-title{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: black;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -38,13 +25,6 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: black;
   font-size: 20px;
-}
-
-.map{
-  background-color: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
 }
 
 .manageBody{
@@ -56,4 +36,44 @@
 
 .upanddelbutton{
   margin-top: 10px;
+}
+
+.manage-answer-title-container{
+  max-width: 586.5px;
+  width: 586.5px;
+  margin-bottom: 7px;
+}
+
+.answer-title-container{
+  background-color: white;
+
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 5px;
+  padding: 18px;
+}
+
+.question-by-tag{
+  margin-top: 0;
+}
+
+.all-answer-container{
+  max-width: 585px;
+  width: 585px;
+  
+  background-color: white;
+
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 5px;
+}
+
+.single-answer-container{
+  padding: 18px;
+}
+
+.answer-profile-container{
+  display: flex;
+}
+
+.answer-profile-pic{
+  margin: auto 10px;
 }

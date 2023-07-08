@@ -32,21 +32,16 @@
    background-color: black;
 }
 
-.single-answer-container{    
+/* .single-answer-container{    
     background-color: white;
 
     border: 1px solid rgb(225, 225, 225);
     border-radius: 5px;
-}
+} */
 .name{
    padding-left: 20px;
    font-weight: bold;
    font-size: 14px;
-}
-
-.imgclass{
-   max-width: 50px;
-   max-height: 50px
 }
 
 .profileclass{

@@ -17,7 +17,7 @@ function ManageAnswers() {
 
     //if not logged in, redirect to home
     const sessionUser = useSelector((state) => state.session.user);
-    if (!sessionUser || !sessionUser.id) history.push(`/`);
+    if (!sessionUser || !sessionUser.id) history.push(`/login`);
 
 
     const answers = useSelector((state) => state.answers.newState);
@@ -81,41 +81,36 @@ function ManageAnswers() {
 
     return (
         <div className="outer">
-            <div>
-                <div className="manageh1">Manage Your Answers</div>
-                <div className="manage-subtitle" style={{ paddingBottom: "20px" }}><span>{sessionUser.firstname} {sessionUser.lastname}</span> • <span style={{ color: 'blue' }}>{follows ? follows.follows : '0'}Follows</span></div>
-
+            <div className="manage-answer-title-container">
+                <div className="answer-title-container">
+                    <h1 className="answer-title">Manage Your Answers</h1>
+                    <p>• {follows ? follows.follows : '0'} Follow</p>
+                    <p className="manage-subtitle">{sessionUser.firstname} {sessionUser.lastname} </p>
+                </div>
             </div>
 
+            {/* <div className="display-all-containers"> */}
+            <div className="all-answer-container">
             {answersArr.map(ele => (
-                <div className="outerDiv">
-                    <div className="map">
+                <div className="single-answer-container">
+                        <p className="question-by-tag">Question by: {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</p>
+                    <div className="answer-profile-container">
+                        <img className="answer-profile-pic question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
+                        <button className="follow-btn" onClick={handleClick} data-value={ele.Question_ownerId}>Follow</button>
+                    </div>
+                    <h2 className="manageh2">{ele.Question_question}</h2>
+                    <p className="manageBody" key={ele.id}>{ele.body}</p>
 
-                        <div className="ansBody">
-                            <div className="profileclass1">
-                                <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
-                                <div className="mngansname">Question by {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</div>
-
-                                <button onClick={handleClick} style={{ color: active ? "blue" : "black" }} data-value={ele.Question_ownerId}>Follow</button>
-                                <div><h2 className="manageh2">{ele.Question_question}</h2></div>
-                            </div>
-                            <div className="manageBody" key={ele.id}>{ele.body}</div>
-
-                        </div>
-                        <div className="upanddelbutton">
-
-                            <span className="updateBtn" style={{ backgroundColor: 'rgba(237,236,237,1)' }}><Link to={`/answers/update/${ele.id}`} key={ele.id} style={{ textDecoration: 'none', color: 'black', backgroundColor: 'none' }}>Update</Link></span>
-                            {/* <Link to="" style={{ textDecoration: 'none', color: 'white' }}>Delete</Link> */}
-                            <OpenModalButton className="updateBtn" buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
-
-                        </div>
-
+                    <div className="upanddelbutton">
+                        <Link to={`/answers/update/${ele.id}`} key={ele.id}>Update</Link>
+                        {/* <Link to="" style={{ textDecoration: 'none', color: 'white' }}>Delete</Link> */}
+                        <OpenModalButton className="updateBtn" buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
                     </div>
                 </div>
-
             )
-
             )}
+            </div>
+            {/* </div> */}
 
 
         </div>

@@ -34,9 +34,9 @@ const SpaceDetails = () => {
             <div>
                 <h2>{space.space_name}</h2>
             </div>
-            <div className="allQuestions-space">
+            <div className="display-all-containers allQuestions-space">
                 {spaceQuestions.map(ele =>
-                    <div className="single-question-container" key={ele.id}>
+                    <div className="single-container" key={ele.id}>
                         <div className="question-user-container">
                             <div className="question-profile-pic"></div>
                             <p className="question-user-name">{ele.User_firstName} {ele.User_lastName}</p>
