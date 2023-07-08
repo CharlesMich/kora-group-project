@@ -37,11 +37,11 @@ function SignupFormModal() {
 			try {
 				await dispatch(
 					signUp({
-						email,
-						password,
-						username,
-						first_name,
-						last_name,
+						email: email,
+						password: password,
+						username: username,
+						first_name: first_name,
+						last_name: last_name,
 					})
 				)
 					.then(() => {
@@ -49,15 +49,8 @@ function SignupFormModal() {
 						window.location.href = '/'
 					})
 			} catch (error) {
-				// const data = await res.json();
-				if (Array.isArray(error)) {
-					const errorObject = {}
-					error.forEach(err => {
-						Object.keys(err).forEach(key => {
-							errorObject[key] = err[key]
-						})
-					});
-					setErrors(errorObject)
+				if (error.errors) {
+					setErrors(error.errors);
 				} else {
 					setErrors({ generalError: 'Email or Username already exists' })
 				}
@@ -66,8 +59,6 @@ function SignupFormModal() {
 			setErrors({
 				confirmPassword: "Confirm Password field must be the same as the Password field"
 			});
-		} else {
-			setErrors({ generalError: 'Email or Username already exists' })
 		}
 	};
 
@@ -82,7 +73,7 @@ function SignupFormModal() {
 				{submitted && errors.password && <p className="error">{errors.password}</p>} */}
 				{/* {submitted && errors.confirmPassword && (
 					<p className="error">{errors.confirmPassword}</p>)} */}
-				{submitted && errors.generalError && <p className="error">{errors.generalError}</p>}
+				{/* {submitted && errors.generalError && <p className="error">{errors.generalError}</p>} */}
 				{submitted && (
 					<p className="error">
 						{Object.values(errors).map((value) => value).join("")}
