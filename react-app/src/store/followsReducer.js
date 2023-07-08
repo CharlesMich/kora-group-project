@@ -97,7 +97,7 @@ export default function followReducer(state = initialState, action) {
 
         case ADD_FOLLOW:
             const addState = {};
-            addState[action.payload.id] = action.payload;
+            addState[action.payload.followed_user_id] = action.payload;
             return { ...state, ...addState }
 
 

@@ -145,8 +145,7 @@ function ManageAnswers() {
                                         key={ele.id}
                                         onClick={handleClick}
                                         style={{ color: 'blue', backgroundColor: 'white', border: 'none' }}
-                                        data-value={ele.Question_ownerId}
-                                    >
+                                        data-value={ele.Question_ownerId}>
                                         {isFollowingUser(ele.Question_ownerId) ? 'Following' : 'Follow'}
                                     </button>
                                 </span>
