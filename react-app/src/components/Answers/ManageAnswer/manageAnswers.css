@@ -41,7 +41,7 @@
 .manage-answer-title-container{
   max-width: 586.5px;
   width: 586.5px;
-  margin-bottom: 7px;
+  margin-bottom: 10px;
 }
 
 .answer-title-container{
@@ -60,6 +60,7 @@
   max-width: 585px;
   width: 585px;
   
+  margin: 7px 0;
   background-color: white;
 
   border: 1px solid rgb(225, 225, 225);

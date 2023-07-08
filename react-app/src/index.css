@@ -9,3 +9,19 @@ body {
 .main{
     margin-top: 80px;
 }
+
+.all-update-btn{
+  text-decoration: none;
+
+  padding: 5px 15px;
+  margin-right: 5px;
+  
+  color: rgb(82, 82, 255);
+
+  border: 1px solid rgb(82, 82, 255);
+  border-radius: 15px;
+}
+
+.all-update-btn:hover{
+  background-color: rgb(228, 228, 255);
+}

@@ -53,9 +53,13 @@ function AllAnswers() {
     // if there are no answers
     if (!newArr.length && sessionUser.id !== question1.owner_id ) {
         return (
-            <div className="answer-container">
-                <div className="question">{question1.question}</div>
-                <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: 'white' }}>Be the first one to Answer</Link></span>
+            <div className="outer">
+                <div className="manage-answer-title-container">
+                    <div className="answer-title-container">
+                        <h1 className="question">{question1.question}</h1>
+                    </div>
+                </div>
+                        <Link className="first-to-answer-btn" to={`/answers/new/${questionId}`}>Be the first one to Answer</Link>
             </div>
         )
     }
@@ -65,21 +69,26 @@ function AllAnswers() {
     console.log(sessionUser.id === question1.owner_id)
     if(sessionUser.id === question1.owner_id){
         return(
-        <div className="answer-container">
-            <h2 className="question">{question1.question}</h2>
-            <h3>You are the creator of this Question</h3>
-            {/* <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: "white" }}>Post your Answer</Link></span> */}
-                {newArr && newArr.map((answer) =>
-                    <div className="single-answer-container">
-                        <div className="profileclass">
-                            <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
-                            <p className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</p>
-                        </div>
-                        <p className="eachanswer" key={answer.id}>{answer.body}</p>
+            <div className="outer">
+                <div className="manage-answer-title-container">
+                    <div className="answer-title-container">
+                        <h2 className="question">{question1.question}</h2>
+                        <h3>You are the creator of this Question</h3>
                     </div>
 
-                )}
-        </div>
+                    <div className="user-question-answer all-answer-container">
+                        {newArr && newArr.map((answer) =>
+                            <div className="single-answer-container">
+                                <div className="answer-profile-container">
+                                    <img className="answer-profile-pic question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
+                                    <p className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</p>
+                                </div>
+                                <p className="manageBody" key={answer.id}>{answer.body}</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
         )
     }
 
@@ -91,43 +100,52 @@ function AllAnswers() {
     console.log(newArr.some(checkDuplicate))
     if(newArr.some(checkDuplicate)){
         return(
-            <div className="container">
-                <div className="question">{question1.question}</div>
-                <div>You have already answered this question</div>
-                {/* <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: "white" }}>Post your Answer</Link></span> */}
-                <div>
-                    {newArr && newArr.map((answer) =>
-                        <div className="answerCol">
-                            <div className="profileclass">
-                                <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
-                                <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</div>
-                            </div>
-                            <div className="eachanswer" key={answer.id}>{answer.body}</div>
-                        </div>
-    
-                    )}
+            <div className="outer">
+                <div className="manage-answer-title-container">
+                    <div className="answer-title-container">
+                        <h2>{question1.question}</h2>
+                        <p>You have already answered this question</p>
+                    </div>
                 </div>
+
+                    {newArr && newArr.map((answer) =>
+                        <div className="user-question-answer all-answer-container">
+                            <div className="single-answer-container">
+                                <div className="answer-profile-container">
+                                    <img className="answer-profile-pic question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
+                                    <p className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</p>
+                                </div>
+                                <p className="eachanswer" key={answer.id}>{answer.body}</p>
+                            </div>
+        
+                        </div>
+                    )}
             </div>
             )
     }
    
 
     return (
-        <div className="container">
-            <div className="question">{question1.question}</div>
-            <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: "white" }}>Post your Answer</Link></span>
-            <div>
-                {newArr && newArr.map((answer) =>
-                    <div className="answerCol">
-                        <div className="profileclass">
-                            <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
-                            <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</div>
-                        </div>
-                        <div className="eachanswer" key={answer.id}>{answer.body}</div>
-                    </div>
-
-                )}
+        <div className="outer">
+            <div className="manage-answer-title-container">
+                <div className="answer-title-container">
+                    <h2>{question1.question}</h2>
+                </div>
             </div>
+
+            <Link className="first-to-answer-btn" to={`/answers/new/${questionId}`}>Post your Answer</Link>
+
+            {newArr && newArr.map((answer) =>
+                <div className="user-question-answer all-answer-container">
+                    <div className="single-answer-container">
+                        <div className="answer-profile-container">
+                            <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
+                            <p className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</p>
+                        </div>
+                        <p className="eachanswer" key={answer.id}>{answer.body}</p>
+                    </div>
+                </div>
+            )}
         </div>
 
     )

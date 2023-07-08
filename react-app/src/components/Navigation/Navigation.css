@@ -57,6 +57,8 @@
 }
 
 .nav-btn:hover{
+  transition: all 0.7s;
+
   padding: 12.5px 20px;
 
   color: rgb(102, 102, 102);
@@ -69,6 +71,8 @@
 }
 
 .nav-home-btn:hover{
+  transition: all 0.7s;
+
   color: #b15350;
 }
 
@@ -86,6 +90,8 @@
 }
 
 .nav-add-question-btn:hover{
+  transition: all 0.7s;
+
   background-color: #89231f;
 }
 
@@ -97,7 +103,7 @@
   display: flex;
   flex-direction: column;
 
-  /* margin: 10px; */
+  margin: 0;
   padding: 15.5px 15.5px;
 
   border: none;
@@ -109,7 +115,10 @@
 }
 
 .nav-profile-btn:hover{
+  transition: all 0.7s;
+
   border-radius: 10px;
+  
   color: rgb(51, 51, 142);
   background-color: rgb(225, 225, 225);
 }

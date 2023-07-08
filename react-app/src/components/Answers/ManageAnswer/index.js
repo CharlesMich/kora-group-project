@@ -80,26 +80,35 @@ function ManageAnswers() {
     if (!answersArr.length) {
         return (
             <div className="outer">
-                <h1 className="answer-title">Manage Your Answers</h1>
-                <h2 className="manage-subtitle" >You have not Answered to any Questions</h2>
-                <div className="manage-subtitle-2">Writing Tips</div>
-                    <p className="manage-answers-text">• Understand the question. Assimilate the perspective with which the user has asked question.</p>
-                    <p className="manage-answers-text">• Your answer will be revolving around a central idea which will be derived from the question, deriving this idea is very crucial.</p>
-                    <p className="manage-answers-text">• Identify the style of writing by which you would be able to express yourself perfectly. For ex: your answer need not be a straight solution to the question, you can explain your answer in a conversation/dialogue format, story format, poetic format, etc.</p>
-                    <p className="manage-answers-text">• Do your ground zero research work on the points/facts/incidents that you are going to put up in your content.</p>
-                    <p className="manage-answers-text">• The most important part is - “How well the structuring of content is done?”, which means, after jotting down all the bullet points for your answer how will the points be connected to each other so that something meaningful comes out in picture to the reader.</p>
-                    <p className="manage-answers-text">• Taking an example of this very answer I have written, observe the flow of my content- Introduction, Bantering and then the crux of content (magic mantras) followed by conclusion.</p>
-                    <p className="manage-answers-text">• To make the reader pay attention to some of the important paraphrases, words, situation, etc use the font editing as per the requirement. But don’t overdo the font editing.</p>
-                    <p className="manage-answers-text">• Usage of Info-graphics within your content enhances the readability and reduces the time taken for reading answers.</p>
-                    <p className="manage-answers-text">• Don’t finish your answer in a hanging situation, many a time we loose patience or we go out of stamina to write further. To overcome this distress, simply stop writing for a while and take your time for rejuvenation.</p>
-                    <p className="manage-answers-text">• Kora allows you to edit your answer drafts anytime, so chill.</p>
-                    <p className="manage-answers-text">• After you feel satiated with your answer, don’t hit the “submit” button directly. Every answer should be free of typos and grammatical errors which can be easily overcome by proof reading of the draft twice or thrice.</p>
+                <div className="manage-answer-title-container">
+                    <div className="answer-title-container">
+                        <h1 className="answer-title">Manage Your Answers</h1>
+                        <h2 className="manage-subtitle" >You have not Answered to any Questions</h2>
+                    </div>
+                </div>
+                <div className="all-answer-container">
+                    <div className="single-answer-container">
+                        <h3>
+                            If You Want To Answer A Question
+                        </h3>
+
+                        <h3 className="manage-subtitle-2">Writing Tips</h3>
+                        <p className="manage-answers-text">• Understand the question. Assimilate the perspective with which the user has asked question.</p>
+                        <p className="manage-answers-text">• Your answer will be revolving around a central idea which will be derived from the question, deriving this idea is very crucial.</p>
+                        <p className="manage-answers-text">• Identify the style of writing by which you would be able to express yourself perfectly. For ex: your answer need not be a straight solution to the question, you can explain your answer in a conversation/dialogue format, story format, poetic format, etc.</p>
+                        <p className="manage-answers-text">• Do your ground zero research work on the points/facts/incidents that you are going to put up in your content.</p>
+                        <p className="manage-answers-text">• The most important part is - “How well the structuring of content is done?”, which means, after jotting down all the bullet points for your answer how will the points be connected to each other so that something meaningful comes out in picture to the reader.</p>
+                        <p className="manage-answers-text">• Taking an example of this very answer I have written, observe the flow of my content- Introduction, Bantering and then the crux of content (magic mantras) followed by conclusion.</p>
+                        <p className="manage-answers-text">• To make the reader pay attention to some of the important paraphrases, words, situation, etc use the font editing as per the requirement. But don’t overdo the font editing.</p>
+                        <p className="manage-answers-text">• Usage of Info-graphics within your content enhances the readability and reduces the time taken for reading answers.</p>
+                        <p className="manage-answers-text">• Don’t finish your answer in a hanging situation, many a time we loose patience or we go out of stamina to write further. To overcome this distress, simply stop writing for a while and take your time for rejuvenation.</p>
+                        <p className="manage-answers-text">• Kora allows you to edit your answer drafts anytime, so chill.</p>
+                        <p className="manage-answers-text">• After you feel satiated with your answer, don’t hit the “submit” button directly. Every answer should be free of typos and grammatical errors which can be easily overcome by proof reading of the draft twice or thrice.</p>
+                    </div>
+                </div>
             </div>
         )
     }
-
-    // • <span style={{ color: 'blue' }}>{follows ? follows[0].follows : 0}Follows</span>
-
     
     return (
         <div className="outer">
@@ -112,29 +121,25 @@ function ManageAnswers() {
             </div>
 
             {/* <div className="display-all-containers"> */}
-            <div className="all-answer-container">
             {answersArr.map(ele => (
-                <div className="single-answer-container">
-                        <p className="question-by-tag">Question by: {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</p>
-                    <div className="answer-profile-container">
-                        <img className="answer-profile-pic question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
-                        <button className="follow-btn" onClick={handleClick} data-value={ele.Question_ownerId}>Follow</button>
-                    </div>
-                    <h2 className="manageh2">{ele.Question_question}</h2>
-                    <p className="manageBody" key={ele.id}>{ele.body}</p>
+                <div className="all-answer-container">
+                    <div className="single-answer-container">
+                            <p className="question-by-tag">Question by: {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</p>
+                        <div className="answer-profile-container">
+                            <img className="answer-profile-pic question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
+                            <button className="follow-btn" onClick={handleClick} data-value={ele.Question_ownerId}>Follow</button>
+                        </div>
+                        <h2 className="manageh2">{ele.Question_question}</h2>
+                        <p className="manageBody" key={ele.id}>{ele.body}</p>
 
-                    <div className="upanddelbutton">
-                        <Link to={`/answers/update/${ele.id}`} key={ele.id}>Update</Link>
-                        {/* <Link to="" style={{ textDecoration: 'none', color: 'white' }}>Delete</Link> */}
-                        <OpenModalButton className="updateBtn" buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
+                        <div className="upanddelbutton">
+                            <Link className="all-update-btn" to={`/answers/update/${ele.id}`} key={ele.id}><i class="fa-solid fa-pencil"></i> Edit</Link>
+                            <OpenModalButton className="updateBtn" buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
+                        </div>
                     </div>
                 </div>
             )
             )}
-            </div>
-            {/* </div> */}
-
-
         </div>
 
     )
