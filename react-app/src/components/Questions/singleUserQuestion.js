@@ -7,6 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import UpdateQuestion from "../UpdateQuestion";
 import DeleteQuestion from "../DeleteQuestion";
 import SpaceSidebar from "../Space/SpaceSidebar";
+import CreateQuestion from "../CreateQuestion";
 
 
 const SingleUserQuestion = () => {
@@ -32,6 +33,10 @@ const SingleUserQuestion = () => {
             </div>
 
             <div className="display-all-containers">
+                {!userQuestion[0] && <h2>You have no questions for now</h2>} 
+                {!userQuestion[0] && <NavLink className="nav-add-question-btn" exact to='/new-question'>
+						Ask a question <i className="nav-icon fa-solid fa-plus"/>
+					</NavLink>}
                 {userQuestion.map(ele =>
                     <div className="single-container" key={ele.id}>
                         <div className="question-user-container">
