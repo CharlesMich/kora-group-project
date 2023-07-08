@@ -32,7 +32,7 @@ const QuestionComponent = () => {
           }
       },[dispatch, user])
       const followed = useSelector(state=> Object.keys(state.follows))
-      console.log("followwwwed",followed)
+      
     
     const handleAdd = async(e)=>{
         e.preventDefault();
@@ -46,6 +46,8 @@ const QuestionComponent = () => {
         await dispatch(fetchDeleteFollow(value))
     }
 
+    const sessionUser = useSelector((state) => state.session.user);
+    if (!sessionUser) return <Redirect to="/login" />;
 
     return (<>
         <div className="main-question-page">
