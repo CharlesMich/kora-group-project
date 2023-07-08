@@ -19,12 +19,28 @@ def seed_answers():
     answer5 = Answer(
         body='JavaScript is one of the most common languages for making webpages interactive. Along with HTML and CSS, it’s a must-have web developer skill and is considered standard in web technology. But unlike HTML and CSS, it’s not a language you can ace in a few weeks, or even a few months. So how long does it really take to become a JavaScript expert? Here’s the short answer: most programmers agree that it takes six to nine months to develop a working proficiency in JavaScript. And even then, you’ll spend years learning new skills and developing your understanding of it.', user_id=5, question_id=5
     )
+    answer6 = Answer(
+        body='Knead the eggs into the flour, adding more flour as necessary to create a smooth, elastic dough If you started with a lot of flour, it may not all work in - the dough knows how much flour it wants there is no point forcing it.Once you have your dough, get out your pasta machine or your rolling pin, whichever you have. If you are using a machine, break off a small bit of dough, perhaps the size of a ping pong ball, then roll it at the widest setting. fold it in half, then run it through a few more times until it rolls smoothly. You may need to add more flour during this process.', user_id=1, question_id=6
+    )
+    answer7 = Answer(
+        body='Some popular and delicious ways to cook chicken include grilling, baking, sautéing, and frying. Each method offers a unique texture and flavor profile, allowing you to choose based on your preferences and the specific recipe you are working with.', user_id=1, question_id=7
+    )
+    answer8 = Answer(
+        body='Thaw the frozen broccoli florets by either transferring them to the refrigerator overnight or blanching them in boiling water for a couple of minutes. Drain well. In a large pot, heat the olive oil over medium heat. Add the diced onion and minced garlic, and sauté until they become soft and translucent', user_id=1, question_id=8
+    )
+    answer9 = Answer(
+        body='You don’t need culinary school. You don’t need expensive equipment. You don’t even need that much experience. All you need to be a better cook today is a little bit of knowledge. Or, in the case of this list, 57 little bits. By doing. You can learn a lot by reading cookbooks, watching web videos, Food Network shows and friends, but the only way to actually get good is to practice. Start out by choosing simple recipes that focus on ingredients you like, and to master it, make it at least three times in a short period. ', user_id=1, question_id=9
+    )
 
     db.session.add(answer1)
     db.session.add(answer2)
     db.session.add(answer3)
     db.session.add(answer4)
     db.session.add(answer5)
+    db.session.add(answer6)
+    db.session.add(answer7)
+    db.session.add(answer8)
+    db.session.add(answer9)
     
     db.session.commit()
 

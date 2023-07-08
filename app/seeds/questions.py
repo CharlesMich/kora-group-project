@@ -19,12 +19,29 @@ def seed_questions():
     question5 = Question(
         question='How much will it take me to learn Javascript?', owner_id=5, space_id=5
     )
+    question6 = Question(
+        question='What is the best way to make pasta from scratch?', owner_id=1, space_id=1
+    )
+    question7 = Question(
+        question='What are the best ways to cook chicken?', owner_id=1, space_id=1
+    )
+    question8 = Question(
+        question='How can you make broccoli soup from frozen broccoli florets?', owner_id=1, space_id=1
+    )
+    question9 = Question(
+        question='How do I learn to cook?', owner_id=1, space_id=1
+    )
+
 
     db.session.add(question1)
     db.session.add(question2)
     db.session.add(question3)
     db.session.add(question4)
     db.session.add(question5)
+    db.session.add(question6)
+    db.session.add(question7)
+    db.session.add(question8)
+    db.session.add(question9)
     db.session.commit()
 
 
