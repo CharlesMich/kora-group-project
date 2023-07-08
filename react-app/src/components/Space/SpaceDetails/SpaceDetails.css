@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     width: 60%;
-    padding-top: 100px;
     margin:  0 auto;
 }
 
@@ -10,4 +9,8 @@
     margin: 1rem 0 0 1rem;
     max-width: 586.5px;
     width: 586.5px;
+}
+
+.space-add-question-btn {
+    margin: auto;
 }

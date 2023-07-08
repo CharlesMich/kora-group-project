@@ -35,10 +35,28 @@ const SpaceDetails = () => {
         return <div></div>
     }
 
+    if (spaceQuestions.length === 0) {
+        return (
+            <div className="space-detail-container">
+                <div>
+                    <h2>{space.space_name}</h2>
+                    <h3>{space.description ? <p>{space.description}</p> : <p>Learn about {space.space_name}</p>}</h3>
+                </div>
+                <div className="empty-questions-container">
+                    <p>There are no questions in this space yet</p>
+                    <NavLink className="nav-add-question-btn space-add-question-btn" exact to='/new-question'>
+                        Add question <i className="nav-icon fa-solid fa-plus" />
+                    </NavLink>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="space-detail-container">
             <div>
                 <h2>{space.space_name}</h2>
+                <h3>{space.description ? <p>{space.description}</p> : <p>Learn about {space.space_name}</p>}</h3>
             </div>
             <div className="allQuestions-space">
                 {spaceQuestions.map(ele =>
