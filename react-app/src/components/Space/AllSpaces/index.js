@@ -25,7 +25,7 @@ const AllSpaces = () => {
         <div className="container">
             <div>
                 <h2>Welcome to Spaces!</h2>
-                <button className="create-space-btn">
+                <button className="create-btn nav-add-question-btn">
                     <OpenModalMenuItem
                         modalComponent={<CreateSpace />}
                         itemText='Create a Space'
@@ -35,7 +35,7 @@ const AllSpaces = () => {
             <h2 id='discover-title'>Discover Spaces</h2>
             <p id='spaces-title'>Spaces</p>
             <div className="space-tiles">
-                {spaces && spaces.map(space => (
+                {spaces && Object.values(spaces).reverse().map(space => (
                     <SpaceTile key={space.id} space={space} />
                 ))}
             </div>
