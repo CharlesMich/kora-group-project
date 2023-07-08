@@ -29,7 +29,7 @@
 .profile-dropdown{
   position: absolute;
   right: 0px;
-  top: 46px;
+  top: 38px;
 
   margin: 0;
 
@@ -46,6 +46,7 @@
 
 .nav-user-button {
   position:relative;
+  margin-bottom: 0px;
 }
 
 button > ul > li {
@@ -54,6 +55,14 @@ button > ul > li {
 
 button > ul {
   padding: 0px;
+}
+
+.nav-dropdown-logout {
+  margin-bottom: 0px;
+}
+
+.nav-dropdown-li {
+  padding: 2px
 }
 
 .nav-btn{
