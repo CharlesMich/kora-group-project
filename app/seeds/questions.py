@@ -17,7 +17,7 @@ def seed_questions():
         question='Is python an easy language to learn?', owner_id=4, space_id=5
     )
     question5 = Question(
-        question='How much will it take me to learn Javascript?', owner_id=5, space_id=5
+        question='How much time will it take me to learn Javascript?', owner_id=5, space_id=5
     )
     question6 = Question(
         question='What is the best way to make pasta from scratch?', owner_id=1, space_id=1

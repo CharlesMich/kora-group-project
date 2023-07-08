@@ -1,6 +1,6 @@
 import { useDispatch, useSelector, } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchAllAnswersOfUser } from '../../../store/answerReducer';
 import { Link } from 'react-router-dom';
 import DeleteAnswerModal from '../DeleteAnswerModal';
@@ -32,6 +32,7 @@ function ManageAnswers() {
         userId = sessionUser.id
     }
 
+    const[following, setFollowing] = useState('Follow')
 
     useEffect(() => {
         dispatch(fetchAllAnswersOfUser(userId))
@@ -63,9 +64,11 @@ function ManageAnswers() {
        
         if (follows.some(checkDuplicate)) {
             color = 'blue'
+            setFollowing('Following')
             await dispatch(fetchDeleteFollow(value))
-            // setColor('blue')
+            
         } else {
+            setFollowing('Follow')
             await dispatch(fetchPostFollows(value))
             color = 'green';
             // setColor('green')
@@ -126,7 +129,7 @@ function ManageAnswers() {
                                 <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
                                 <span className="mngansname">Question by {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</span>
 
-                                <span><button onClick={handleClick} style={{ color:color, backgroundColor: 'white', border: 'none' }} data-value={ele.Question_ownerId}>• Follow</button></span>
+                                <span><button key={ele.id} onClick={handleClick} style={{ color:color, backgroundColor: 'white', border: 'none' }} data-value={ele.Question_ownerId}>• {following}</button></span>
                                 <div><h2 className="manageh2">{ele.Question_question}</h2></div>
                             </div>
                             <div className="manageBody" key={ele.id}>{ele.body}</div>
