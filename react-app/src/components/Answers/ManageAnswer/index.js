@@ -32,7 +32,7 @@ function ManageAnswers() {
         userId = sessionUser.id
     }
 
-    const[following, setFollowing] = useState('Follow')
+    // const[following, setFollowing] = useState('Follow')
 
     useEffect(() => {
         dispatch(fetchAllAnswersOfUser(userId))
@@ -47,31 +47,38 @@ function ManageAnswers() {
         dispatch(allQuestions())
     },[dispatch]);
 
-
-
-    let color;
+    // let color;
+    // let active;
+    //     if (!active){
+    //         setFollowing('Following')
+    //     //    color = 'green'
+    //     } else {
+    //         setFollowing('Follow')
+    //         // color='blue'
+    //     }
+    
 
     const handleClick = async (e) => {
         e.preventDefault();
-
+       
         const { value } = e.target.dataset;
         console.log(value);
 
         const checkDuplicate = obj => obj.followed_user_id === +value;
         console.log(follows.some(checkDuplicate))
 
+       
         
        
         if (follows.some(checkDuplicate)) {
-            color = 'blue'
-            setFollowing('Following')
+           
+            
+            // active = false
             await dispatch(fetchDeleteFollow(value))
             
         } else {
-            setFollowing('Follow')
+            // active = true
             await dispatch(fetchPostFollows(value))
-            color = 'green';
-            // setColor('green')
         }
     }
 
@@ -129,7 +136,7 @@ function ManageAnswers() {
                                 <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
                                 <span className="mngansname">Question by {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</span>
 
-                                <span><button key={ele.id} onClick={handleClick} style={{ color:color, backgroundColor: 'white', border: 'none' }} data-value={ele.Question_ownerId}>• {following}</button></span>
+                                <span><button key={ele.id} onClick={handleClick} style={{ color:'blue', backgroundColor: 'white', border: 'none' }} data-value={ele.Question_ownerId}>• follow</button></span>
                                 <div><h2 className="manageh2">{ele.Question_question}</h2></div>
                             </div>
                             <div className="manageBody" key={ele.id}>{ele.body}</div>

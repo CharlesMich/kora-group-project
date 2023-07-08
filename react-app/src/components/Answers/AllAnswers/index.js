@@ -114,7 +114,7 @@ function AllAnswers() {
                 <div>You are the creator of this Question</div>
                 <div className="question-update-delete-container">
                                     <OpenModalButton buttonText="Update" className="delete-update-btn" modalComponent={<UpdateQuestion id={question1.id} />}/>
-                                   <OpenModalButton buttonText="Delete" className="delete-update-btn" modalComponent={<DeleteQuestion id={question1.id} />}/>
+                                   {/* <OpenModalButton buttonText="Delete" className="delete-update-btn" modalComponent={<DeleteQuestion id={question1.id} />}/> */}
                                 </div>
                 {/* <span className="ansBtn"><Link to={`/answers/new/${questionId}`} style={{ textDecoration: 'none', color: "white" }}>Post your Answer</Link></span> */}
                 

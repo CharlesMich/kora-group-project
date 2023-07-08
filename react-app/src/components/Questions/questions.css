@@ -40,7 +40,7 @@
 .single-question-container{
     margin:  auto auto 7px auto;
     padding: 18px;
-    
+
     background-color: white;
 
     border: 1px solid rgb(225, 225, 225);
@@ -68,7 +68,7 @@
 }
 
 .allQuestions{
-    margin: auto auto auto 100px;
+    margin: auto auto auto 50px;
     max-width: 586.5px;
     width: 586.5px;
 }
