@@ -3,14 +3,18 @@ import { useHistory, Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateAnswer, fetchAllAnswersOfUser } from '../../../store/answerReducer';
+
 import "./updateanswer.css";
 
 
-function UpdateAnswer(answer1) {
+function UpdateAnswer(id) {
     const history = useHistory();
-    const { answerId } = useParams();
-
+    // const { answerId } = useParams();
+    let answerId = useParams().answerId
+    // const abc = useParams()
     const dispatch = useDispatch();
+
+    answerId = parseInt(answerId)
 
     //if not logged in, redirect to home
     let sessionUser;
@@ -22,7 +26,8 @@ function UpdateAnswer(answer1) {
     // const user_id = useSelector(state => state.session.user.id)
 
 
-    let answer = useSelector((state) => state.answers ? state.answers.newState[answerId] : null)
+    // let answer = useSelector((state) => state.answers ? state.answers.newState[answerId] : null)
+    let answer = useSelector((state) => state.answers.newState[answerId])
 
 
     const [body, setBody] = useState(answer.body);
@@ -44,6 +49,7 @@ function UpdateAnswer(answer1) {
 
     if (!answer) return null
     if (!userId) return null
+    if (!answerId) return null
 
     const onSubmit = async (e) => {
         e.preventDefault();

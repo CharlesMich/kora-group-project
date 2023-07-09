@@ -1,4 +1,4 @@
-const MY_FOLLOWERS = "follows/MY_FOLLOWERS"
+// const MY_FOLLOWERS = "follows/MY_FOLLOWERS"
 const I_FOLLOW = "follows/I_FOLLOW"
 const ADD_FOLLOW = "follows/ADD_FOLLOW"
 const DELETE_FOLLOW = "follows/DELETE_FOLLOW"

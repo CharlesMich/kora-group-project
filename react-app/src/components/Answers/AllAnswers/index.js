@@ -10,7 +10,6 @@ import UpdateQuestion from "../../UpdateQuestion";
 import { fetchDeleteFollow, fetchAllFollowers } from '../../../store/followsReducer';
 import { fetchPostFollows } from '../../../store/followsReducer';
 import DeleteQuestion from "../../DeleteQuestion";
-
 import './AllAnswers.css';
 
 function AllAnswers() {
@@ -24,11 +23,10 @@ function AllAnswers() {
     if (!sessionUser) history.push(`/`);
 
     let questionId = useParams().questionId;
-
+    console.log(questionId)
     const answers = useSelector(state => state.answers ? state.answers.tempState : null);
     const question1 = useSelector(state => state.questions ? state.questions[questionId] : null)
-    const follows = useSelector((state) => Object.values(state.follows))
-
+    const follows = useSelector((state) => Object.keys(state.follows))
 
 
     let userId;
@@ -51,32 +49,45 @@ function AllAnswers() {
 
     if (!answers) return null;
     if (!question1) return null;
+    if (!follows) return null;
+    if (!userId) return null
 
 
     let newArr = Object.values(answers);
 
-    let color;
+    // let color;
 
-    const handleClick = async (e) => {
+    // const handleClick = async (e) => {
+    //     e.preventDefault();
+
+    //     const { value } = e.target.dataset;
+        
+
+    //     const checkDuplicate = obj => obj.followed_user_id === +value;
+       
+
+    //     if (follows.some(checkDuplicate)) {
+    //         color = 'blue'
+    //         await dispatch(fetchDeleteFollow(value))
+    //         // setColor('blue')
+    //     } else {
+    //         await dispatch(fetchPostFollows(value))
+    //         color = 'green';
+    //         // setColor('green')
+    //     }
+    // }
+
+    const handleAdd = async(e)=>{
         e.preventDefault();
+        const {value} = e.target.dataset
+        console.log(value)
+        await dispatch(fetchPostFollows(value))
+    }
 
-        const { value } = e.target.dataset;
-        
-
-        const checkDuplicate = obj => obj.followed_user_id === +value;
-       
-
-        
-       
-        if (follows.some(checkDuplicate)) {
-            color = 'blue'
-            await dispatch(fetchDeleteFollow(value))
-            // setColor('blue')
-        } else {
-            await dispatch(fetchPostFollows(value))
-            color = 'green';
-            // setColor('green')
-        }
+    const handleRemove = async(e)=>{
+        e.preventDefault();
+        const {value} = e.target.dataset
+        await dispatch(fetchDeleteFollow(value))
     }
 
 
@@ -128,7 +139,10 @@ function AllAnswers() {
                             <div className="single-answer-container">
                                 <div className="answer-profile-container">
                                     <img className="answer-profile-pic question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
-                                    <p className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</p>
+                                    <p className='name'>{answer.User_firstName} {answer.User_lastName}</p>
+                                    {userId !== answer.User_id && <p className="point">•</p>}
+                                {userId !== answer.User_id && follows.includes(answer.User_id.toString()) && <button key={answer.id} onClick={handleRemove} data-value={answer.User_id} className="followButton"> Following</button>}
+                                {userId !== answer.User_id && !follows.includes(answer.User_id.toString()) && <button key={answer.id} onClick={handleAdd} data-value={answer.User_id} className="followButton"> Follow</button>}
                                 </div>
                                 <p className="manageBody" key={answer.id}>{answer.body}</p>
                             </div>
@@ -179,7 +193,10 @@ function AllAnswers() {
                         <div className="answerCol">
                             <div className="profileclass">
                                 <div className="imgdiv"><img className="imgclass" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" /></div>
-                                <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} <span><button onClick={handleClick} style={{ color:color, backgroundColor: 'white', border: 'none' }} data-value={answer.Question_ownerId}>Follow</button></span></div>
+                                <div className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} <span>{userId !== answer.User_id && <p className="point">•</p>}
+                                {userId !== answer.User_id && follows.includes(answer.User_id.toString()) && <button key={answer.id} onClick={handleRemove} data-value={answer.User_id} className="followButton"> Following</button>}
+                                {userId !== answer.User_id && !follows.includes(answer.User_id.toString()) && <button key={answer.id} onClick={handleAdd} data-value={answer.User_id} className="followButton"> Follow</button>}</span>
+                                </div>
                                 
 
                             </div>
@@ -193,7 +210,7 @@ function AllAnswers() {
     }
 
 
-    // if User has already answered the question, post the button should not be visible.
+    // if User has already answered the question, post button should not be visible.
     const checkDuplicate = obj => obj.user_id === sessionUser.id;
 
     if(newArr.some(checkDuplicate)){
@@ -211,7 +228,10 @@ function AllAnswers() {
                             <div className="single-answer-container">
                                 <div className="answer-profile-container">
                                     <img className="answer-profile-pic question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
-                                    <p className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</p>
+                                    <p className='name'>{answer.User_firstName} {answer.User_lastName}</p>
+                                    {userId !== answer.User_id && <p className="point">•</p>}
+                                {userId !== answer.User_id && follows.includes(answer.User_id.toString()) && <button key={answer.id} onClick={handleRemove} data-value={answer.User_id} className="followButton"> Following</button>}
+                                {userId !== answer.User_id && !follows.includes(answer.User_id.toString()) && <button key={answer.id} onClick={handleAdd} data-value={answer.User_id} className="followButton"> Follow</button>}
                                 </div>
                                 <p className="eachanswer" key={answer.id}>{answer.body}</p>
                             </div>
@@ -222,6 +242,7 @@ function AllAnswers() {
         )
     }
 
+    // user is not the creator of the question and there are answers
 
     return (
         <div className="outer">
@@ -238,7 +259,10 @@ function AllAnswers() {
                     <div className="single-answer-container">
                         <div className="answer-profile-container">
                             <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
-                            <p className='name'>{answer.User_firstName} {answer.User_lastName} {'•'} {'Follow'}</p>
+                            <p className='name'>{answer.User_firstName} {answer.User_lastName} </p>
+                            {userId !== answer.User_id && <p className="point">•</p>}
+                                {userId !== answer.User_id && follows.includes(answer.User_id.toString()) && <button key={answer.id} onClick={handleRemove} data-value={answer.User_id} className="followButton"> Following</button>}
+                                {userId !== answer.User_id && !follows.includes(answer.User_id.toString()) && <button key={answer.id} onClick={handleAdd} data-value={answer.User_id} className="followButton"> Follow</button>}
                         </div>
                         <p className="eachanswer" key={answer.id}>{answer.body}</p>
                     </div>
