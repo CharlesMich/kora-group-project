@@ -55,9 +55,9 @@ const QuestionComponent = () => {
             <div className="space-sidebar">
                 < SpaceSidebar />
             </div>
-            <div className="allQuestions">
+            <div className="display-all-containers">
                 {questions.map(ele =>
-                    <div className="single-question-container" key={ele.id}>
+                    <div className="single-container" key={ele.id}>
                         <div className="question-user-container">
                         <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo"/>
                                 <p className="question-user-name">{ele.User_firstName} {ele.User_lastName}</p>
@@ -65,21 +65,21 @@ const QuestionComponent = () => {
                                 {user !== ele.owner_id && followed.includes(ele.owner_id.toString()) && <button key={ele.id} onClick={handleRemove} data-value={ele.owner_id} className="followButton"> Following</button>}
                                 {user !== ele.owner_id && !followed.includes(ele.owner_id.toString()) && <button key={ele.id} onClick={handleAdd} data-value={ele.owner_id} className="followButton"> Follow</button>}
                         </div>
-                                <NavLink className="question-tilte" key={ele.id} exact to={`/answers/${ele.id}`}>
-                                    {ele.question}
-                                </NavLink>
-                                <div className="question-update-delete-container">
-                                    {user && ele.owner_id === user && <OpenModalButton
-                                        buttonText="Update"
-                                        className="delete-update-btn"
-                                        modalComponent={<UpdateQuestion id={ele.id} />}
-                                    />}
-                                    {user && ele.owner_id === user && <OpenModalButton
-                                        buttonText="Delete"
-                                        className="delete-update-btn"
-                                        modalComponent={<DeleteQuestion id={ele.id} />}
-                                    />}
-                                </div>
+                        <NavLink className="question-tilte" key={ele.id} exact to={`/answers/${ele.id}`}>
+                            {ele.question}
+                        </NavLink>
+                        <div className="question-update-delete-container">
+                            {user && ele.owner_id === user && <OpenModalButton
+                                buttonText="Update"
+                                className="delete-update-btn"
+                                modalComponent={<UpdateQuestion id={ele.id} />}
+                            />}
+                            {user && ele.owner_id === user && <OpenModalButton
+                                buttonText="Delete"
+                                className="delete-update-btn"
+                                modalComponent={<DeleteQuestion id={ele.id} />}
+                            />}
+                        </div>
                           
                     </div>
                 )}

@@ -14,7 +14,7 @@
   top: 0;
 
   width: 100%;
-  height: 60px;
+  height: 65px;
   
   box-shadow: 0px 1px 5px rgb(225, 225, 225);
   background-color: white;
@@ -28,12 +28,12 @@
 
 .profile-dropdown{
   position: absolute;
-  right: 200px;
-  top: 100%;
+  right: 0px;
+  top: 38px;
 
   margin: 0;
 
-  width: 135px;
+  width: 100px;
   height: 70px;
   z-index: 2;
 
@@ -44,23 +44,46 @@
   background-color: white;
 }
 
+.nav-user-button {
+  position:relative;
+  margin-bottom: 0px;
+}
 
-.nav-btn{
+button > ul > li {
+  list-style: none;
+}
+
+button > ul {
+  padding: 0px;
+}
+
+.nav-dropdown-logout {
+  margin-bottom: 0px;
+}
+
+.nav-dropdown-li {
+  padding: 2px
+}
+
+.shared-nav-bar{
   display: flex;
   flex-direction: column;
-  
+
   text-decoration: none;
   color: black;
-  
+
   padding: 12.5px 20px;
   margin: auto 30px;
 }
 
 .nav-btn:hover{
+  transition: all 0.7s;
+
   padding: 12.5px 20px;
-  
-  background-color: rgb(225, 225, 225);
+
   color: rgb(102, 102, 102);
+  background-color: rgb(225, 225, 225);
+  border-radius: 10px;
 }
 
 .nav-home-btn{
@@ -68,6 +91,8 @@
 }
 
 .nav-home-btn:hover{
+  transition: all 0.7s;
+
   color: #b15350;
 }
 
@@ -85,9 +110,35 @@
 }
 
 .nav-add-question-btn:hover{
+  transition: all 0.7s;
+
   background-color: #89231f;
 }
 
 .nav-icon{
   margin: auto;
+}
+
+.nav-profile-btn{
+  /* display: flex; */
+  /* flex-direction: column; */
+
+  margin: 0;
+  padding: 15.5px 15.5px;
+
+  border: none;
+
+  background-color: white;
+  color: darkblue;
+
+  cursor: pointer;
+}
+
+.nav-profile-btn:hover{
+  transition: all 0.7s;
+
+  border-radius: 10px;
+  
+  color: rgb(51, 51, 142);
+  background-color: rgb(225, 225, 225);
 }

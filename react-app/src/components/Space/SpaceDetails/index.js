@@ -73,9 +73,9 @@ const SpaceDetails = () => {
                 <h2>{space.space_name}</h2>
                 <h3>{space.description ? <p>{space.description}</p> : <p>Learn about {space.space_name}</p>}</h3>
             </div>
-            <div className="allQuestions-space">
+            <div className="display-all-containers allQuestions-space">
                 {spaceQuestions.map(ele =>
-                    <div className="single-question-container" key={ele.id}>
+                    <div className="single-container" key={ele.id}>
                         <div className="question-user-container">
                             <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
                             <p className="question-user-name">{ele.User_firstName} {ele.User_lastName}</p>

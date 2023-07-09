@@ -3,7 +3,7 @@
     margin: auto;
     flex-direction: column;
     width: 500px;
-    height:fit-content;
+    height: 550px;
     padding: 20px;
     border: 1px solid rgb(194, 194, 194);
     background-color: white;
@@ -36,7 +36,7 @@
 } 
 .inputbody{
     width: 500px;
-    height: 700px
+    height: 400px
   
 }
 .error{

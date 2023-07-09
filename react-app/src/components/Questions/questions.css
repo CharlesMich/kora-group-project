@@ -37,7 +37,7 @@
     text-decoration: underline;
 }
 
-.single-question-container{
+.single-container{
     margin:  auto auto 7px auto;
     padding: 18px;
 
@@ -67,8 +67,8 @@
     margin: 5px;
 }
 
-.allQuestions{
-    margin: auto auto auto 50px;
+.display-all-containers{
+    margin: auto auto auto 100px;
     max-width: 586.5px;
     width: 586.5px;
 }
