@@ -1,6 +1,6 @@
 .outer{
   margin: auto 31%;
-   /* margin-top: 100px */
+   margin-bottom: 200px
 }
 
 .updateBtn{
@@ -61,7 +61,7 @@
 .all-answer-container{
   max-width: 585px;
   width: 585px;
-  
+
   margin: 7px 0;
   background-color: white;
 
@@ -71,14 +71,27 @@
 
 .single-answer-container{
   padding: 18px;
-  overflow: hidden;
-  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .answer-profile-container{
   display: flex;
+  align-items: center;
 }
 
 .answer-profile-pic{
   margin: auto 10px;
+}
+.followButton1{
+  /* margin-bottom: 1rem; */
+  /* margin-top: 5px; */
+  border: none;
+  background-color:white;
+  color: blue;
+  cursor: pointer;
+  font-weight: bold;
+  padding-bottom: 0px;
+}
+.followButton:hover{
+  text-decoration: underline;
 }
