@@ -16,7 +16,7 @@ function Footer() {
                         <div className="imgClass"><img className="footer-img" src="https://myaaprojects.s3.us-east-2.amazonaws.com/postgress-circle.png" alt=""></img></div>
                         <div className="imgClass"><img className="footer-img" src="https://myaaprojects.s3.us-east-2.amazonaws.com/flask.png" alt=""></img></div>
                     </div>
-                    <div className="footer-text"><p className="footer-text-p">Designed and developed by Brian, Charles, Giovanni, & Marcos</p>
+                    <div className="footer-text"><p className="footer-text-p">Designed and developed by Brian, Charles, Giovany, & Marcos</p>
                     </div>
             </div>    
         </div>
