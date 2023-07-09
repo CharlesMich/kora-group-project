@@ -1,12 +1,44 @@
-.deleteText{
-
-}
 .delQuestion{
-    background-color: #759dc8;
-    border-radius: 10px;
-    border: 0px;
-    cursor: pointer;
+    background-color: white;
+    border: 1px solid black;
+    
+    border-radius: 15px;
+
+    padding: 5px 15px;
+
+    transition: all 0.7s;
 }
+
+.delQuestion:hover{
+    border: 1px solid black;
+    
+    background-color: gray;
+    color: white;
+
+    cursor: pointer;
+
+    transition: all 0.7s;
+}
+
 .deleteDiv{
-    padding: 2%;
+    padding: 15px;
+}
+.corQuestion{
+    background-color: rgb(127, 0, 0);
+    border: 1px solid black;
+    color: white;
+    
+    border-radius: 15px;
+
+    padding: 5px 15px;
+
+    transition: all 0.7s;
+}
+
+.corQuestion:hover{
+    background-color: rgb(255, 0, 0);
+
+    transition: all 0.7s;
+
+    cursor: pointer;
 }

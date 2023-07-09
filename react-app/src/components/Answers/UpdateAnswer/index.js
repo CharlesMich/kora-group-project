@@ -78,8 +78,8 @@ function UpdateAnswer(answer1) {
 
                 <button
                     type="submit"
-                    className="answerbutton" style={{ fontSize: "10px", padding: "10px", marginTop: "10px" }}>Update Answer</button>
-                <div className="createcancel"><Link to="/manage-answers" style={{ textDecoration: 'none', backgroundColor: 'none', fontSize: "10px", marginTop: "10px", color: "white" }}>Cancel</Link></div>
+                    className="answerbutton" style={{ fontSize: "13px", padding: "10px", marginTop: "10px" }}>Update Answer</button>
+                <div className="createcancel"><Link to="/manage-answers" style={{ textDecoration: 'none', backgroundColor: 'none', fontSize: "13px", marginTop: "10px", color: "white" }}>Cancel</Link></div>
             </form >
 
         </div>
