@@ -1,6 +1,7 @@
 .answer-container{
    width: 60%;
    margin:  0 auto;
+   margin-bottom: 200px;
 }
 
 
@@ -65,4 +66,11 @@
    transition: all 0.7s;
  
    background-color: #89231f;
+ }
+
+ .manage-answers-text{
+   font-size: 13px
+ }
+ .point1{
+   padding-left: 5px;
  }
