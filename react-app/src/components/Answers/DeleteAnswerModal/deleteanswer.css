@@ -18,24 +18,48 @@ color: rgb(19, 18, 18);
 }
 
 .deleteButton{
-    background-color: red;
-    width: 90%;
-    height: fit-content;
-    font-size: 12px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  background-color: rgb(134, 0, 0);
   color: white;
+
+  border: 2px solid black;
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  height: fit-content;
+  width: 90%;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin: 10px 20px 10px 20px;
 }
 
+.deleteButton:hover{
+  background-color: rgb(255, 0, 0);
+
+  cursor: pointer;
+}
+
 .cancelButton{
-    background-color: rgb(50, 49, 49);
-    width: 90%;
-    height: fit-content;
-    font-size: 12px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  background-color: rgb(50, 49, 49);
   color: white;
+
+  border: 2px solid black;
+  border-radius: 20px;
+
+  width: 90%;
+  height: fit-content;
+
+  font-size: 12px;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin: 10px 20px 20px 20px;
+}
+
+.cancelButton:hover{
+  background-color: rgb(152, 152, 152);
+
+  cursor: pointer;
 }
 

@@ -17,11 +17,39 @@ body {
   margin-right: 5px;
   
   color: rgb(82, 82, 255);
+  background-color: white;
 
   border: 1px solid rgb(82, 82, 255);
   border-radius: 15px;
 }
 
 .all-update-btn:hover{
+  transition: all 0.7s;
+
+  cursor: pointer;
+
   background-color: rgb(228, 228, 255);
 }
+
+.all-delete-btn{
+  padding: 5px 15px;
+  margin-right: 5px;
+
+  color: rgb(206, 1, 1);
+
+  border: 1px solid rgb(206, 1, 1);
+  border-radius: 15px;
+
+  background-color: white;
+}
+
+.all-delete-btn:hover{
+  transition: all 0.7s;
+
+  cursor: pointer;
+
+  background-color: rgb(251, 208, 208);
+}
+
+/* background-image: url("./background-image.jpg");
+background-size: cover; */

@@ -27,7 +27,7 @@ export default function DeleteQuestion({id}){
         <p className="deleteText">This question and all his answers will be deleted</p>
        <div className="quesButtonDiv">
 
-        <button onClick={submitDelete} className="delQuestion">Confirm</button>
+        <button onClick={submitDelete} className="corQuestion">Confirm</button>
         <button onClick={submitNo} type="submit" className="delQuestion">Cancel</button>
        </div>
         </div>

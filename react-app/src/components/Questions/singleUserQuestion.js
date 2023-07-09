@@ -50,13 +50,13 @@ const SingleUserQuestion = () => {
                         </NavLink>
                         <div className="question-update-delete-container">
                             {user && ele.owner_id === user && <OpenModalButton
-                                buttonText="Update"
-                                className="delete-update-btn"
+                                buttonText="Edit"
+                                className="all-update-btn delete-update-btn"
                                 modalComponent={<UpdateQuestion id={ele.id} />}
                             />}
                             {user && ele.owner_id === user && <OpenModalButton
                                 buttonText="Delete"
-                                className="delete-update-btn"
+                                className="all-delete-btn delete-update-btn"
                                 modalComponent={<DeleteQuestion id={ele.id} />}
                             />}
                         </div>
