@@ -1,8 +1,25 @@
 .demo-user {
-    text-decoration: none;
     display: flex;
     justify-content: center;
+
+    padding: 3px;
+
+    text-decoration: none;
     font-size: medium;
-    color: black;
-    background-color: rgb(217, 217, 217);
+
+    border: 1px solid rgb(158, 158, 158);
+    border-radius: 15px;
+
+    color: white;
+    background-color: #771d1a;
+}
+
+.demo-user:hover{
+    background-color: #ffdfde;
+
+    border: 1px solid #B92B27;
+
+    color: #B92B27;
+
+    transition: all 0.7s;
 }

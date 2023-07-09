@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
         <>
           <button className="nav-profile-btn nav-user-button" onClick={openMenu}>
             Profile
-            <i className="fas fa-user-circle" />
+            <i className="nav-icon fas fa-user-circle" />
             <ul className={ulClassName} ref={ulRef}>
               <>
                 <li className="nav-dropdown-li">{user.username}</li>
