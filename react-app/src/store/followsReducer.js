@@ -41,8 +41,8 @@ const delete_follow = payload => ({
 // }
 
 // GET ALL THE FOLLOWERS OF A PERSON
-export const fetchAllFollowers = (userId) => async(dispatch) => {
-    const response = await fetch(`api/follows/followers/${userId}`)
+export const fetchAllFollowers = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/follows/followers/${userId}`)
 
     if (response.ok) {
         const payload = await response.json();
@@ -68,23 +68,23 @@ export const fetchPostFollows = (user_id) => async (dispatch) => {
 }
 
 // DELETE A FOLLOW
-export const fetchDeleteFollow = (userId) => async (dispatch)=> {
+export const fetchDeleteFollow = (userId) => async (dispatch) => {
     const response = await fetch(`/api/follows/delete-follows/${userId}`, {
         method: "POST"
     })
-    if (response.ok){
+    if (response.ok) {
         dispatch(delete_follow(userId))
         // console.log("deleted follow", userId)
     }
 }
 
-// myFollowers:{}, 
+// myFollowers:{},
 
 const initialState = {};
-export default function followReducer(state = initialState, action){
-    
+export default function followReducer(state = initialState, action) {
+
     switch (action.type) {
-        // case MY_FOLLOWERS: 
+        // case MY_FOLLOWERS:
         // newState = {...state, myFollowers: action.payload}
         // // newState.myFollowers= action.payload
         // return newState
@@ -97,15 +97,15 @@ export default function followReducer(state = initialState, action){
 
         case ADD_FOLLOW:
             const addState = {};
-            addState[action.payload.followed_user_id] = action.payload; 
-            return {...state, ...addState}   
+            addState[action.payload.followed_user_id] = action.payload;
+            return { ...state, ...addState }
 
 
         case DELETE_FOLLOW:
-            const delState = {...state}
+            const delState = { ...state }
             delete delState[action.payload];
             return delState
-        
+
         default: return state;
     }
 }

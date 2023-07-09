@@ -22,6 +22,7 @@ function SignupFormModal() {
 		if (!first_name) errors.firstName = 'First name is required'
 		if (!last_name) errors.lastName = 'Last name is required'
 		if (!email) errors.email = 'Email is required'
+		if (!email.includes('@')) errors.email = 'Must be a valid email'
 		if (!username || username.length < 4) errors.username = 'Username is required'
 		if (!password) errors.password = 'Password is required'
 		if (password.length < 6) errors.password = 'Password must be 6 characters or more'
@@ -76,7 +77,7 @@ function SignupFormModal() {
 				{/* {submitted && errors.generalError && <p className="error">{errors.generalError}</p>} */}
 				{submitted && (
 					<p className="error">
-						{Object.values(errors).map((value) => value).join("")}
+						{Object.values(errors).map((value) => value).join(" ")}
 					</p>
 				)}
 				<label>
@@ -135,7 +136,7 @@ function SignupFormModal() {
 				/>
 				<button
 					onClick={handleSubmit}
-					disabled={Object.values(errors).length > 0}
+					// disabled={Object.values(errors).length > 0}
 					id={Object.values(errors).length > 0 ? 'sign-up-disabled' : 'sign-up-active'}
 				>Sign Up</button>
 			</div>

@@ -29,8 +29,10 @@
 
 .create-space-btn:hover {
     background-color: rgb(211, 211, 211);
+    transition: all 0.7s;
 }
 
 .space-link:hover {
     background-color: rgb(211, 211, 211);
+    transition: all 0.7s;
 }
