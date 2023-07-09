@@ -150,8 +150,8 @@ function ManageAnswers() {
                         <p className="manageBody" key={ele.id}>{ele.body}</p>
 
                         <div className="upanddelbutton">
-                            <Link className="all-update-btn" to={`/answers/update/${ele.id}`} key={ele.id}><i class="fa-solid fa-pencil"/> Edit</Link>
-                            <OpenModalButton className="updateBtn" buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
+                            <Link className="all-update-btn" to={`/answers/update/${ele.id}`} key={ele.id}>Edit</Link>
+                            <OpenModalButton className="all-delete-btn" buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
                         </div>
                     </div>
                 </div>

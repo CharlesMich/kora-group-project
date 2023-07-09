@@ -28,8 +28,8 @@
 
 .profile-dropdown{
   position: absolute;
-  right: 0px;
-  top: 38px;
+  right: 17%;
+  top: 65px;
 
   margin: 0;
 
@@ -45,8 +45,9 @@
 }
 
 .nav-user-button {
-  position:relative;
-  margin-bottom: 0px;
+  /* position:relative; */
+  /* margin-bottom: 0px; */
+  /* z-index: 3; */
 }
 
 button > ul > li {
@@ -120,10 +121,10 @@ button > ul {
 }
 
 .nav-profile-btn{
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
 
-  margin: 0;
+  /* margin: 0; */
   padding: 15.5px 15.5px;
 
   border: none;
@@ -141,4 +142,26 @@ button > ul {
   
   color: rgb(51, 51, 142);
   background-color: rgb(225, 225, 225);
+}
+
+
+@media (max-width: 1025px) {
+
+  .profile-dropdown{
+    position: absolute;
+    right: 0;
+    top: 65px;
+  
+    margin: 0;
+  
+    width: 100px;
+    height: 70px;
+    z-index: 2;
+  
+    border-radius: 5px 5% / 0 0 5px 5px;
+    border: 2px solid rgb(225, 225, 225);
+    border-top: 0;
+  
+    background-color: white;
+  }
 }

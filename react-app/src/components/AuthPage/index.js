@@ -10,10 +10,12 @@ import "./authPage.css"
 function AuthPage() {
 
   return (
-    <div>
-      <img src={koralogo} id='logo' alt='logo' />
+    <div className="auth-main">
+      <img className="auth-kora-logo" src={koralogo} id='logo' alt='logo' />
+      <p className="auth-slogan">A platform for exchanging knowledge and gaining a deeper insight into the world</p>
       <div className="auth-container">
         <div className="auth-container-section signupform-container">
+          <p className="auth-terms">By continuing you indicate that you agree to Koras’s Terms of Service and Privacy Policy.</p>
           <DemoUser
             itemText="Log in as Demo User"
           />
