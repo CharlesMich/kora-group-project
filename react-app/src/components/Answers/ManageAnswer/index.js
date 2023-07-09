@@ -107,7 +107,6 @@ function ManageAnswers() {
                 </div>
                 <div className="all-answer-container">
                     <div className="single-answer-container">
-                        <h3>If You Want To Answer A Question</h3>
 
                         <h3 className="manage-subtitle-2">Writing Tips</h3>
                         <p className="manage-answers-text">• Understand the question. Assimilate the perspective with which the user has asked question.</p>
