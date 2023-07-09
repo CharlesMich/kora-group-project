@@ -23,7 +23,7 @@ function AllAnswers() {
     if (!sessionUser) history.push(`/`);
 
     let questionId = useParams().questionId;
-    console.log(questionId)
+    // console.log(questionId)
     const answers = useSelector(state => state.answers ? state.answers.tempState : null);
     const question1 = useSelector(state => state.questions ? state.questions[questionId] : null)
     const follows = useSelector((state) => Object.keys(state.follows))
@@ -80,7 +80,7 @@ function AllAnswers() {
     const handleAdd = async(e)=>{
         e.preventDefault();
         const {value} = e.target.dataset
-        console.log(value)
+        // console.log(value)
         await dispatch(fetchPostFollows(value))
     }
 
@@ -124,7 +124,7 @@ function AllAnswers() {
 
     // if user created the question
     // post answer button should not be visible
-    console.log(sessionUser.id === question1.owner_id)
+    // console.log(sessionUser.id === question1.owner_id)
     if(sessionUser.id === question1.owner_id){
         return(
             <div className="outer">

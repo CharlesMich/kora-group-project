@@ -1,7 +1,7 @@
 import { useDispatch, useSelector, } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import { fetchAllAnswersOfUser } from '../../../store/answerReducer';
+import { fetchAllAnswersOfUser, fetchAllAnswers } from '../../../store/answerReducer';
 import { Link } from 'react-router-dom';
 import DeleteAnswerModal from '../DeleteAnswerModal';
 import OpenModalButton from "../../OpenModalButton";
@@ -25,7 +25,7 @@ function ManageAnswers() {
     const questions = useSelector((state) => state.questions)
     const follows = useSelector((state) => Object.keys(state.follows))
 
-    console.log(follows)
+    // console.log(follows)
     let userId;
 
     if (sessionUser) {
@@ -37,6 +37,10 @@ function ManageAnswers() {
     useEffect(() => {
         dispatch(fetchAllAnswersOfUser(userId))
     }, [dispatch, userId]);
+
+    useEffect(() => {
+        dispatch(fetchAllAnswers());
+    }, [dispatch]);
 
 
     useEffect(() => {

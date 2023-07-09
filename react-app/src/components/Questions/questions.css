@@ -6,6 +6,7 @@
 .main-question-page{
     display: flex;
     margin: auto 10.5%;
+    margin-bottom: 200px;
 }
 
 .followButton{

@@ -2,19 +2,22 @@ import { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateAnswer, fetchAllAnswersOfUser } from '../../../store/answerReducer';
+import { updateAnswer, fetchAllAnswers, fetchAllAnswersOfUser } from '../../../store/answerReducer';
 
 import "./updateanswer.css";
 
 
-function UpdateAnswer(id) {
+function UpdateAnswer() {
     const history = useHistory();
     // const { answerId } = useParams();
     let answerId = useParams().answerId
-    // const abc = useParams()
     const dispatch = useDispatch();
 
     answerId = parseInt(answerId)
+
+    useEffect(() => {
+        dispatch(fetchAllAnswers());
+    }, [dispatch])
 
     //if not logged in, redirect to home
     let sessionUser;
@@ -23,22 +26,26 @@ function UpdateAnswer(id) {
 
     const userId = sessionUser.id
 
-    // const user_id = useSelector(state => state.session.user.id)
-
 
     // let answer = useSelector((state) => state.answers ? state.answers.newState[answerId] : null)
-    let answer = useSelector((state) => state.answers.newState[answerId])
+    let answer = useSelector((state) => state.answers ? state.answers.allAnswers[answerId] : null)
 
-
+    if(!answer)history.push('/');
+    
     const [body, setBody] = useState(answer.body);
     const [validationErrors, setValidationErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
     useEffect(() => {
-        dispatch(fetchAllAnswersOfUser(userId));
-    }, [dispatch, userId])
+        dispatch(fetchAllAnswers());
+    }, [dispatch])
 
+
+    // useEffect(() => {
+    //     dispatch(fetchAllAnswersOfUser(userId));
+    // }, [dispatch, userId])
+   
 
     useEffect(() => {
         const errors = {};
@@ -70,6 +77,8 @@ function UpdateAnswer(id) {
             history.push('/manage-answers')
         }
     }
+
+    
 
     return (
         <div className="spotform-container">

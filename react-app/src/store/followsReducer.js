@@ -62,7 +62,7 @@ export const fetchPostFollows = (user_id) => async (dispatch) => {
     if (response.ok) {
         const payload = await response.json();
         dispatch(add_follow(payload))
-        console.log("Added follow", payload)
+        // console.log("Added follow", payload)
         return payload
     }
 }
@@ -74,7 +74,7 @@ export const fetchDeleteFollow = (userId) => async (dispatch)=> {
     })
     if (response.ok){
         dispatch(delete_follow(userId))
-        console.log("deleted follow", userId)
+        // console.log("deleted follow", userId)
     }
 }
 

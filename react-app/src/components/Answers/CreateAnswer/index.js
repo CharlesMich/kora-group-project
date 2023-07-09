@@ -27,7 +27,7 @@ function CreateAnswer() {
 
     const question = useSelector(state => state.questions[question_id])
 
-    console.log(question)
+    // console.log(question)
     const [body, setBody] = useState('');
     const [validationErrors, setValidationErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
