@@ -28,12 +28,12 @@
 
 .profile-dropdown{
   position: absolute;
-  right: 200px;
-  top: 100%;
+  right: 0px;
+  top: 38px;
 
   margin: 0;
 
-  width: 135px;
+  width: 100px;
   height: 70px;
   z-index: 2;
 
@@ -44,14 +44,34 @@
   background-color: white;
 }
 
+.nav-user-button {
+  position:relative;
+  margin-bottom: 0px;
+}
+
+button > ul > li {
+  list-style: none;
+}
+
+button > ul {
+  padding: 0px;
+}
+
+.nav-dropdown-logout {
+  margin-bottom: 0px;
+}
+
+.nav-dropdown-li {
+  padding: 2px
+}
 
 .shared-nav-bar{
   display: flex;
   flex-direction: column;
-  
+
   text-decoration: none;
   color: black;
-  
+
   padding: 12.5px 20px;
   margin: auto 30px;
 }
@@ -100,8 +120,8 @@
 }
 
 .nav-profile-btn{
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
 
   margin: 0;
   padding: 15.5px 15.5px;

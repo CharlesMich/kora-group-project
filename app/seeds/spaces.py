@@ -13,10 +13,18 @@ def seed_spaces():
     spaces3 = Space(
         space_name='Video Games', description='Learn about Video Games'
     )
+    spaces4 = Space(
+        space_name='Travel', description='Learn about Travel'
+    )
+    spaces5 = Space(
+        space_name='Computers', description='Learn about Computers'
+    )
 
     db.session.add(spaces1)
     db.session.add(spaces2)
     db.session.add(spaces3)
+    db.session.add(spaces4)
+    db.session.add(spaces5)
     db.session.commit()
 
 
