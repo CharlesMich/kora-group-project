@@ -36,7 +36,8 @@
 } 
 .inputbody{
     width: 500px;
-    height: 700px
+    height: 700px;
+    word-wrap: break-word;
   
 }
 .error{

@@ -70,7 +70,7 @@ function CreateAnswer() {
             <form onSubmit={onSubmit}>
 
                 <div className="answersubtitle"><span><label htmlFor='body' >Your Answer: </label></span><span className='error'> {hasSubmitted && validationErrors.body && `${validationErrors.body}`}</span></div>
-                <div><textarea id='body' className="inputbody" placeholder='Please write your answer (atleast 50 Characters)' type="text" value={body}
+                <div><textarea id='body' className="inputbody" placeholder='Please write your answer (atleast 50 Characters)' type="text"  value={body}
                     onChange={(e) => setBody(e.target.value)} /></div>
 
                 <button
