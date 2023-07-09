@@ -6,7 +6,7 @@ import { allQuestions } from "../../../store/questions"
 import OpenModalButton from "../../OpenModalButton"
 import UpdateQuestion from "../../UpdateQuestion"
 import DeleteQuestion from "../../DeleteQuestion"
-import { fetchPostFollows, fetchDeleteFollow } from "../../../store/followsReducer"
+import { fetchPostFollows, fetchDeleteFollow, fetchAllFollowers } from "../../../store/followsReducer"
 import './SpaceDetails.css'
 
 const SpaceDetails = () => {
@@ -16,6 +16,12 @@ const SpaceDetails = () => {
     const questions = useSelector(state => state.questions)
     const user = useSelector(state => state.session.user)
     const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        if (user) {
+            dispatch(fetchAllFollowers(user.id))
+        }
+    }, [dispatch, user])
     const followed = useSelector(state => Object.keys(state.follows))
 
 

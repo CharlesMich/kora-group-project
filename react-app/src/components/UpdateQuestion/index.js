@@ -55,7 +55,8 @@ function UpdateQuestion({ id }) {
         }
     }, [run])
 
-    return (<>
+    return (
+    <>
         <div className="updateDiv">
             <h1 className="updateText">Update your Question</h1>
             {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
