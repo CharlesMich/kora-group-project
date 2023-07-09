@@ -2,15 +2,22 @@ import { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateAnswer, fetchAllAnswersOfUser } from '../../../store/answerReducer';
+import { updateAnswer, fetchAllAnswers, fetchAllAnswersOfUser } from '../../../store/answerReducer';
+
 import "./updateanswer.css";
 
 
-function UpdateAnswer(answer1) {
+function UpdateAnswer() {
     const history = useHistory();
-    const { answerId } = useParams();
-
+    // const { answerId } = useParams();
+    let answerId = useParams().answerId
     const dispatch = useDispatch();
+
+    answerId = parseInt(answerId)
+
+    useEffect(() => {
+        dispatch(fetchAllAnswers());
+    }, [dispatch])
 
     //if not logged in, redirect to home
     let sessionUser;
@@ -19,21 +26,26 @@ function UpdateAnswer(answer1) {
 
     const userId = sessionUser.id
 
-    // const user_id = useSelector(state => state.session.user.id)
 
+    // let answer = useSelector((state) => state.answers ? state.answers.newState[answerId] : null)
+    let answer = useSelector((state) => state.answers ? state.answers.allAnswers[answerId] : null)
 
-    let answer = useSelector((state) => state.answers ? state.answers.newState[answerId] : null)
-
-
+    if(!answer)history.push('/');
+    
     const [body, setBody] = useState(answer.body);
     const [validationErrors, setValidationErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
     useEffect(() => {
-        dispatch(fetchAllAnswersOfUser(userId));
-    }, [dispatch, userId])
+        dispatch(fetchAllAnswers());
+    }, [dispatch])
 
+
+    // useEffect(() => {
+    //     dispatch(fetchAllAnswersOfUser(userId));
+    // }, [dispatch, userId])
+   
 
     useEffect(() => {
         const errors = {};
@@ -44,6 +56,7 @@ function UpdateAnswer(answer1) {
 
     if (!answer) return null
     if (!userId) return null
+    if (!answerId) return null
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -64,6 +77,8 @@ function UpdateAnswer(answer1) {
             history.push('/manage-answers')
         }
     }
+
+    
 
     return (
         <div className="spotform-container">

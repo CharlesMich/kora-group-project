@@ -6,6 +6,24 @@
 .main-question-page{
     display: flex;
     margin: auto 10.5%;
+    margin-bottom: 200px;
+}
+
+.followButton{
+    margin-bottom: 1rem;
+    margin-top: 5px;
+    border: none;
+    background-color: #f2f2f2;
+    color: blue;
+    cursor: pointer;
+    font-weight: bold;
+}
+.followButton:hover{
+    text-decoration: underline;
+}
+
+.point{
+    margin: 5px 0;
 }
 
 .question-tilte{
@@ -20,10 +38,10 @@
     text-decoration: underline;
 }
 
-.single-question-container{
+.single-container{
     margin:  auto auto 7px auto;
     padding: 18px;
-    
+
     background-color: white;
 
     border: 1px solid rgb(225, 225, 225);
@@ -50,7 +68,7 @@
     margin: 5px;
 }
 
-.allQuestions{
+.display-all-containers{
     margin: auto auto auto 100px;
     max-width: 586.5px;
     width: 586.5px;

@@ -47,7 +47,6 @@ const CreateSpace = () => {
                 <div className="error"> {hasSubmitted && validationErrors.name && `${validationErrors.name}`}</div>
                 <div className="name">
                     <label>Name</label><span className="star">*</span>
-                    <p>This can be changed in Space settings</p>
                     <div>
                         <input
                             value={name}

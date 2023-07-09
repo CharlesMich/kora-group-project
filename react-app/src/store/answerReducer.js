@@ -1,4 +1,5 @@
-const LOAD_ANSWERS = "answers/LOAD_ANSWERS"
+const ALL_ANSWERS = "answers/ALL_ANSWERS"
+const ALL_ANSWERS_BY_QUESTION = "answers/ALL_ANSWERS_BY_QUESTION"
 const ADD_ANSWER = "answers/ADD_ANSWER"
 const ALL_ANSWERS_BY_USER = "answers/ALL_ANSWERS_BY_USER"
 const DELETE_ANSWER = "answers/DELETE_ANSWERS"
@@ -7,10 +8,15 @@ const UPDATE_ANSWER = "answers/EDIT_ANSWERS"
 
 
 // ACTIONS// 
+// ALL ANSWERS
+const all_answers = payload => ({
+    type: ALL_ANSWERS,
+    payload
+})
 
 // ALL ANSWERS FOR A SINGLE QUESTION
-const load_answers = payload => ({
-    type:LOAD_ANSWERS,
+const all_answers_by_question = payload => ({
+    type:ALL_ANSWERS_BY_QUESTION,
     payload
 })
 
@@ -46,13 +52,24 @@ const delete_answer = payload => ({
 })
 
 // THUNKS
+// 
+// GET ALL ANSWERS
+export const fetchAllAnswers = ()=> async dispatch => {
+    const response = await fetch(`/api/answer`);
+    if (response.ok){
+        const payload = await response.json();
+        dispatch(all_answers(payload));
+        console.log('ALL ANSWERS IN FETCH', payload)
+    }
+}
+
 // GET ALL ANSWERS TO A QUESTION BY QUESTIONID
 export const getAllAnswers = (questionId) => async (dispatch) => {
     const response = await fetch(`/api/answer/question/${questionId}`);
     
     if (response.ok){
         const payload = await response.json();
-        dispatch(load_answers(payload));
+        dispatch(all_answers_by_question(payload));
     }
 }
 
@@ -122,15 +139,17 @@ const initialState = {};
 
 export default function answerReducer(state = initialState, action){
     switch (action.type) {
-        case LOAD_ANSWERS: 
+        case ALL_ANSWERS:
+            const allAnswers = {}
+            action.payload.forEach(ele=> allAnswers[ele.id]=ele);
+            return {...state, allAnswers}
+
+        case ALL_ANSWERS_BY_QUESTION: 
         const tempState = {}
             action.payload.forEach(ele => tempState[ele.id] = ele);
             // console.log('inside reducer', tempState)
             return {...state, tempState }
 
-        // case SINGLE_ANSWER:
-        //     console.log('singleaanswer', {...action.payload})
-        // return {...action.payload }
 
         case ALL_ANSWERS_BY_USER: 
             const newState = {}
@@ -149,11 +168,6 @@ export default function answerReducer(state = initialState, action){
             delete state1[action.payload]
             return { ...state }
 
-            // const answerState = { ...state };
-            // console.log(answerState)
-            // delete answerState[action.payload];
-           
-            // return answerState;  
         
         default: return state;
     }

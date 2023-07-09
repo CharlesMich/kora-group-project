@@ -1,4 +1,4 @@
-const MY_FOLLOWERS = "follows/MY_FOLLOWERS"
+// const MY_FOLLOWERS = "follows/MY_FOLLOWERS"
 const I_FOLLOW = "follows/I_FOLLOW"
 const ADD_FOLLOW = "follows/ADD_FOLLOW"
 const DELETE_FOLLOW = "follows/DELETE_FOLLOW"
@@ -62,7 +62,7 @@ export const fetchPostFollows = (user_id) => async (dispatch) => {
     if (response.ok) {
         const payload = await response.json();
         dispatch(add_follow(payload))
-        console.log("Added follow", payload)
+        // console.log("Added follow", payload)
         return payload
     }
 }
@@ -74,7 +74,7 @@ export const fetchDeleteFollow = (userId) => async (dispatch)=> {
     })
     if (response.ok){
         dispatch(delete_follow(userId))
-        console.log("deleted follow", userId)
+        // console.log("deleted follow", userId)
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { allQuestions } from "../../store/questions";
 import "./questions.css"
 import OpenModalButton from "../OpenModalButton";
@@ -25,6 +25,8 @@ const SingleUserQuestion = () => {
         user = us.id
         userQuestion = questions.filter(question => question.owner_id === user)
     }
+    const sessionUser = useSelector((state) => state.session.user);
+    if (!sessionUser) return <Redirect to="/login" />;
     return (<>
         <div className="main-question-page">
 
@@ -32,13 +34,13 @@ const SingleUserQuestion = () => {
                 < SpaceSidebar />
             </div>
 
-            <div className="allQuestions">
+            <div className="display-all-containers">
                 {!userQuestion[0] && <h2>You have no questions for now</h2>} 
                 {!userQuestion[0] && <NavLink className="nav-add-question-btn" exact to='/new-question'>
 						Ask a question <i className="nav-icon fa-solid fa-plus"/>
 					</NavLink>}
                 {userQuestion.map(ele =>
-                    <div className="single-question-container" key={ele.id}>
+                    <div className="single-container" key={ele.id}>
                         <div className="question-user-container">
                             <img className="question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
                             <p className="question-user-name">{ele.User_firstName} {ele.User_lastName}</p>

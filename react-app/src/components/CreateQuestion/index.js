@@ -30,7 +30,7 @@ function CreateQuestion() {
     function onSubmit(e) {
         const errors = {};
         if (question.length < 5) errors['question'] = "your question is too short";
-        
+
 
         setValidationErrors(errors);
         e.preventDefault();
@@ -68,19 +68,19 @@ function CreateQuestion() {
                     <textarea value={question} onChange={updateQuestion} placeholder="Enter your question here" className="textArea"></textarea>
                 </div>
                 <div className="divlab">
-            <h5 >Space</h5>
-            <label className="lab">
+                    <h5 >Space</h5>
+                    <label className="lab">
 
-              <input
-                type="text"
-                value={space}
-                onChange={updateSpace}
-                placeholder="Space"
-              // 
-              />
-            </label>
-            
-          </div>
+                        <input
+                            type="text"
+                            value={space}
+                            onChange={updateSpace}
+                            placeholder="Add a Space"
+                        //
+                        />
+                    </label>
+
+                </div>
                 <div className="quesButtonDiv">
 
                     <button className="addQuestion" disabled={question.length < 1}>Add Question</button>

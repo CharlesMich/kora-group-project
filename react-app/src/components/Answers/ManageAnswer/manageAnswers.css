@@ -1,12 +1,6 @@
 .outer{
-   display: flex;
-   flex-direction: column;
-   margin: 0 auto;
-   width: 60%;
-   padding: 80px 30px 30px 30px;
-   background-color: white;
-   border-radius: 5px;
-   /* margin-top: 100px */
+  margin: auto 31%;
+   margin-bottom: 200px
 }
 
 .updateBtn{
@@ -19,20 +13,10 @@
   font-size: small;
 }
 
-/* button{
-  margin-top: 10px;
-  border: 1px solid black;
-  border-radius: 3px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: small;
-} */
-
-.manageh1{
+.answer-title{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: black;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -41,13 +25,6 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: black;
   font-size: 20px;
-}
-
-.map{
-  background-color: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
 }
 
 .manageBody{
@@ -61,17 +38,58 @@
   margin-top: 10px;
 }
 
-.manage-answers-text{
-  font-size: 19px;
+.manage-answer-title-container{
+  max-width: 586.5px;
+  width: 586.5px;
+  margin-bottom: 10px;
 }
 
-.manage-subtitle{
-  font-size: medium;
-  color: rgb(97, 13, 13);
+.answer-title-container{
+  background-color: white;
+
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 5px;
+  padding: 18px;
 }
 
-.manage-subtitle-2{
-  padding-top: 10px;
-  color: black;
+.question-by-tag{
+  margin-top: 0;
+}
+
+.all-answer-container{
+  max-width: 585px;
+  width: 585px;
+  
+  margin: 7px 0;
+  background-color: white;
+
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 5px;
+}
+
+.single-answer-container{
+  padding: 18px;
+  word-wrap: break-word;
+}
+
+.answer-profile-container{
+  display: flex;
+  align-items: center;
+}
+
+.answer-profile-pic{
+  margin: auto 10px;
+}
+.followButton1{
+  /* margin-bottom: 1rem; */
+  /* margin-top: 5px; */
+  border: none;
+  background-color:white;
+  color: blue;
+  cursor: pointer;
   font-weight: bold;
+  padding-bottom: 0px;
+}
+.followButton:hover{
+  text-decoration: underline;
 }

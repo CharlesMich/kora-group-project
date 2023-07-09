@@ -13,22 +13,22 @@ function Navigation({ isLoaded, user }) {
 		{sessionUser && 
 			<nav className='nav-bar'>
 				<div className='nav-bar-container'>
-					<NavLink className="nav-btn" exact to="/">
+					<NavLink className="shared-nav-bar" exact to="/">
 						<img src={koralogo} id='logo' alt='logo' />
 					</NavLink>
-					<NavLink className="nav-btn nav-home-btn" exact to='/'>
+					<NavLink className="shared-nav-bar nav-btn nav-home-btn" exact to='/'>
 						Home
 						<i className="nav-icon fa-solid fa-house"></i>
 					</NavLink>
-					<NavLink className="nav-btn" exact to='/questions/current'>
+					<NavLink className="shared-nav-bar nav-btn" exact to='/questions/current'>
 						Questions
 						<i className="nav-icon fa-solid fa-question"></i>
 					</NavLink>
-					<NavLink className="nav-btn" exact to='/manage-answers'>
+					<NavLink className="shared-nav-bar nav-btn" exact to='/manage-answers'>
 						Answers
 						<i className="nav-icon fa-solid fa-comments"></i>
 					</NavLink>
-					<NavLink className="nav-btn" exact to='/spaces'>
+					<NavLink className="shared-nav-bar nav-btn" exact to='/spaces'>
 						Spaces
 						<i className="nav-icon fa-solid fa-hashtag"></i>
 					</NavLink>
@@ -36,13 +36,11 @@ function Navigation({ isLoaded, user }) {
 						Add question <i className="nav-icon fa-solid fa-plus"/>
 					</NavLink>
 					{isLoaded && (
-						<ProfileButton className="nav-profile-btn" user={sessionUser} />
+						<ProfileButton user={sessionUser} />
 					)}
 				</div>
 			</nav>
 			}
-			<>
-			</>
 		</>
 	);
 }

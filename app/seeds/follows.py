@@ -13,10 +13,18 @@ def seed_followers():
     follow3 = Follow(
         following_user_id=3, followed_user_id=1
     )
+    follow4 = Follow(
+        following_user_id=4, followed_user_id=5
+    )
+    follow5 = Follow(
+        following_user_id=5, followed_user_id=4
+    )
 
     db.session.add(follow1)
     db.session.add(follow2)
     db.session.add(follow3)
+    db.session.add(follow4)
+    db.session.add(follow5)
     db.session.commit()
 
 
