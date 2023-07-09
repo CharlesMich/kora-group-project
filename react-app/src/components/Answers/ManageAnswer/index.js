@@ -157,8 +157,8 @@ function ManageAnswers() {
                             <img className="answer-profile-pic question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
                             {/* <button className="follow-btn" key={ele.id} onClick={handleClick} data-value={ele.Question_ownerId}>{isFollowingUser(ele.Question_ownerId) ? 'Following' : 'Follow'}</button> */}
                             {userId !== ele.Question_ownerId && <p className="point">•</p>}
-                                {userId !== ele.Question_ownerId && follows.includes(ele.Question_ownerId.toString()) && <button key={ele.id} onClick={handleRemove} data-value={ele.Question_ownerId} className="followButton"> Following</button>}
-                                {userId !== ele.Question_ownerId && !follows.includes(ele.Question_ownerId.toString()) && <button key={ele.id} onClick={handleAdd} data-value={ele.Question_ownerId} className="followButton"> Follow</button>}
+                                {userId !== ele.Question_ownerId && follows.includes(ele.Question_ownerId.toString()) && <button key={ele.id} onClick={handleRemove} data-value={ele.Question_ownerId} className="followButton1"> Following</button>}
+                                {userId !== ele.Question_ownerId && !follows.includes(ele.Question_ownerId.toString()) && <button key={ele.id} onClick={handleAdd} data-value={ele.Question_ownerId} className="followButton1"> Follow</button>}
 
                         </div>
                         <h2 className="manageh2">{ele.Question_question}</h2>
