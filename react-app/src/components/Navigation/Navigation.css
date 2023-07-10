@@ -47,7 +47,7 @@
 .nav-user-button {
   position:relative;
   /* margin-bottom: 0px; */
-  /* z-index: 3; */
+  z-index: 3;
 }
 
 button > ul > li {
@@ -152,7 +152,7 @@ button > ul {
 }
 
 
-@media (max-width: 1025px) {
+/* @media (max-width: 1025px) {
 
   .profile-dropdown{
     position: absolute;
@@ -171,4 +171,6 @@ button > ul {
 
     background-color: white;
   }
-}
+
+} */
+

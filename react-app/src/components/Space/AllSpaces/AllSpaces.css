@@ -2,8 +2,11 @@
     display: flex;
     flex-direction: column;
     width: 60%;
-    margin: 0 auto;
-    margin-bottom: 200px
+
+    margin: auto 31%;
+    margin-bottom: 200px;
+    max-width: 600px;
+
  }
 
 .create-btn {

@@ -12,28 +12,32 @@ function SignupFormModal() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 	const [submitted, setSubmitted] = useState(false)
 
 	useEffect(() => {
-		const errors = {}
+		let errors = [];
 
-		if (!first_name) errors.firstName = 'First name is required'
-		if (!last_name) errors.lastName = 'Last name is required'
-		if (!email) errors.email = 'Email is required'
-		if (!username || username.length < 4) errors.username = 'Username is required'
-		if (!password) errors.password = 'Password is required'
-		if (password.length < 6) errors.password = 'Password must be 6 characters or more'
-		if (!confirmPassword) errors.confirmPassword = 'Confirm password field is required'
-		setErrors(errors)
-	}, [first_name, last_name, email, username, password, confirmPassword])
+		if (submitted) {
+			if (!first_name.trim()) errors.push('First name is required');
+			if (!last_name.trim()) errors.push('Last name is required');
+			if (!email.trim()) errors.push('Email is required');
+			if (!email.includes('@')) errors.push('Must be a valid email');
+			if (!username.trim() || username.trim().length < 4) errors.push('Username is required and must be at least 4 characters');
+			if (!password.trim()) errors.push('Password is required');
+			if (password.length < 6) errors.push('Password must be 6 characters or more');
+			if (!confirmPassword.trim()) errors.push('Confirm password field is required');
+		}
+
+		setErrors(errors);
+	}, [submitted, first_name, last_name, email, username, password, confirmPassword]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setSubmitted(true);
-		if (password === confirmPassword) {
-			setErrors({});
+		if (password === confirmPassword && first_name.trim() && last_name.trim() && email.trim() && email.includes("@") && username.trim().length > 3 && password.length > 5) {
+			setErrors([]);
 			try {
 				await dispatch(
 					signUp({
@@ -43,22 +47,20 @@ function SignupFormModal() {
 						first_name: first_name,
 						last_name: last_name,
 					})
-				)
-					.then(() => {
-						closeModal()
-						window.location.href = '/'
-					})
+				).then(() => {
+					closeModal()
+					window.location.href = '/'
+				})
 			} catch (error) {
-				if (error.errors) {
-					setErrors(error.errors);
-				} else {
-					setErrors({ generalError: 'Email or Username already exists' })
+				if (Array.isArray(error)) {
+					setErrors(error);
+				}
+				else {
+					setErrors(["An error occured. Please try again"])
 				}
 			};
 		} else if (password !== confirmPassword) {
-			setErrors({
-				confirmPassword: "Confirm Password field must be the same as the Password field"
-			});
+			setErrors(["Confirm Password field must be the same as the Password field"]);
 		}
 	};
 
@@ -66,19 +68,15 @@ function SignupFormModal() {
 		<>
 			<h1>Sign Up</h1>
 			<div className='signup-modal-form'>
-				{/* {submitted && errors.email && <p className="error">{errors.email}</p>}
+				{submitted && errors.email && <p className="error">{errors.email}</p>}
 				{submitted && errors.username && <p className="error">{errors.username}</p>}
 				{submitted && errors.firstName && <p className="error">{errors.firstName}</p>}
 				{submitted && errors.lastName && <p className="error">{errors.lastName}</p>}
-				{submitted && errors.password && <p className="error">{errors.password}</p>} */}
+				{submitted && errors.password && <p className="error">{errors.password}</p>}
 				{/* {submitted && errors.confirmPassword && (
 					<p className="error">{errors.confirmPassword}</p>)} */}
 				{/* {submitted && errors.generalError && <p className="error">{errors.generalError}</p>} */}
-				{submitted && (
-					<p className="error">
-						{Object.values(errors).map((value) => value).join("")}
-					</p>
-				)}
+				{submitted && errors.map((error, index) => <p className="error" key={index}>{error}</p>)}
 				<label>
 					Email
 				</label>
