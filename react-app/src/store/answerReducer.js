@@ -7,7 +7,9 @@ const UPDATE_ANSWER = "answers/EDIT_ANSWERS"
 // const SINGLE_ANSWER = "answers/SINGLE_ANSWER"
 
 
+
 // ACTIONS//
+
 // ALL ANSWERS
 const all_answers = payload => ({
     type: ALL_ANSWERS,
@@ -60,6 +62,7 @@ export const fetchAllAnswers = () => async dispatch => {
         const payload = await response.json();
         dispatch(all_answers(payload));
         // console.log('ALL ANSWERS IN FETCH', payload)
+
     }
 }
 
@@ -146,6 +149,7 @@ export default function answerReducer(state = initialState, action) {
 
         case ALL_ANSWERS_BY_QUESTION:
             const tempState = {}
+
             action.payload.forEach(ele => tempState[ele.id] = ele);
             // console.log('inside reducer', tempState)
             return { ...state, tempState }
@@ -167,6 +171,7 @@ export default function answerReducer(state = initialState, action) {
             const state1 = { ...state.newState }
             delete state1[action.payload]
             return { ...state }
+
 
 
         default: return state;

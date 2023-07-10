@@ -3,12 +3,13 @@
     margin: auto;
     flex-direction: column;
     width: 500px;
-    height: 550px;
-    padding: 40px 25px;
+    height: fit-content;
+    padding: 20px;
     border: 1px solid rgb(194, 194, 194);
     background-color: white;
     border-radius: 10px;
-    margin-top: 90px;
+    margin-top: 100px;
+    margin-bottom: 200px
 }
 
 .QuesTitle{
@@ -33,11 +34,11 @@
     margin-bottom: 10px;
 
 
-} 
+}
 .inputbody{
     width: 500px;
     height: 390px
-  
+
 }
 .error{
     color: rgb(230, 3, 60);
@@ -54,4 +55,3 @@
     padding: 10px 0px 10px 0px;
     text-align: center;
 }
-
