@@ -1,33 +1,55 @@
 .createQuestion{
-    margin: 60px 20% 0 20%;
+    margin: 0px 20% 0 20%;
 }
 
 .textArea{
     width: 100%;
-    height: 300px;
+    height: 100px;
 }
 
 .addQuestion{
-    background-color: #759dc8;
-    border-radius: 10px;
     cursor: pointer;
     
 }
 
 .cancelCreate{
-    background-color: #759dc8;
-    border-radius: 10px;
-    border: 0px;
+    background-color: white;
+    color: #B92B27;
+
+    padding: 5px 15px;
+
+    transition: all 0.7s;
+
+    border-radius: 15px;
+    border: 1px solid #B92B27;
+}
+
+.cancelCreate:hover{
+    background-color: rgb(255, 201, 201);
+    color: #B92B27;
+    
+    transition: all 0.7s;
+
     cursor: pointer;
 }
 
 .createForm, .errorsQuestion{
     margin: 0 20%;
-    color: red
+    color: #B92B27;
 }
 
 .quesButtonDiv{
     display: flex;
     gap: 1%;
     justify-content: flex-end;
+
+    margin: 5px auto;
+}
+
+.divlab{
+    margin: 15px auto;
+}
+
+.space-label{
+    margin: 5px;
 }

@@ -58,37 +58,45 @@ function CreateQuestion() {
     }, [run])
 
     return (
-        <>
-            <h1 className="createQuestion">Create a Question</h1>
-
-            {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
-
-            <form onSubmit={onSubmit} className="createForm">
-                <div className="enterQuestion">
-                    <textarea value={question} onChange={updateQuestion} placeholder="Enter your question here" className="textArea"></textarea>
+        <div className="outer">
+            <div className="manage-answer-title-container">
+                <div className="answer-title-container">
+                    <h1 className="createQuestion">Create a Question</h1>
                 </div>
-                <div className="divlab">
-                    <h5 >Space</h5>
-                    <label className="lab">
+            </div>
 
-                        <input
-                            type="text"
-                            value={space}
-                            onChange={updateSpace}
-                            placeholder="Add a Space"
-                        //
-                        />
-                    </label>
+            <div className="all-answer-container">
+                <div className="single-answer-container">
+                {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
 
+                    <form onSubmit={onSubmit} className="createForm">
+                        <div className="enterQuestion">
+                            <textarea 
+                            value={question} 
+                            onChange={updateQuestion} 
+                            placeholder="Enter your question here" 
+                            className="textArea"></textarea>
+                        </div>
+                        <div className="divlab">
+                            <h5 className="space-label">Space</h5>
+                                <input
+                                    type="text"
+                                    value={space}
+                                    onChange={updateSpace}
+                                    placeholder="Add a Space"                    
+                                />
+                        </div>
+                        
+                        <div className="quesButtonDiv">
+
+                            <button className="nav-add-question-btn addQuestion" disabled={question.length < 1}>Add Question</button>
+                            <button onClick={submitNo} type="delNo" className="cancelCreate">Cancel</button>
+                        </div>
+
+                    </form>
                 </div>
-                <div className="quesButtonDiv">
-
-                    <button className="addQuestion" disabled={question.length < 1}>Add Question</button>
-                    <button onClick={submitNo} type="delNo" className="cancelCreate">Cancel</button>
-                </div>
-
-            </form>
-        </>
+            </div>
+        </div>
     )
 
 
