@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { useModal } from "../../../context/Modal"
 import { thunkCreateSpace } from "../../../store/space"
+import "./CreateSpace.css"
 
 const CreateSpace = () => {
     const dispatch = useDispatch()
@@ -43,12 +44,13 @@ const CreateSpace = () => {
     return (
         <div>
             <div className="modal-create-space">
-                <h2>Create a Space</h2>
+                <h2 className="create-title">Create a Space</h2>
                 <div className="error"> {hasSubmitted && validationErrors.name && `${validationErrors.name}`}</div>
-                <div className="name">
-                    <label>Name</label><span className="star">*</span>
+                <div>
+                    <label>Name*</label>
                     <div>
                         <input
+                            className="create-space-text"
                             value={name}
                             type='text'
                             onChange={e => setName(e.target.value)}
@@ -56,10 +58,11 @@ const CreateSpace = () => {
                     </div>
                 </div>
                 <div className="description">
-                    <label>Brief description</label>
-                    <p>Include a few keywords to show people what to expect if they join.</p>
+                    <p className="text-description">Brief description</p>
+                    <p className="text-description">Include a few keywords to show people what to expect if they join.</p>
                     <div>
                         <input
+                            className="description-space-text"
                             value={description}
                             type='text'
                             onChange={e => setDescription(e.target.value)}
@@ -67,6 +70,7 @@ const CreateSpace = () => {
                     </div>
                 </div>
                 <button
+                    className="space-create-btn"
                     onClick={onSubmit}
                     disabled={Object.values(validationErrors).length > 0}
                     id={Object.values(validationErrors).length > 0 ? 'submit-button-disabled' : 'submit-button-active'}
