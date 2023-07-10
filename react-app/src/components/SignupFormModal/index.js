@@ -26,7 +26,7 @@ function SignupFormModal() {
 			if (!email.includes('@')) errors.push('Must be a valid email');
 			if (!username.trim() || username.trim().length < 4) errors.push('Username is required and must be at least 4 characters');
 			if (!password.trim()) errors.push('Password is required');
-			if (password.trim().length < 6) errors.push('Password must be 6 characters or more');
+			if (password.length < 6) errors.push('Password must be 6 characters or more');
 			if (!confirmPassword.trim()) errors.push('Confirm password field is required');
 		}
 
@@ -36,7 +36,7 @@ function SignupFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setSubmitted(true);
-		if (password === confirmPassword) {
+		if (password === confirmPassword && first_name.trim() && last_name.trim() && email.trim() && email.includes("@") && username.trim().length > 3 && password.length > 5) {
 			setErrors([]);
 			try {
 				await dispatch(
