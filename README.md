@@ -24,8 +24,6 @@ Link to Kora: [Click here](https://kora-group-project.onrender.com)
 ## Spaces Page
 ![Review](https://myaaprojects.s3.us-east-2.amazonaws.com/kora-spaces.png)
 
-This is the starter for the Flask React project.
-
 ## Getting started
 1. Clone this repository:
 
