@@ -27,25 +27,30 @@ Link to Kora: [Click here](https://kora-group-project.onrender.com)
 This is the starter for the Flask React project.
 
 ## Getting started
-1. Clone this repository (only this branch)
+1. Clone this repository:
 
-2. Install dependencies
+
+   `
+      https://github.com/CharlesMich/kora-group-project.git
+   `
+
+3. Install dependencies
 
       ```bash
       pipenv install -r requirements.txt
       ```
 
-3. Create a **.env** file based on the example with proper settings for your
+4. Create a **.env** file based on the example with proper settings for your
    development environment
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+5. Make sure the SQLite3 database connection URL is in the **.env** file
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
+6. This starter organizes all tables inside the `flask_schema` schema, defined
    by the `SCHEMA` environment variable.  Replace the value for
    `SCHEMA` with a unique name, **making sure you use the snake_case
    convention**.
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+7. Get into your pipenv, migrate your database, seed your database, and run your Flask app
 
    ```bash
    pipenv shell
@@ -63,7 +68,7 @@ This is the starter for the Flask React project.
    flask run
    ```
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+8. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 
 ## Deployment through Render.com
@@ -170,3 +175,28 @@ your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+
+# Features
+
+## Questions
+* Users can ask questions
+* Users can read/view questions
+* Users can delete their questions
+* Users can update their questions
+
+## Answers
+* Users can write an answer to a questions
+* Users can read/view answers to all questions
+* Users can delete their answers
+* Users can update their answers
+
+## Spaces
+* Users can add spaces
+* Users can read/view spaces
+
+## Follows
+* Users can follow other users
+* Users can unfollow other users
+  
+
+
