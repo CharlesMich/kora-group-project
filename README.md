@@ -1,7 +1,7 @@
 # Kora 
 Kora is a soft clone of Quora. It is an application where users can ask questions, leave responses to questions, and find spaces that match their interests. Kora was built using Python/flask for backend and React/Redux for frontend. 
 
-Link to Kora: [Checkout](https://shopon-308z.onrender.com/login)
+Link to Kora: [Click here](https://kora-group-project.onrender.com)
 
 ## Index
 [MVP Feature List] |
