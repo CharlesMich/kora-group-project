@@ -208,12 +208,12 @@ your site just below the name of the Web Service at the top of the page.
 | POST/api/question/update-question/:questionId | This fetch is sent to update a question of the user. It returns the the updated question displayed on the manage questions page. | { 'id': INT, 'question': STRING, 'owner_id': INT, 'space_id': INT, "User_firstName": STRING, 'User_lastName': STRING } |
 | POST/api/question/delete-question/:questionId | This fetch is sent to delete a question. It returns a successfully deleted message and the manage questions page does not contain the deleted question | {"message": "Successfully Deleted"} |
 | GET/api/answer/ | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
-| POST/api/answer/new/:questionId | This fetch is sent to answer a question. It returns an object with the new answer | 'id': INT, 'body': STRING, 'user_id': INT, 'question_id': INT, "User_firstName": STRING, 'User_lastName': STRING, "Question_question": STRING, "Question_ownerId": INT |
-| POST/api/answer/answerId | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
-| POST/api/answer/answerId | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
-| GET/api/spaces/ | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
-| POST/api/spaces/new | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
-| POST/api/follows/ | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
-| POST/api/follows/ | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
+| POST/api/answer/new/:questionId | This fetch is sent to answer a question. It returns an object with the new answer | {'id': INT, 'body': STRING, 'user_id': INT, 'question_id': INT, "User_firstName": STRING, 'User_lastName': STRING, "Question_question": STRING, "Question_ownerId": INT} |
+| POST/api/answer/update-answers/:answerId | This fetch is sent to update an answer. It returns an object representing the updated answer. | {'id': INT, 'body': STRING, 'user_id': INT, 'question_id': INT, "User_firstName": STRING, 'User_lastName': STRING, "Question_question": STRING, "Question_ownerId": INT} |
+| POST/api/answer/delete-answers/:answerId | This fetch is sent to delete an answer. It returns a sucessfully deleted message. | {"message": "Successfully Deleted"} |
+| GET/api/spaces/ | This fetch is sent to gell all spaces. It returns an object representing all the spaces. | { 'id': INT, 'space_name': STRING,'description': STRING } |
+| POST/api/spaces/ | This fetch is sent to create a new space. It returns an object representing the new space | {'id': INT, 'space_name': STRING, 'description': STRING } |
+| POST/api/follows/add-follows/:userId| This fetch is sent to follow a user. It returns an object representing following user id and followed user id | { 'following_user_id': INT, 'followed_user_id': INT } |
+| POST/api/follows/delete-follows/int:id | This fetch is sent to unfollow a user. It returns an object with a message, "successfully deleted" | {"message": "Successfully Deleted"} |
 
 
