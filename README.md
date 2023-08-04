@@ -1,4 +1,4 @@
-# Kora 
+t# Kora 
 Kora is a soft clone of Quora. It is an application where users can ask questions, leave responses to questions, and find spaces that match their interests. Kora was built using Python/flask for backend and React/Redux for frontend. 
 
 Link to Kora: [Click here](https://kora-group-project.onrender.com)
@@ -206,9 +206,9 @@ your site just below the name of the Web Service at the top of the page.
 | GET/api/question/ | This fetch is sent to get all the questions to display on the questions page. (newest first) | {'id': INT, 'username':STRING, 'email':STRING |
 | POST/api/question/new-question | This fetch is sent when a user posts a new question. It returns the users manage questions page with the new posted question | { 'id': INT, 'question': STRING, 'owner_id': INT, 'space_id': INT, "User_firstName": STRING, 'User_lastName': STRING } |
 | POST/api/question/update-question/:questionId | This fetch is sent to update a question of the user. It returns the the updated question displayed on the manage questions page. | { 'id': INT, 'question': STRING, 'owner_id': INT, 'space_id': INT, "User_firstName": STRING, 'User_lastName': STRING } |
-| POST/api/question/delete/:questionId | This fetch is sent to delete a question. It returns a successfully deleted message and the manage questions page does not contain the deleted question | {'id': INT, 'username':STRING, 'email':STRING |
+| POST/api/question/delete-question/:questionId | This fetch is sent to delete a question. It returns a successfully deleted message and the manage questions page does not contain the deleted question | {"message": "Successfully Deleted"} |
 | GET/api/answer/ | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
-| POST/api/answer/new | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
+| POST/api/answer/new/:questionId | This fetch is sent to answer a question. It returns an object with the new answer | 'id': INT, 'body': STRING, 'user_id': INT, 'question_id': INT, "User_firstName": STRING, 'User_lastName': STRING, "Question_question": STRING, "Question_ownerId": INT |
 | POST/api/answer/answerId | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
 | POST/api/answer/answerId | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
 | GET/api/spaces/ | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING |
