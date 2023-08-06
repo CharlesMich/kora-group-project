@@ -61,7 +61,7 @@
 .all-answer-container{
   max-width: 585px;
   width: 585px;
-  
+
   margin: 7px 0;
   background-color: white;
 
@@ -71,8 +71,7 @@
 
 .single-answer-container{
   padding: 18px;
-  overflow: hidden;
-  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .answer-profile-container{
@@ -96,3 +95,4 @@
 .followButton:hover{
   text-decoration: underline;
 }
+
