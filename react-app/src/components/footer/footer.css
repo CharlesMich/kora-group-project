@@ -39,10 +39,14 @@
 .footer-text{
     width: 60%;
     margin: 0 auto;
+    text-align: center;
+}
+.footer-text > * {
+    margin-top: 10px;
+    margin-right: 10px;
 }
 .footer-text-p{
     text-align: center;
     color: white
-    
 }
 

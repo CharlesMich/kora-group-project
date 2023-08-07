@@ -19,12 +19,32 @@ def seed_spaces():
     spaces5 = Space(
         space_name='Computers', description='Learn about Computers'
     )
+    spaces6 = Space(
+        space_name='Astronomy', description='Learn about Space and Astronomy'
+    )
+    spaces7 = Space(
+        space_name='History', description='Learn about History'
+    )
+    spaces8 = Space(
+        space_name='Geography', description='Learn about Geography'
+    )
+    spaces9 = Space(
+        space_name='Stock Market', description='Learn about the Stock Market'
+    )
+    spaces10 = Space(
+        space_name='Real Estate', description='Learn about Real Estate'
+    )
 
     db.session.add(spaces1)
     db.session.add(spaces2)
     db.session.add(spaces3)
     db.session.add(spaces4)
     db.session.add(spaces5)
+    db.session.add(spaces6)
+    db.session.add(spaces7)
+    db.session.add(spaces8)
+    db.session.add(spaces9)
+    db.session.add(spaces10)
     db.session.commit()
 
 

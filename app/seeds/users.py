@@ -14,12 +14,27 @@ def seed_users():
         username='fakeuser1', email='fakeuser1@aa.io', password='password', first_name='Fake', last_name='User1')
     fakie2 = User(
         username='fakeuser2', email='fakeuser2@aa.io', password='password', first_name='Fake', last_name='User2')
+    fakie3 = User(
+        username='fakeuser3', email='fakeuser3@aa.io', password='password', first_name='Fake', last_name='User3')
+    fakie4 = User(
+        username='fakeuser4', email='fakeuser4@aa.io', password='password', first_name='Fake', last_name='User4')
+    fakie5 = User(
+        username='fakeuser5', email='fakeuser5@aa.io', password='password', first_name='Fake', last_name='User5')
+    fakie6 = User(
+        username='fakeuser6', email='fakeuser6@aa.io', password='password', first_name='Fake', last_name='User6')
+    fakie7 = User(
+        username='fakeuser7', email='fakeuser7@aa.io', password='password', first_name='Fake', last_name='User7')
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(fakie1)
     db.session.add(fakie2)
+    db.session.add(fakie3)
+    db.session.add(fakie4)
+    db.session.add(fakie5)
+    db.session.add(fakie6)
+    db.session.add(fakie7)
     db.session.commit()
 
 
