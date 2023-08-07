@@ -40,9 +40,10 @@
     width: 60%;
     margin: 0 auto;
     text-align: center;
+    padding-top: 20px;
 }
 .footer-text > * {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-right: 10px;
 }
 .footer-text-p{

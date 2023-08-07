@@ -2,7 +2,7 @@ import { useDispatch, useSelector, } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { fetchAllAnswersOfUser, fetchAllAnswers } from '../../../store/answerReducer';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import DeleteAnswerModal from '../DeleteAnswerModal';
 import OpenModalButton from "../../OpenModalButton";
 import { fetchDeleteFollow, fetchAllFollowers } from '../../../store/followsReducer';
@@ -12,27 +12,18 @@ import './manageAnswers.css'
 
 function ManageAnswers() {
 
-
     const dispatch = useDispatch();
     const history = useHistory();
 
-    //if not logged in, redirect to home
     const sessionUser = useSelector((state) => state.session.user);
-    if (!sessionUser || !sessionUser.id) history.push(`/login`);
-
-
     const answers = useSelector((state) => state.answers.newState);
     const questions = useSelector((state) => state.questions)
     const follows = useSelector((state) => Object.keys(state.follows))
 
-    // console.log(follows)
     let userId;
-
     if (sessionUser) {
         userId = sessionUser.id
     }
-
-    // const[following, setFollowing] = useState('Follow')
 
     useEffect(() => {
         dispatch(fetchAllAnswersOfUser(userId))
@@ -42,7 +33,6 @@ function ManageAnswers() {
         dispatch(fetchAllAnswers());
     }, [dispatch]);
 
-
     useEffect(() => {
         dispatch(fetchAllFollowers(userId))
     }, [dispatch, userId]);
@@ -51,53 +41,17 @@ function ManageAnswers() {
         dispatch(allQuestions())
     }, [dispatch]);
 
-    // let color;
-    // let active;
-    //     if (!active){
-    //         setFollowing('Following')
-    //     //    color = 'green'
-    //     } else {
-    //         setFollowing('Follow')
-    //         // color='blue'
-    //     }
-
-    // const isFollowingUser = (userId) => {
-    //     const followedUserIds = follows.map((follow) => follow.followed_user_id);
-    //     return followedUserIds.includes(userId);
-    // };
-
-    // const handleClick = async (e) => {
-    //     e.preventDefault();
-
-    //     const { value } = e.target.dataset;
-    //     console.log(value);
-
-    //     const checkDuplicate = obj => obj.followed_user_id === +value;
-    //     console.log(follows.some(checkDuplicate))
-
-    //     if (follows.some(checkDuplicate)) {
-
-    //         // active = false
-    //         await dispatch(fetchDeleteFollow(value))
-
-    //     } else {
-    //         // active = true
-    //         await dispatch(fetchPostFollows(value))
-    //     }
-    // }
-
-    const handleAdd = async(e)=>{
+    const handleAdd = async (e) => {
         e.preventDefault();
-        const {value} = e.target.dataset
+        const { value } = e.target.dataset
         await dispatch(fetchPostFollows(value))
     }
 
-    const handleRemove = async(e)=>{
+    const handleRemove = async (e) => {
         e.preventDefault();
-        const {value} = e.target.dataset
+        const { value } = e.target.dataset
         await dispatch(fetchDeleteFollow(value))
     }
-
 
     if (!answers) return null
     if (!userId) return null
@@ -107,6 +61,10 @@ function ManageAnswers() {
 
     const answersArr = Object.values(answers)
     if (!answersArr) return null
+
+    if (!sessionUser) {
+        return <Redirect to='/login' />
+    }
 
     if (!answersArr.length) {
         return (
@@ -137,32 +95,27 @@ function ManageAnswers() {
             </div>
         )
     }
-    
+
     return (
         <div className="outer">
             <div className="manage-answer-title-container">
                 <div className="answer-title-container">
                     <h1 className="answer-title">Manage Your Answers</h1>
-                    {/* <p>• {follows ? follows.follows : '0'} Follow</p> */}
                     <p className="manage-subtitle">{sessionUser.firstname} {sessionUser.lastname} </p>
                 </div>
             </div>
-
             {answersArr.map(ele => (
                 <div className="all-answer-container">
                     <div className="single-answer-container">
-                            <p className="question-by-tag">Question by: {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</p>
+                        <p className="question-by-tag">Question by: {questions[ele.question_id] && questions[ele.question_id].User_firstName} {questions[ele.question_id] && questions[ele.question_id].User_lastName}</p>
                         <div className="answer-profile-container">
                             <img className="answer-profile-pic question-profile-pic" src="https://myaaprojects.s3.us-east-2.amazonaws.com/profile-circle.png" alt="photo" />
-                            {/* <button className="follow-btn" key={ele.id} onClick={handleClick} data-value={ele.Question_ownerId}>{isFollowingUser(ele.Question_ownerId) ? 'Following' : 'Follow'}</button> */}
                             {userId !== ele.Question_ownerId && <p className="point">•</p>}
-                                {userId !== ele.Question_ownerId && follows.includes(ele.Question_ownerId.toString()) && <button key={ele.id} onClick={handleRemove} data-value={ele.Question_ownerId} className="followButton1"> Following</button>}
-                                {userId !== ele.Question_ownerId && !follows.includes(ele.Question_ownerId.toString()) && <button key={ele.id} onClick={handleAdd} data-value={ele.Question_ownerId} className="followButton1"> Follow</button>}
-
+                            {userId !== ele.Question_ownerId && follows.includes(ele.Question_ownerId.toString()) && <button key={ele.id} onClick={handleRemove} data-value={ele.Question_ownerId} className="followButton1"> Following</button>}
+                            {userId !== ele.Question_ownerId && !follows.includes(ele.Question_ownerId.toString()) && <button key={ele.id} onClick={handleAdd} data-value={ele.Question_ownerId} className="followButton1"> Follow</button>}
                         </div>
                         <h2 className="manageh2">{ele.Question_question}</h2>
                         <p className="manageBody" key={ele.id}>{ele.body}</p>
-
                         <div className="upanddelbutton">
                             <Link className="all-update-btn" to={`/answers/update/${ele.id}`} key={ele.id}>Edit</Link>
                             <OpenModalButton className="all-delete-btn" buttonText="Delete" modalComponent={<DeleteAnswerModal answer={ele.id} />} />
@@ -172,7 +125,6 @@ function ManageAnswers() {
             )
             )}
         </div>
-
     )
 }
 

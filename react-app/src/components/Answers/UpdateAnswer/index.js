@@ -1,18 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, Redirect } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateAnswer, fetchAllAnswers, fetchAllAnswersOfUser } from '../../../store/answerReducer';
 
 import "./updateanswer.css";
 
-
 function UpdateAnswer() {
     const history = useHistory();
-    // const { answerId } = useParams();
     let answerId = useParams().answerId
     const dispatch = useDispatch();
-
     answerId = parseInt(answerId)
 
     useEffect(() => {
@@ -20,32 +17,19 @@ function UpdateAnswer() {
     }, [dispatch])
 
     //if not logged in, redirect to home
-    let sessionUser;
-    sessionUser = useSelector((state) => state.session.user);
-    if (!sessionUser) history.push(`/`);
-
+    const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id
-
-
-    // let answer = useSelector((state) => state.answers ? state.answers.newState[answerId] : null)
     let answer = useSelector((state) => state.answers ? state.answers.allAnswers[answerId] : null)
 
-    if(!answer)history.push('/');
-    
+    if (!answer) history.push('/');
+
     const [body, setBody] = useState(answer.body);
     const [validationErrors, setValidationErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-
     useEffect(() => {
         dispatch(fetchAllAnswers());
     }, [dispatch])
-
-
-    // useEffect(() => {
-    //     dispatch(fetchAllAnswersOfUser(userId));
-    // }, [dispatch, userId])
-   
 
     useEffect(() => {
         const errors = {};
@@ -61,9 +45,7 @@ function UpdateAnswer() {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        const updateAnswerForm = {
-            body,
-        };
+        const updateAnswerForm = { body };
 
         setHasSubmitted(true);
         if (Object.keys(validationErrors).length > 0) return;
@@ -71,14 +53,14 @@ function UpdateAnswer() {
         setBody('');
 
         let updateAns = await dispatch(updateAnswer(updateAnswerForm, answerId))
-
         if (updateAns) {
-            // history.push(`/answers/${updateAns.question_id}`);
             history.push('/manage-answers')
         }
     }
 
-    
+    if (!sessionUser) {
+        return <Redirect to='/login' />
+    }
 
     return (
         <div className="spotform-container">
@@ -90,7 +72,6 @@ function UpdateAnswer() {
                 <span><label htmlFor='body' >Your Answer: </label></span><span className='error'> {hasSubmitted && validationErrors.body && `${validationErrors.body}`}</span>
                 <textarea id='body' className="updtextarea" placeholder='Please write your answer (atleast 50 Characters)' type="text" value={body}
                     onChange={(e) => setBody(e.target.value)} />
-
                 <button
                     type="submit"
                     className="answerbutton" style={{ fontSize: "13px", padding: "10px", marginTop: "10px" }}>Update Answer</button>

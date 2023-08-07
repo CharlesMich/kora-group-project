@@ -1,23 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useModal } from "../../../context/Modal";
 import "./deleteanswer.css";
 import { useHistory } from "react-router-dom";
 import { fetchDeleteAnswer, fetchAllAnswersOfUser } from "../../../store/answerReducer";
 
-
-
-
-
 function DeleteAnswerModal({ answer }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const history = useHistory()
-    const userId = useSelector(state => state.session.user.id)
-
+    const sessionUser = useSelector(state=> state.session.user)
+   
+    let userId;
+    if(sessionUser){
+        userId = sessionUser.id
+    }
 
     const answerId = answer;
 
-    // console.log("inside component", answerId)
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -27,10 +27,12 @@ function DeleteAnswerModal({ answer }) {
             .then(closeModal)
     }
 
-
-
     const handleCancel = (e) => {
         closeModal()
+    }
+
+    if (!sessionUser) {
+        return <Redirect to='/login' />
     }
 
     return (
