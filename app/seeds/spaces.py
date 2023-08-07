@@ -34,6 +34,10 @@ def seed_spaces():
     spaces10 = Space(
         space_name='Real Estate', description='Learn about Real Estate'
     )
+    spaces11 = Space(
+        space_name='Cars', description='Learn about cars'
+    )
+
 
     db.session.add(spaces1)
     db.session.add(spaces2)
@@ -45,6 +49,7 @@ def seed_spaces():
     db.session.add(spaces8)
     db.session.add(spaces9)
     db.session.add(spaces10)
+    db.session.add(spaces11)
     db.session.commit()
 
 

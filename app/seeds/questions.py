@@ -106,6 +106,37 @@ def seed_questions():
     question34 = Question(
         question=' What are the different stages of the real estate buying process?', owner_id=6, space_id=10
     )
+    question35 = Question(
+        question='What is the name of the first gasoline-powered car?', owner_id=6, space_id=11
+    )
+    question36 = Question(
+        question='What is the most popular car model in the world?', owner_id=7, space_id=11
+    )
+    question37 = Question(
+        question='What is the name of the first car to travel over 100 miles per hour?', owner_id=8, space_id=11
+    )
+    question38 = Question(
+        question='How long did it take for the Ford Model T to be produced on assembly line?', owner_id=9, space_id=11
+    )
+    question39 = Question(
+        question='What is the difference between a 4-cylinder and a 6-cylinder engine?', owner_id=10, space_id=11
+    )
+    question40 = Question(
+        question='What is the purpose of a cars differential?', owner_id=2, space_id=11
+    )
+    question41 = Question(
+        question='What is the meaning of the term "horsepower"?', owner_id=3, space_id=11
+    )
+    question42 = Question(
+        question='What is the difference between a manual transmission and an automatic transmission?', owner_id=4, space_id=11
+    )
+    question43 = Question(
+        question='What are the three main types of car brakes?', owner_id=5, space_id=11
+    )
+    question44 = Question(
+        question='What is the difference between a hybrid car and an electric car?', owner_id=6, space_id=11
+    )
+
 
     
 
@@ -144,6 +175,16 @@ def seed_questions():
     db.session.add(question32)
     db.session.add(question33)
     db.session.add(question34)
+    db.session.add(question35)
+    db.session.add(question36)
+    db.session.add(question37)
+    db.session.add(question38)
+    db.session.add(question39)
+    db.session.add(question40)
+    db.session.add(question41)
+    db.session.add(question42)
+    db.session.add(question43)
+    db.session.add(question44)
     db.session.commit()
 
 

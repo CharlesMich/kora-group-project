@@ -25,7 +25,8 @@ const QuestionComponent = () => {
     if (us) {
         user = us.id
     }
-    
+    questions.sort((a,b)=>b.id -a.id)
+
     useEffect(()=>{
           if(user){
               dispatch(fetchAllFollowers(user))
