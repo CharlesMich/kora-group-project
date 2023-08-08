@@ -13,7 +13,17 @@
     padding-right: 2rem;
     width: 480px
 }
-/* 
+
+.kora-logo {
+    height: 2.5rem;
+    width: 6rem;
+    margin-top: 1rem;
+}
+
+.signup-modal-btn {
+    margin-bottom: 1rem;
+}
+/*
 input {
     margin-bottom: 1rem;
 }
