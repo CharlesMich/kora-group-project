@@ -1,18 +1,24 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./createQuestion.css";
 
 import { addQuestion } from "../../store/questions";
+import { thunkGetSpaces } from "../../store/space";
 
 
 function CreateQuestion() {
     const dispatch = useDispatch();
+    const spaces = useSelector(state => state.spaces.allSpaces)
 
     const [question, setQuestion] = useState("");
     const [space, setSpace] = useState("")
     const [validationErrors, setValidationErrors] = useState({});
     const [run, setRun] = useState("no")
+
+    useEffect(() => {
+        dispatch(thunkGetSpaces())
+    }, [dispatch])
 
     const err = {}
     if (question.length < 5) err['question'] = "your question is too short";
@@ -57,6 +63,8 @@ function CreateQuestion() {
         }
     }, [run])
 
+    if (!spaces) return null;
+
     return (
         <div className="outer">
             <div className="manage-answer-title-container">
@@ -67,26 +75,28 @@ function CreateQuestion() {
 
             <div className="all-answer-container">
                 <div className="single-answer-container">
-                {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
+                    {validationErrors.question && <p className="errorsQuestion">{validationErrors.question}</p>}
 
                     <form onSubmit={onSubmit} className="createForm">
                         <div className="enterQuestion">
-                            <textarea 
-                            value={question} 
-                            onChange={updateQuestion} 
-                            placeholder="Enter your question here" 
-                            className="textArea"></textarea>
+                            <textarea
+                                value={question}
+                                onChange={updateQuestion}
+                                placeholder="Enter your question here"
+                                className="textArea"></textarea>
                         </div>
                         <div className="divlab">
                             <h5 className="space-label">Space</h5>
-                                <input
-                                    type="text"
-                                    value={space}
-                                    onChange={updateSpace}
-                                    placeholder="Add a Space"                    
-                                />
+                            <select value={space} onChange={updateSpace}>
+                                <option value="">Choose a Space</option>
+                                {Object.values(spaces).map((space) => (
+                                    <option key={space.id} value={space.space_name}>
+                                        {space.space_name}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
-                        
+
                         <div className="quesButtonDiv">
 
                             <button className="nav-add-question-btn addQuestion" disabled={question.length < 1}>Add Question</button>

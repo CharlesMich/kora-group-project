@@ -27,8 +27,8 @@ function Footer() {
                                 <Link to={{ pathname: "https://github.com/CharlesMich" }} target="_blank"><i class="fa-brands fa-github"style={{color:"white"}}></i></Link>
                                 <span className="footer-text-p" style={{color:"white"}}>|</span>
                                 <span className="footer-text-p" style={{color:"white"}}>Giovany</span>
-                                <Link to={{ pathname: "https://github.com/giovanyv02" }} target="_blank"><span><i class="fa-brands fa-linkedin" style={{color:"white"}}></i></span></Link>
-                                <Link to={{ pathname: "https://www.linkedin.com/in/giovany-victor-33226a266/" }} target="_blank"><i class="fa-brands fa-github"style={{color:"white"}}></i></Link>
+                                <Link to={{ pathname: "https://www.linkedin.com/in/giovany-victor-33226a266/" }} target="_blank"><span><i class="fa-brands fa-linkedin" style={{color:"white"}}></i></span></Link>
+                                <Link to={{ pathname: "https://github.com/giovanyv02" }} target="_blank"><i class="fa-brands fa-github"style={{color:"white"}}></i></Link>
                                 <span className="footer-text-p" style={{color:"white"}}>|</span>
                                 <span className="footer-text-p" style={{color:"white"}}>Marcos</span>
                                 <Link to={{ pathname: "https://www.linkedin.com/in/marcos-d-del-valle-46a590239/" }} target="_blank"><span><i class="fa-brands fa-linkedin" style={{color:"white"}}></i></span></Link>

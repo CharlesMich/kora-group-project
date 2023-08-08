@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+import logo from '../../assets/kora-01.png'
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -66,7 +67,8 @@ function SignupFormModal() {
 
 	return (
 		<>
-			<h1>Sign Up</h1>
+			<img src={logo} alt='kora-logo' className='kora-logo' />
+			<h2>Sign Up</h2>
 			<div className='signup-modal-form'>
 				{submitted && errors.email && <p className="error">{errors.email}</p>}
 				{submitted && errors.username && <p className="error">{errors.username}</p>}
@@ -133,6 +135,7 @@ function SignupFormModal() {
 				/>
 				<button
 					onClick={handleSubmit}
+					className="signup-btn signup-modal-btn"
 					disabled={Object.values(errors).length > 0}
 					id={Object.values(errors).length > 0 ? 'sign-up-disabled' : 'sign-up-active'}
 				>Sign Up</button>
