@@ -63,6 +63,8 @@ function CreateQuestion() {
         }
     }, [run])
 
+    if (!spaces) return null;
+
     return (
         <div className="outer">
             <div className="manage-answer-title-container">
