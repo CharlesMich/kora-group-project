@@ -5,13 +5,20 @@
     border-radius: 10px;
     width: 500px
 }
+.signup-input{
+    height: 30px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(187, 184, 184);
+    border-radius: 5px;
+}
 
 .signup-modal-form {
     display: flex;
     flex-direction: column;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    width: 480px
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin: 10px;
+    width: 80%
 }
 
 .kora-logo {
@@ -21,7 +28,8 @@
 }
 
 .signup-modal-btn {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 /*
 input {
