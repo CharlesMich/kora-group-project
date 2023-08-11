@@ -29,26 +29,31 @@ function LoginFormPage() {
             <p className="login-error" key={idx}>{error}</p>
           ))}
         </ul>
-        <label>
-          Email
+          {email.length < 1 ? <p>*Must write a valid email*</p> : null}
+          <label>
+            Email
+          </label>
           <input
             className="login-text-and-password-input"
+            placeholder="Your email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
+
+          <label>
+            Password
+          </label>
+
           <input
             className="login-text-and-password-input"
+            placeholder="Your password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
         <button className="login-submit" 
              disabled={
                 password.length < 1 || email.length < 1

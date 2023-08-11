@@ -21,14 +21,15 @@ function SignupFormModal() {
 		let errors = [];
 
 		if (submitted) {
-			if (!first_name.trim()) errors.push('First name is required');
-			if (!last_name.trim()) errors.push('Last name is required');
-			if (!email.trim()) errors.push('Email is required');
+			if (!email.trim()) errors.push();
 			if (!email.includes('@')) errors.push('Must be a valid email');
 			if (!username.trim() || username.trim().length < 4) errors.push('Username is required and must be at least 4 characters');
+			if (!first_name.trim()) errors.push('First name is required');
+			if (!last_name.trim()) errors.push('Last name is required');
 			if (!password.trim()) errors.push('Password is required');
 			if (password.length < 6) errors.push('Password must be 6 characters or more');
-			if (!confirmPassword.trim()) errors.push('Confirm password field is required');
+			if (password.length && !confirmPassword.trim()) errors.push('Confirm password field is required');
+			if (password !== confirmPassword) errors.push("The confirmation password doesn't match the password");
 		}
 
 		setErrors(errors);
@@ -67,78 +68,85 @@ function SignupFormModal() {
 
 	return (
 		<>
-			<img src={logo} alt='kora-logo' className='kora-logo' />
 			<h2>Sign Up</h2>
 			<div className='signup-modal-form'>
-				{submitted && errors.email && <p className="error">{errors.email}</p>}
-				{submitted && errors.username && <p className="error">{errors.username}</p>}
-				{submitted && errors.firstName && <p className="error">{errors.firstName}</p>}
-				{submitted && errors.lastName && <p className="error">{errors.lastName}</p>}
-				{submitted && errors.password && <p className="error">{errors.password}</p>}
 				{/* {submitted && errors.confirmPassword && (
 					<p className="error">{errors.confirmPassword}</p>)} */}
 				{/* {submitted && errors.generalError && <p className="error">{errors.generalError}</p>} */}
-				{submitted && errors.map((error, index) => <p className="error" key={index}>{error}</p>)}
+				{submitted && errors.length ? <h3 className="signup-error-title">Please complete each field as requested</h3> : null}
+				{submitted && errors.map((error, index) => <p className="signup-error" key={index}>{error}</p>)}
 				<label>
 					Email
 				</label>
 				<input
 					type="text"
+					placeholder="Your email"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					required
+					className="signup-boxarea"
 				/>
 				<label>
 					Username
 				</label>
 				<input
 					type="text"
+					placeholder="What would you like to be called?"
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
 					required
+					className="signup-boxarea"
 				/>
 				<label>
 					First Name
 				</label>
 				<input
 					type="text"
+					placeholder="what's your name?"
 					value={first_name}
 					onChange={(e) => setFirstName(e.target.value)}
 					required
+					className="signup-boxarea"
 				/>
 				<label>
 					Last Name
 				</label>
 				<input
 					type="text"
+					placeholder="what about your last name?"
 					value={last_name}
 					onChange={(e) => setLastName(e.target.value)}
 					required
+					className="signup-boxarea"
 				/>
 				<label>
 					Password
 				</label>
 				<input
 					type="password"
+					placeholder="Write a password that no one will guess"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					required
+					className="signup-boxarea"
 				/>
 				<label>
 					Confirm Password
 				</label>
 				<input
 					type="password"
+					placeholder="confirm is the correct password"
 					value={confirmPassword}
 					onChange={(e) => setConfirmPassword(e.target.value)}
 					required
+					className="signup-boxarea"
 				/>
 				<button
 					onClick={handleSubmit}
 					className="signup-btn signup-modal-btn"
 					disabled={Object.values(errors).length > 0}
 					id={Object.values(errors).length > 0 ? 'sign-up-disabled' : 'sign-up-active'}
-				>Sign Up</button>
+				>Join Kora!</button>
 			</div>
 		</>
 	);
