@@ -60,7 +60,7 @@ export const login = (email, password) => async (dispatch) => {
 			return data.errors;
 		}
 	} else {
-		return ["An error occurred. Please try again."];
+		return ["Check Email or Password"];
 	}
 };
 
