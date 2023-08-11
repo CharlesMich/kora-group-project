@@ -21,6 +21,7 @@ const QuestionComponent = () => {
     
     const questions = useSelector(state => Object.values(state.questions))
     const us = useSelector(state => state.session.user)
+    const spaces = useSelector(state => state.spaces.allSpaces)
     let user;
     if (us) {
         user = us.id

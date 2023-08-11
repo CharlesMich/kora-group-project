@@ -7,12 +7,15 @@ import OpenModalButton from "../../OpenModalButton"
 import UpdateQuestion from "../../UpdateQuestion"
 import DeleteQuestion from "../../DeleteQuestion"
 import { fetchPostFollows, fetchDeleteFollow, fetchAllFollowers } from "../../../store/followsReducer"
+import SpaceSidebar from "../SpaceSidebar"
+import { thunkGetSpaces } from "../../../store/space"
 import './SpaceDetails.css'
 
 const SpaceDetails = () => {
     const { spaceId } = useParams()
     const dispatch = useDispatch()
     const space = useSelector(state => state.spaces.singleSpace)
+    const spaces = useSelector(state => state.spaces.allSpaces)
     const questions = useSelector(state => state.questions)
     const user = useSelector(state => state.session.user)
     const [isLoading, setIsLoading] = useState(true)
@@ -24,14 +27,14 @@ const SpaceDetails = () => {
     }, [dispatch, user])
     const followed = useSelector(state => Object.keys(state.follows))
 
-
     useEffect(() => {
         dispatch(thunkGetSingleSpace(spaceId))
             .then(() => setIsLoading(false))
         dispatch(allQuestions())
+        dispatch(thunkGetSpaces())
     }, [dispatch, spaceId])
 
-    if (!space || !questions) return null
+    if (!space || !questions ) return null
 
     const questionsArray = Object.values(questions)
     const spaceQuestions = questionsArray.filter(question => question.space_id === space.id)
@@ -58,6 +61,10 @@ const SpaceDetails = () => {
 
     if (spaceQuestions.length === 0) {
         return (
+            <div className="main-question-page">
+            <div className="space-sidebar">
+                < SpaceSidebar />
+            </div>
             <div className="space-detail-container">
                 <div>
                     <h2>{space.space_name}</h2>
@@ -70,10 +77,15 @@ const SpaceDetails = () => {
                     </NavLink>
                 </div>
             </div>
+            </div>
         )
     }
 
     return (
+        <div className="main-question-page">
+            <div className="space-sidebar">
+                < SpaceSidebar />
+            </div>
         <div className="space-detail-container">
             <div>
                 <h2>{space.space_name}</h2>
@@ -109,6 +121,8 @@ const SpaceDetails = () => {
                 )}
             </div>
         </div>
+    </div>
+
     )
 }
 

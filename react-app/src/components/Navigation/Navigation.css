@@ -33,8 +33,8 @@
 
   margin: 0;
 
-  width: 100px;
-  height: 70px;
+  width: 10rem;
+  height: 4.5rem;
   z-index: 2;
 
   border-radius: 5px 5% / 0 0 5px 5px;
@@ -63,7 +63,8 @@ button > ul {
 }
 
 .nav-dropdown-li {
-  padding: 2px
+  padding: 2px;
+  margin-top: 2px;
 }
 
 .shared-nav-bar{

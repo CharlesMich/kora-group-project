@@ -1,13 +1,12 @@
-t# Kora 
+## Kora 
 Kora is a soft clone of Quora. It is an application where users can ask questions, leave responses to questions, and find spaces that match their interests. Kora was built using Python/flask for backend and React/Redux for frontend. 
 
 Link to Kora: [Click here](https://kora-group-project.onrender.com)
 
 ## Index
-[MVP Feature List] |
-[Database Schema] |
-[User Stories] |
-[Wire Frames] |
+[MVP Feature List](https://github.com/CharlesMich/kora-group-project/wiki/Feature-List-for-Quora) |
+[Database Schema](https://github.com/CharlesMich/kora-group-project/wiki/Kora-Database-Diagram)|
+[User Stories](https://github.com/CharlesMich/kora-group-project/wiki/User-Stories)|
 
 ## Technologies Used
 <img src ="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/><img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" /><img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" /><img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" /><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /><img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" /><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
@@ -203,11 +202,11 @@ your site just below the name of the Web Service at the top of the page.
 | POST/api/login/ | This fetch is sent for a log in request. It returns an object representing the current user | { 'id': INT, 'username': STRING, 'email': STRING, 'first_name': STRING, 'last_name': STRING }|
 | GET/api/logout/ | This fetch is sent upon a logout request. It returns a message about the logout | {'message': 'User logged out'} |
 | GET/api/signup/ | This fetch is sent upon a signup request. It returns an object representing the new signed up user. | { 'id': INT, 'username': STRING, 'email': STRING, 'first_name': STRING, 'last_name': STRING } |
-| GET/api/question/ | This fetch is sent to get all the questions to display on the questions page. (newest first) | {'id': INT, 'username':STRING, 'email':STRING} |
+| GET/api/question/ | This fetch is sent to get all the questions to display on the questions page. (newest first) | { 'id': INT 'question': STRING, 'owner_id': INT, 'space_id': INT} |
 | POST/api/question/new-question | This fetch is sent when a user posts a new question. It returns the users manage questions page with the new posted question | { 'id': INT, 'question': STRING, 'owner_id': INT, 'space_id': INT, "User_firstName": STRING, 'User_lastName': STRING } |
 | POST/api/question/update-question/:questionId | This fetch is sent to update a question of the user. It returns the the updated question displayed on the manage questions page. | { 'id': INT, 'question': STRING, 'owner_id': INT, 'space_id': INT, "User_firstName": STRING, 'User_lastName': STRING } |
 | POST/api/question/delete-question/:questionId | This fetch is sent to delete a question. It returns a successfully deleted message and the manage questions page does not contain the deleted question | {"message": "Successfully Deleted"} |
-| GET/api/answer/ | This fetch is sent upon initial app load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {'id': INT, 'username':STRING, 'email':STRING} |
+| GET/api/answer/ | This fetch is sent to get all answers. It returns an object with all the answers | {'id': INT, 'body': STRING 'user_id': INT, 'question_id': INT} |
 | POST/api/answer/new/:questionId | This fetch is sent to answer a question. It returns an object with the new answer | {'id': INT, 'body': STRING, 'user_id': INT, 'question_id': INT, "User_firstName": STRING, 'User_lastName': STRING, "Question_question": STRING, "Question_ownerId": INT} |
 | POST/api/answer/update-answers/:answerId | This fetch is sent to update an answer. It returns an object representing the updated answer. | {'id': INT, 'body': STRING, 'user_id': INT, 'question_id': INT, "User_firstName": STRING, 'User_lastName': STRING, "Question_question": STRING, "Question_ownerId": INT} |
 | POST/api/answer/delete-answers/:answerId | This fetch is sent to delete an answer. It returns a sucessfully deleted message. | {"message": "Successfully Deleted"} |
