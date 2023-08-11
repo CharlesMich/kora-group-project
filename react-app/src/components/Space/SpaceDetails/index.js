@@ -8,18 +8,16 @@ import UpdateQuestion from "../../UpdateQuestion"
 import DeleteQuestion from "../../DeleteQuestion"
 import { fetchPostFollows, fetchDeleteFollow, fetchAllFollowers } from "../../../store/followsReducer"
 import SpaceSidebar from "../SpaceSidebar"
-import { thunkGetSpaces } from "../../../store/space"
 import './SpaceDetails.css'
 
 const SpaceDetails = () => {
     const { spaceId } = useParams()
     const dispatch = useDispatch()
     const space = useSelector(state => state.spaces.singleSpace)
-    const spaces = useSelector(state => state.spaces.allSpaces)
     const questions = useSelector(state => state.questions)
     const user = useSelector(state => state.session.user)
     const [isLoading, setIsLoading] = useState(true)
-
+    
     useEffect(() => {
         if (user) {
             dispatch(fetchAllFollowers(user.id))
@@ -31,7 +29,6 @@ const SpaceDetails = () => {
         dispatch(thunkGetSingleSpace(spaceId))
             .then(() => setIsLoading(false))
         dispatch(allQuestions())
-        dispatch(thunkGetSpaces())
     }, [dispatch, spaceId])
 
     if (!space || !questions ) return null

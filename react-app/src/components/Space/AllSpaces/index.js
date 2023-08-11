@@ -14,12 +14,11 @@ const AllSpaces = () => {
     useEffect(() => {
         dispatch(thunkGetSpaces())
     }, [dispatch])
-
+   
     const sessionUser = useSelector((state) => state.session.user);
     if (!sessionUser) return <Redirect to="/login" />;
 
     if (!Array.isArray(spaces)) return null
-
 
     return (
         <div className="container">

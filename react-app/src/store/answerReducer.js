@@ -149,11 +149,8 @@ export default function answerReducer(state = initialState, action) {
 
         case ALL_ANSWERS_BY_QUESTION:
             const tempState = {}
-
             action.payload.forEach(ele => tempState[ele.id] = ele);
-            // console.log('inside reducer', tempState)
             return { ...state, tempState }
-
 
         case ALL_ANSWERS_BY_USER:
             const newState = {}
@@ -163,7 +160,6 @@ export default function answerReducer(state = initialState, action) {
         case ADD_ANSWER:
             return { ...state, [action.payload.id]: action.payload }
 
-
         case UPDATE_ANSWER:
             return { ...state, [action.payload.id]: action.payload };
 
@@ -171,8 +167,6 @@ export default function answerReducer(state = initialState, action) {
             const state1 = { ...state.newState }
             delete state1[action.payload]
             return { ...state }
-
-
 
         default: return state;
     }
