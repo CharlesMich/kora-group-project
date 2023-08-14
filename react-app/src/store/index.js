@@ -6,6 +6,7 @@ import reducer from './session'
 import questionReducer from './questions';
 import spacesReducer from './space';
 import followReducer from './followsReducer';
+import spaces1reducer from './space1';
 
 
 
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   questions: questionReducer,
   answers: answerReducer,
   spaces: spacesReducer,
+  spaces1:spaces1reducer,
   follows: followReducer
 });
 
