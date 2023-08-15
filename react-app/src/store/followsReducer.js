@@ -28,17 +28,6 @@ const delete_follow = payload => ({
 })
 
 // THUNKS
-// GET ALL FOLLOWS OF A PERSON
-
-// export const fetchAllFollows = (userId) => async (dispatch) => {
-//     const response = await fetch(`/api/follows/${userId}`)
-
-//     if (response.ok) {
-//         const payload = await response.json();
-//         dispatch(my_followers(payload));
-//         console.log(payload)
-//     }
-// }
 
 // GET ALL THE FOLLOWERS OF A PERSON
 export const fetchAllFollowers = (userId) => async (dispatch) => {
@@ -62,7 +51,6 @@ export const fetchPostFollows = (user_id) => async (dispatch) => {
     if (response.ok) {
         const payload = await response.json();
         dispatch(add_follow(payload))
-        // console.log("Added follow", payload)
         return payload
     }
 }
@@ -74,22 +62,13 @@ export const fetchDeleteFollow = (userId) => async (dispatch) => {
     })
     if (response.ok) {
         dispatch(delete_follow(userId))
-        // console.log("deleted follow", userId)
     }
 }
-
-// myFollowers:{},
 
 const initialState = {};
 export default function followReducer(state = initialState, action) {
 
     switch (action.type) {
-        // case MY_FOLLOWERS:
-        // newState = {...state, myFollowers: action.payload}
-        // // newState.myFollowers= action.payload
-        // return newState
-
-
         case I_FOLLOW:
             const newState = {};
             action.payload.forEach(ele => newState[ele.followed_user_id] = ele);

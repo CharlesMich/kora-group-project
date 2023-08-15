@@ -93,7 +93,6 @@ export const signUp = (user) => async (dispatch) => {
 	} else if (response.status < 500) {
 		const errorData = await response.json();
 		const errors = errorData.errors
-		// console.log(errors)
 		throw errors
 	} else {
 		throw new Error("An error occurred. Please try again.");
