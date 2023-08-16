@@ -41,7 +41,6 @@ function SignupFormModal() {
 				first_name: first_name,
 				last_name: last_name,
 			}))
-			console.log('menn bon data', data.length)
 			if(data.length){
 				setVavidation(data)
 			}else{
