@@ -10,7 +10,6 @@ const SpaceSidebar = () => {
     const dispatch = useDispatch()
 
     const spaces = useSelector((state) => state.spaces1)
-    console.log(spaces)
        
     useEffect(() => {
         dispatch(thunkGetSpaces())

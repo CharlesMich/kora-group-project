@@ -61,7 +61,6 @@ export const fetchAllAnswers = () => async dispatch => {
     if (response.ok) {
         const payload = await response.json();
         dispatch(all_answers(payload));
-        // console.log('ALL ANSWERS IN FETCH', payload)
 
     }
 }
@@ -79,10 +78,8 @@ export const getAllAnswers = (questionId) => async (dispatch) => {
 // GET ALL ANSWERS OF A USER
 export const fetchAllAnswersOfUser = (userId) => async (dispatch) => {
     const response = await fetch(`/api/answer/user/${userId}`);
-    // console.log('inside fetch', userId)
     if (response.ok) {
         const payload = await response.json();
-        // console.log('payload inside fetch', payload)
         dispatch(all_answers_by_user(payload))
     }
 }
