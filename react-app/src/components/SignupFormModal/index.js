@@ -13,68 +13,53 @@ function SignupFormModal() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [errors, setErrors] = useState([]);
+	const [validation, setVavidation] = useState([])
+	const [errors, setErrors] = useState({});
 	const { closeModal } = useModal();
 	const [submitted, setSubmitted] = useState(false)
 
-	useEffect(() => {
-		let errors = [];
+	let err = {}
+	if (!email.trim()) err['email'] = 'email is required';
+	if (!email.includes('@')) err['email'] = 'valid email is required'
+	if (!username.trim() || username.trim().length < 4) err['username'] = 'Username is required and must be at least 4 characters';
+	if (!first_name.trim()) err['firstName'] = 'First name is required';
+	if (!last_name.trim()) err['lastName'] = 'Last name is required';
+	if (!password.trim()) err['password'] = 'Password is required';
+	if (password.length < 6) err['password'] = 'Password must be 6 characters or more';
+	if (password.length && !confirmPassword.trim()) err['confirmPassword'] = 'Confirm password field is required';
+	if (password !== confirmPassword) err['confirmPassword'] = "The confirmation password doesn't match the password";
 
-		if (submitted) {
-			if (!email.trim()) errors.push();
-			if (!email.includes('@')) errors.push('Must be a valid email');
-			if (!username.trim() || username.trim().length < 4) errors.push('Username is required and must be at least 4 characters');
-			if (!first_name.trim()) errors.push('First name is required');
-			if (!last_name.trim()) errors.push('Last name is required');
-			if (!password.trim()) errors.push('Password is required');
-			if (password.length < 6) errors.push('Password must be 6 characters or more');
-			if (password.length && !confirmPassword.trim()) errors.push('Confirm password field is required');
-			if (password !== confirmPassword) errors.push("The confirmation password doesn't match the password");
-		}
-
-		setErrors(errors);
-	}, [submitted, first_name, last_name, email, username, password, confirmPassword]);
-
+	
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setSubmitted(true);
-		if (password === confirmPassword && first_name.trim() && last_name.trim() && email.trim() && email.includes("@") && username.trim().length > 3 && password.length > 5) {
-			setErrors([]);
-			try {
-				await dispatch(
-					signUp({
-						email: email,
-						password: password,
-						username: username,
-						first_name: first_name,
-						last_name: last_name,
-					})
-				).then(() => {
-					closeModal()
-					window.location.href = '/'
-				})
-			} catch (error) {
-				if (Array.isArray(error)) {
-					setErrors(error);
-				}
-				else {
-					setErrors(["An error occured. Please try again"])
-				}
-			};
-		} else if (password !== confirmPassword) {
-			setErrors(["Confirm Password field must be the same as the Password field"]);
+		setErrors(err)
+		if (!Object.values(err).length) {
+			const data = await dispatch(signUp({
+				email: email,
+				password: password,
+				username: username,
+				first_name: first_name,
+				last_name: last_name,
+			}))
+			console.log('menn bon data', data.length)
+			if(data.length){
+				setVavidation(data)
+			}else{
+				window.location.href = '/'
+				closeModal()
+
+			}
+			
 		}
 	};
+	
 
 	return (
 		<>
 			<h2>Sign Up</h2>
 			<div className='signup-modal-form'>
-				{/* {submitted && errors.confirmPassword && (
-					<p className="error">{errors.confirmPassword}</p>)} */}
-				{/* {submitted && errors.generalError && <p className="error">{errors.generalError}</p>} */}
-				{submitted && errors.length ? <h3 className="signup-error-title">Please complete each field as requested</h3> : null}
-				{submitted && errors.map((error, index) => <p className="signup-error" key={index}>{error}</p>)}
+				
+				{validation.length > 0 && validation.map((error, index) => <p className="signup-error" key={index}>{error}</p>)}
 				<label>
 					Email
 				</label>
@@ -86,6 +71,8 @@ function SignupFormModal() {
 					required
 					className="signup-boxarea"
 				/>
+            {errors.email && <p className="signup-error">{errors.email}</p>}
+
 				<label>
 					Username
 				</label>
@@ -97,6 +84,8 @@ function SignupFormModal() {
 					required
 					className="signup-boxarea"
 				/>
+            {errors.username && <p className="signup-error">{errors.username}</p>}
+
 				<label>
 					First Name
 				</label>
@@ -108,6 +97,8 @@ function SignupFormModal() {
 					required
 					className="signup-boxarea"
 				/>
+              {errors.firstName && <p className="signup-error" >{errors.firstName}</p>}
+
 				<label>
 					Last Name
 				</label>
@@ -119,6 +110,8 @@ function SignupFormModal() {
 					required
 					className="signup-boxarea"
 				/>
+              {errors.lastName && <p className="signup-error">{errors.lastName}</p>}
+
 				<label>
 					Password
 				</label>
@@ -130,6 +123,8 @@ function SignupFormModal() {
 					required
 					className="signup-boxarea"
 				/>
+          {errors.password && <p className="signup-error">{errors.password}</p>}
+
 				<label>
 					Confirm Password
 				</label>
@@ -141,10 +136,11 @@ function SignupFormModal() {
 					required
 					className="signup-boxarea"
 				/>
+          {errors.confirmPassword && <p className="signup-error">{errors.confirmPassword}</p>}
+
 				<button
 					onClick={handleSubmit}
 					className="signup-btn signup-modal-btn"
-					disabled={Object.values(errors).length > 0}
 					id={Object.values(errors).length > 0 ? 'sign-up-disabled' : 'sign-up-active'}
 				>Join Kora!</button>
 			</div>
